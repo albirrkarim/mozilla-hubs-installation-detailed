@@ -18,7 +18,7 @@ Before we start lets see the requirement.
 
 - Node js installed. when im install this hubs i use v16
 - Installing elixir and erlang (Elixir 1.12 and erlang version 23)
-You can installing those with follow (this tutorial)[https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf] 
+You can installing those with follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
 **Becareful about the version of elixir and erlang.**
   
 
