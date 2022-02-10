@@ -1,6 +1,6 @@
 # Introduction
 
-My journey installing mozilla hubs, im new on compleks project like this. so im confused of course. and finaly i can running mozilla hubs on my macbook air m1.
+My journey installing mozilla hubs, im new on project like this. so im confused of course. 4 days of figuring how this program work and finaly i can running mozilla hubs on my macbook air m1.
 I want to share with you how to do.
 
 This is about running mozilla hubs on locally. this is detailed version, step by step what i do.
@@ -23,56 +23,221 @@ I assume you already know
 
 - Javascript
 - React js
-- Webpack dev server
+- Basic Webpack dev server
+- Basic Elixir and phoenix
+- Basic Web Socket
 
-I will update this soon
 
 # Overview
 
-![System Overview](https://user-images.githubusercontent.com/29292018/153311792-6da76dc0-db31-4936-ba8b-806690e2cc11.jpeg)
+![System Overview](/docs_img/System_Overview.jpeg)
 
-The image above i make with [figma](figma.com) you can read more description on [documentation](https://hubs.mozilla.com/docs/system-overview.html)
+The image above made with [figma](figma.com) you can read more description on [documentation](https://hubs.mozilla.com/docs/system-overview.html)
 
 # Installation
 
-## Hubs
+There is major step Cloning and Preparation -> Setting up HTTPS (SSL) -> Running
 
-In this [repo](https://github.com/mozilla/hubs) contains the hubs client and hubs admin (hubs/admin)
-
-This is hubs client
-
-<img width="1552" alt="image" src="https://user-images.githubusercontent.com/29292018/153312304-345861e6-7f9d-403c-9814-bd2814869761.png">
-
-
-This is hubs admin
-
-<img width="1552" alt="Screen Shot 2022-02-10 at 07 15 16" src="https://user-images.githubusercontent.com/29292018/153312480-948849c3-3268-44db-bac2-07e4a434cab5.png">
-
-
-Run this and it will start on localhost:8080
-
-`
-git clone https://github.com/mozilla/hubs.git
-cd hubs
-npm ci
-npm run local
-`
-
+# 1. Cloning and preparation
 
 ## Reticulum
 
 [Its](https://github.com/mozilla/reticulum) a backend server that using elixir and phoenix. 
 
-requirement:
+### Requirement:
 
-Installing elixir and erlang (Elixir 1.12 and erlang version 23)
+**1. Elixir and Erlang (Elixir 1.12 and erlang version 23)**
+
 You can installing those with follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
 
-**Becareful about the version of elixir and erlang.**
+Becareful about the version of elixir and erlang.
 
-Installing ansible
+**2. Ansible**
+
 You can use `pip` to install. take a look on this [tutorial](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#from-pip)
 
 
-I will update this soon
+## Dialog
 
+Using mediasoup RTC this will handling audio and video realtime communication. like camera stream, share screen.
+
+
+Setting up secret key
+
+thanks to this [comment](https://github.com/mozilla/hubs/discussions/3323#discussioncomment-1857495)
+
+Generate RSA (Public and Private key) with [generator online](https://travistidwell.com/jsencrypt/demo/)
+
+make empty file `perms.pub.pem` and fill it with RSA Public key
+
+![RSA generator ](/docs_img/rsa.png)
+![Paste](/docs_img/rsa_1.png)
+
+Goto reticulum directory on `reticulum/config/dev.exs` change PermsToken with the RSA private key that you generate before.
+
+`config :ret, Ret.PermsToken, perms_key: "-----BEGIN RSA PRIVATE KEY----- paste here copyed key but add every line \n before END RSA PRIVATE KEY-----"
+`
+
+
+## Spoke
+
+In here you can create / edit the scenes / buildings whatever you call it.
+
+![Mozilla Spoke](/docs_img/spoke.png)
+
+```
+git clone https://github.com/mozilla/Spoke.git
+cd Spoke
+yarn install
+```
+
+## Hubs
+
+In this [repo](https://github.com/mozilla/hubs) contains the hubs client and hubs admin (hubs/admin)
+
+
+![System Overview](/docs_img/hubs_overview.jpeg)
+
+Run this and it will start on `localhost:8080`
+
+```
+git clone https://github.com/mozilla/hubs.git
+cd hubs
+npm ci
+```
+
+## Hubs Admin
+
+from the hubs repo you can move to `hubs/admin` then run
+
+```
+npm install
+```
+
+
+# 2. Setting up HTTPS (SSL)
+
+all the server must serve with https. so inside the reticulum directory you must generate certificate and key file 
+
+run command `mix phx.gen.cert` it will generate key `selfsigned_key.pem` and certificate `selfsigned.pem`
+
+
+rename `selfsigned_key.pem` to `key.pem`
+rename `selfsigned.pem` to `cert.pem`
+
+in reticulum directory move that two file into `priv/` folder
+
+In Mac OS
+
+Open the `cert.pem` on the tab system find that certificate. then click twice and change to always trust.
+
+![Https mozilla hubs](/docs_img/cert.png)
+
+Select the `cert.pem` and `key.pem` and copy it. next step we will distribute those two file into hubs, hubs admin, spoke, dialog, and reticulum. 
+
+Oke first setting up in the reticulum.
+
+
+### Setting https for reticulum
+
+then change the `config/dev.exs` setting path for the certificate and key file.
+
+```
+config :my_app, MyAppWeb.Endpoint,
+  ...
+  https: [
+    port: 4001,
+    cipher_suite: :strong,
+    keyfile: "priv/key.pem",
+    certfile: "priv/cert.pem"
+  ]
+```
+
+
+### Setting https for hubs
+
+Paste that file into `hubs/certs`
+
+We run hubs with `npm run local` right?
+so add additional params on `package.json`
+
+`--https --cert certs/cert.pem --key certs/key.pem`
+
+Like this picture
+
+![ssl hubs](/docs_img/ssl_hubs.png)
+
+
+### Setting https for hubs admin
+
+Paste that file into `hubs/admin/certs` 
+
+We run hubs with `npm run local` right?
+so add additional params on `package.json`
+
+`--https --cert certs/cert.pem --key certs/key.pem`
+
+Like this picture
+
+![ssl hubs admin](/docs_img/ssl_hubs_admin.png)
+
+
+### Setting https for spoke
+
+Paste that file into `spoke/certs`
+
+We run spoke with `yarn start` right ?
+So change the `start` command
+
+![ssl hubs admin](/docs_img/ssl_spoke.png)
+
+
+With this
+
+`cross-env NODE_ENV=development BASE_ASSETS_PATH=https://localhost:9090/ webpack-dev-server --mode development --https --cert certs/cert.pem --key certs/key.pem`
+
+
+### Setting https for dialog
+
+Paste that file into `dialog/certs`
+
+rename `cert.pem` to `fullchain.pem`
+
+rename `key.pem` to `privkey.pem`
+
+![ssl hubs dialog](/docs_img/ssl_dialog_1.png)
+
+
+# 3. Runing
+
+Open five terminals. for each reticulum, dialog, spoke, hubs, hubs admin.
+
+![Running preparation](/docs_img/ss.png)
+
+run reticulum with
+`iex -S mix phx.server`
+
+run dialog with
+`MEDIASOUP_LISTEN_IP=127.0.0.1 MEDIASOUP_ANNOUNCED_IP=127.0.0.1 npm start`
+
+run spoke with
+`yarn start`
+
+run hubs and hubs admin each with
+`npm run local`
+
+![Running success](/docs_img/success.png)
+
+
+Now you can access
+
+with lock symbol (SSL secure)
+
+Hubs
+`https://localhost:4000`
+
+Hubs admin
+`https://localhost:4000/admin`
+
+Spoke
+`https://localhost:4000/spoke`
