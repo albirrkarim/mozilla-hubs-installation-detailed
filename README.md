@@ -39,7 +39,7 @@ The image above made with [figma](figma.com) you can read more description on [d
 
 # Attention !
 
-There is major step [Cloning and Preparation](#1-cloning-and-preparation) -> [Setting up HOST](#2-setting-up-host) -> [Setting up HTTPS (SSL)](#3-setting-up-https-ssl) -> Running
+There is major step [Cloning and Preparation](#1-cloning-and-preparation) -> [Setting up HOST](#2-setting-up-host) -> [Setting up HTTPS (SSL)](#3-setting-up-https-ssl) -> [Running](#4-runing)
 
 # 1. Cloning and preparation
 
@@ -284,7 +284,7 @@ rename `key.pem` to `privkey.pem`
 ![ssl hubs dialog](/docs_img/ssl_dialog_1.png)
 
 
-# 4. Runing
+# 4. Running
 
 Open five terminals. for each reticulum, dialog, spoke, hubs, hubs admin.
 
