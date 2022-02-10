@@ -299,4 +299,6 @@ Spoke
 
 # The problem i still faced
 
-1. 502 server communication error in hubs admin like [this issue](https://github.com/mozilla/hubs/issues/4970#issue-1087523703)
+1. 502 server communication error in hubs admin like this issue 
+
+https://github.com/mozilla/hubs/issues/4970#issue-1087523703
