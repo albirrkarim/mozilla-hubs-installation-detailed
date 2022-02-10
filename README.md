@@ -34,30 +34,42 @@ I assume you already know
 
 The image above made with [figma](figma.com) you can read more description on [documentation](https://hubs.mozilla.com/docs/system-overview.html)
 
-# Installation
+<br/>
+<br/>
+
+# Attention !
 
 There is major step Cloning and Preparation -> Setting up HTTPS (SSL) -> Running
 
 # 1. Cloning and preparation
 
-## Reticulum
+## 1.1 Reticulum
 
 [Its](https://github.com/mozilla/reticulum) a backend server that using elixir and phoenix. 
 
-### Requirement:
 
-**1. Elixir and Erlang (Elixir 1.12 and erlang version 23)**
+### 1.1.1 Install this
+
+1.Elixir and Erlang (Elixir 1.12 and erlang version 23)**
 
 You can installing those with follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
 
 Becareful about the version of elixir and erlang.
 
-**2. Ansible**
+2.Ansible
 
 You can use `pip` to install. take a look on this [tutorial](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#from-pip)
 
+### 1.1.2 run this command
 
-## Dialog
+1. `mix deps.get`
+2. `mix ecto.create`
+    * If step 2 fails, you may need to change the password for the `postgres` role to match the password configured `dev.exs`.
+    * From within the `psql` shell, enter `ALTER USER postgres WITH PASSWORD 'postgres';`
+    * If you receive an error that the `ret_dev` database does not exist, (using psql again) enter `create database ret_dev;`
+3. From the project directory `mkdir -p storage/dev`
+
+## 1.2 Dialog
 
 Using mediasoup RTC this will handling audio and video realtime communication. like camera stream, share screen.
 
@@ -75,11 +87,12 @@ make empty file `perms.pub.pem` and fill it with RSA Public key
 
 Goto reticulum directory on `reticulum/config/dev.exs` change PermsToken with the RSA private key that you generate before.
 
-`config :ret, Ret.PermsToken, perms_key: "-----BEGIN RSA PRIVATE KEY----- paste here copyed key but add every line \n before END RSA PRIVATE KEY-----"
-`
+```elixir
+config :ret, Ret.PermsToken, perms_key: "-----BEGIN RSA PRIVATE KEY----- paste here copyed key but add every line \n before END RSA PRIVATE KEY-----"
+```
 
 
-## Spoke
+## 1.3 Spoke
 
 In here you can create / edit the scenes / buildings whatever you call it.
 
@@ -91,7 +104,7 @@ cd Spoke
 yarn install
 ```
 
-## Hubs
+## 1.4 Hubs
 
 In this [repo](https://github.com/mozilla/hubs) contains the hubs client and hubs admin (hubs/admin)
 
@@ -106,7 +119,7 @@ cd hubs
 npm ci
 ```
 
-## Hubs Admin
+## 1.5 Hubs Admin
 
 from the hubs repo you can move to `hubs/admin` then run
 
@@ -138,7 +151,7 @@ Select the `cert.pem` and `key.pem` and copy it. next step we will distribute th
 Oke first setting up in the reticulum.
 
 
-### Setting https for reticulum
+## 2.1 Setting https for reticulum
 
 then change the `config/dev.exs` setting path for the certificate and key file.
 
@@ -154,7 +167,7 @@ config :my_app, MyAppWeb.Endpoint,
 ```
 
 
-### Setting https for hubs
+## 2.2 Setting https for hubs
 
 Paste that file into `hubs/certs`
 
@@ -168,7 +181,7 @@ Like this picture
 ![ssl hubs](/docs_img/ssl_hubs.png)
 
 
-### Setting https for hubs admin
+## 2.3 Setting https for hubs admin
 
 Paste that file into `hubs/admin/certs` 
 
@@ -182,7 +195,7 @@ Like this picture
 ![ssl hubs admin](/docs_img/ssl_hubs_admin.png)
 
 
-### Setting https for spoke
+## 2.4 Setting https for spoke
 
 Paste that file into `spoke/certs`
 
@@ -194,10 +207,12 @@ So change the `start` command
 
 With this
 
-`cross-env NODE_ENV=development BASE_ASSETS_PATH=https://localhost:9090/ webpack-dev-server --mode development --https --cert certs/cert.pem --key certs/key.pem`
+```
+cross-env NODE_ENV=development BASE_ASSETS_PATH=https://localhost:9090/ webpack-dev-server --mode development --https --cert certs/cert.pem --key certs/key.pem
+```
 
 
-### Setting https for dialog
+## 2.5 Setting https for dialog
 
 Paste that file into `dialog/certs`
 
@@ -214,30 +229,44 @@ Open five terminals. for each reticulum, dialog, spoke, hubs, hubs admin.
 
 ![Running preparation](/docs_img/ss.png)
 
-run reticulum with
-`iex -S mix phx.server`
+## 3.1 Run reticulum
+with command
+```bash
+iex -S mix phx.server
+```
 
-run dialog with
-`MEDIASOUP_LISTEN_IP=127.0.0.1 MEDIASOUP_ANNOUNCED_IP=127.0.0.1 npm start`
+## 3.2 Run dialog
+with command
+```bash
+MEDIASOUP_LISTEN_IP=127.0.0.1 MEDIASOUP_ANNOUNCED_IP=127.0.0.1 npm start
+```
 
-run spoke with
-`yarn start`
+## 3.3 run spoke
+with command
+```bash
+yarn start
+```
 
-run hubs and hubs admin each with
-`npm run local`
+## 3.4 run hubs and hubs admin
+each with command
+```bash
+npm run local
+```
 
 ![Running success](/docs_img/success.png)
 
-
-Now you can access
+Urrraaa, Now you can access
 
 with lock symbol (SSL secure)
 
-Hubs
-`https://localhost:4000`
+Hubs 
+
+[https://localhost:4000](https://localhost:4000)
 
 Hubs admin
-`https://localhost:4000/admin`
+
+[https://localhost:4000/admin](https://localhost:4000/admin)
 
 Spoke
-`https://localhost:4000/spoke`
+
+[https://localhost:4000/spoke](https://localhost:4000/spoke)
