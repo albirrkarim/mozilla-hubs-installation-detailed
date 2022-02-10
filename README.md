@@ -39,7 +39,7 @@ The image above made with [figma](figma.com) you can read more description on [d
 
 # Attention !
 
-There is major step Cloning and Preparation -> Setting up HOST -> Setting up HTTPS (SSL) -> Running
+There is major step [Cloning and Preparation](#1-cloning-and-preparation) -> [Setting up HOST](#2-setting-up-host) -> [Setting up HTTPS (SSL)](#3-setting-up-https-ssl) -> Running
 
 # 1. Cloning and preparation
 
@@ -181,14 +181,14 @@ from the [hubs repo](#14-hubs) you can move to `hubs/admin` then run
 npm install
 ```
 
-# 3. Setting up HOST
+# 2. Setting up HOST
 
 We are not using `hubs.local` domain. we use `localhost`
 
 so change every host configuration on reticulum, dialog, hubs, hubs admin, spoke.
 
 
-# 2. Setting up HTTPS (SSL)
+# 3. Setting up HTTPS (SSL)
 
 all the server must serve with https. so inside the reticulum directory you must generate certificate and key file 
 
@@ -212,7 +212,7 @@ Select the `cert.pem` and `key.pem` and copy it. next step we will distribute th
 Oke first setting up in the reticulum.
 
 
-## 2.1 Setting https for reticulum
+## 3.1 Setting https for reticulum
 
 then change the `config/dev.exs` setting path for the certificate and key file.
 
@@ -228,7 +228,7 @@ config :my_app, MyAppWeb.Endpoint,
 ```
 
 
-## 2.2 Setting https for hubs
+## 3.2 Setting https for hubs
 
 Paste that file into `hubs/certs`
 
@@ -242,7 +242,7 @@ Like this picture
 ![ssl hubs](/docs_img/ssl_hubs.png)
 
 
-## 2.3 Setting https for hubs admin
+## 3.3 Setting https for hubs admin
 
 Paste that file into `hubs/admin/certs` 
 
@@ -256,7 +256,7 @@ Like this picture
 ![ssl hubs admin](/docs_img/ssl_hubs_admin.png)
 
 
-## 2.4 Setting https for spoke
+## 3.4 Setting https for spoke
 
 Paste that file into `spoke/certs`
 
@@ -273,7 +273,7 @@ cross-env NODE_ENV=development BASE_ASSETS_PATH=https://localhost:9090/ webpack-
 ```
 
 
-## 2.5 Setting https for dialog
+## 3.5 Setting https for dialog
 
 Paste that file into `dialog/certs`
 
@@ -284,19 +284,19 @@ rename `key.pem` to `privkey.pem`
 ![ssl hubs dialog](/docs_img/ssl_dialog_1.png)
 
 
-# 3. Runing
+# 4. Runing
 
 Open five terminals. for each reticulum, dialog, spoke, hubs, hubs admin.
 
 ![Running preparation](/docs_img/ss.png)
 
-## 3.1 Run reticulum
+## 4.1 Run reticulum
 with command
 ```bash
 iex -S mix phx.server
 ```
 
-## 3.2 Run dialog
+## 4.2 Run dialog
 with command
 ```bash
 MEDIASOUP_LISTEN_IP=127.0.0.1 MEDIASOUP_ANNOUNCED_IP=127.0.0.1 npm start
@@ -308,13 +308,13 @@ MEDIASOUP_LISTEN_IP=127.0.0.1 MEDIASOUP_ANNOUNCED_IP=127.0.0.1 npm start
 sudo nano /etc/hosts
 ```
 
-## 3.3 Run spoke
+## 4.3 Run spoke
 with command
 ```bash
 yarn start
 ```
 
-## 3.4 Run hubs and hubs admin
+## 4.4 Run hubs and hubs admin
 each with command
 ```bash
 npm run local
