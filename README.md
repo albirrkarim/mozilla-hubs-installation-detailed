@@ -79,6 +79,33 @@ You can use `pip` to install. take a look on this [tutorial](https://docs.ansibl
     * If you receive an error that the `ret_dev` database does not exist, (using psql again) enter `create database ret_dev;`
 3. From the project directory `mkdir -p storage/dev`
 
+### 1.1.4 Run Reticulum against a local Dialog instance
+
+1. Update the Janus host in `dev.exs`: 
+```elixir
+dev_janus_host = "localhost"
+```
+2. Update the Janus port in `dev.exs`:
+```elixir
+config :ret, Ret.JanusLoadStatus, default_janus_host: dev_janus_host, janus_port: 4443
+```
+3. Add the Dialog meta endpoint to the CSP rules in `add_csp.ex`: 
+
+```elixir
+default_janus_csp_rule =
+   if default_janus_host,
+      do: "wss://#{default_janus_host}:#{janus_port} https://#{default_janus_host}:#{janus_port} https://#{default_janus_host}:#{janus_port}/meta",
+      else: ""
+```
+
+4. Coturn
+Find on google how to install coturn, and manage it
+
+5. Edit the Dialog configuration file *turnserver.conf* and update the PostgreSQL database connection string to use the *coturn* schema from the Reticulum database:
+```
+psql-userdb="host=hubs.local dbname=ret_dev user=postgres password=postgres options='-c search_path=coturn' connect_timeout=30"
+```
+
 ## 1.2 Dialog
 
 Using mediasoup RTC this will handling audio and video realtime communication. like camera stream, share screen.
