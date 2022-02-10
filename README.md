@@ -160,13 +160,14 @@ run command `mix phx.gen.cert` it will generate key `selfsigned_key.pem` and cer
 
 
 rename `selfsigned_key.pem` to `key.pem`
+
 rename `selfsigned.pem` to `cert.pem`
 
 in reticulum directory move that two file into `priv/` folder
 
-In Mac OS
+In Mac OS, I don't know in windows or linux. please find it your self
 
-Open the `cert.pem` on the tab system find that certificate. then click twice and change to always trust.
+Open the `cert.pem` on the tab system find that certificate then click twice and change to always trust.
 
 ![Https mozilla hubs](/docs_img/cert.png)
 
@@ -179,7 +180,7 @@ Oke first setting up in the reticulum.
 
 then change the `config/dev.exs` setting path for the certificate and key file.
 
-```
+```elixir
 config :my_app, MyAppWeb.Endpoint,
   ...
   https: [
@@ -294,3 +295,8 @@ Hubs admin
 Spoke
 
 [https://localhost:4000/spoke](https://localhost:4000/spoke)
+
+
+# The problem i still faced
+
+502 server communication error in hubs admin
