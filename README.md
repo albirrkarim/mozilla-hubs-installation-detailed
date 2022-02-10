@@ -56,13 +56,17 @@ cd reticulum
 
 ### 1.1.2 Install requirement
 
-1.Elixir and Erlang (Elixir 1.12 and erlang version 23)
+**Postgres Database**
+
+https://postgresapp.com/downloads.html
+
+**Elixir and Erlang (Elixir 1.12 and erlang version 23)**
 
 You can installing those with follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
 
 Becareful about the version of elixir and erlang.
 
-2.Ansible
+**Ansible**
 
 You can use `pip` to install. take a look on this [tutorial](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#from-pip)
 
