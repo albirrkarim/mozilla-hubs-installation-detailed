@@ -39,7 +39,7 @@ The image above made with [figma](figma.com) you can read more description on [d
 
 # Attention !
 
-There is major step Cloning and Preparation -> Setting up HTTPS (SSL) -> Running
+There is major step Cloning and Preparation -> Setting up HOST -> Setting up HTTPS (SSL) -> Running
 
 # 1. Cloning and preparation
 
@@ -155,6 +155,12 @@ from the [hubs repo](#14-hubs) you can move to `hubs/admin` then run
 npm install
 ```
 
+# 3. Setting up HOST
+
+We are not using `hubs.local` domain. we use `localhost`
+
+so change every host configuration on reticulum, dialog, hubs, hubs admin, spoke.
+
 
 # 2. Setting up HTTPS (SSL)
 
@@ -268,6 +274,12 @@ iex -S mix phx.server
 with command
 ```bash
 MEDIASOUP_LISTEN_IP=127.0.0.1 MEDIASOUP_ANNOUNCED_IP=127.0.0.1 npm start
+```
+
+`127.0.0.1` is default IP of localhost on Mac / Linux you can look the IP with this command:
+
+```bash
+sudo nano /etc/hosts
 ```
 
 ## 3.3 Run spoke
