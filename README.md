@@ -56,7 +56,7 @@ cd reticulum
 
 ### 1.1.2 Install requirement
 
-1.Elixir and Erlang (Elixir 1.12 and erlang version 23)**
+1.Elixir and Erlang (Elixir 1.12 and erlang version 23)
 
 You can installing those with follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
 
@@ -266,13 +266,13 @@ with command
 MEDIASOUP_LISTEN_IP=127.0.0.1 MEDIASOUP_ANNOUNCED_IP=127.0.0.1 npm start
 ```
 
-## 3.3 run spoke
+## 3.3 Run spoke
 with command
 ```bash
 yarn start
 ```
 
-## 3.4 run hubs and hubs admin
+## 3.4 Run hubs and hubs admin
 each with command
 ```bash
 npm run local
