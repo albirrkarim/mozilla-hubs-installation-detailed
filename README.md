@@ -98,7 +98,7 @@ default_janus_csp_rule =
       else: ""
 ```
 
-4. upFind on google how to install coturn, and manage it
+4. Find on google how to install coturn, and manage it
 
 5. Edit the Dialog configuration file *turnserver.conf* and update the PostgreSQL database connection string to use the *coturn* schema from the Reticulum database:
 ```
