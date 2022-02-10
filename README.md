@@ -45,10 +45,16 @@ There is major step Cloning and Preparation -> Setting up HTTPS (SSL) -> Running
 
 ## 1.1 Reticulum
 
-[Its](https://github.com/mozilla/reticulum) a backend server that using elixir and phoenix. 
+Its a backend server that using elixir and phoenix. 
 
+### 1.1.1 Clone 
 
-### 1.1.1 Install this
+```bash
+git clone https://github.com/mozilla/reticulum.git
+cd reticulum
+```
+
+### 1.1.2 Install requirement
 
 1.Elixir and Erlang (Elixir 1.12 and erlang version 23)**
 
@@ -60,7 +66,7 @@ Becareful about the version of elixir and erlang.
 
 You can use `pip` to install. take a look on this [tutorial](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#from-pip)
 
-### 1.1.2 run this command
+### 1.1.3 run this command
 
 1. `mix deps.get`
 2. `mix ecto.create`
@@ -73,8 +79,16 @@ You can use `pip` to install. take a look on this [tutorial](https://docs.ansibl
 
 Using mediasoup RTC this will handling audio and video realtime communication. like camera stream, share screen.
 
+### 1.2.1
+Clone and get dependencies
 
-Setting up secret key
+```bash
+git clone https://github.com/mozilla/dialog.git
+cd dialog
+npm install
+```
+
+### 1.2.2 Setting up secret key
 
 thanks to this [comment](https://github.com/mozilla/hubs/discussions/3323#discussioncomment-1857495)
 
@@ -96,6 +110,8 @@ config :ret, Ret.PermsToken, perms_key: "-----BEGIN RSA PRIVATE KEY----- paste h
 
 In here you can create / edit the scenes / buildings whatever you call it.
 
+### 1.3.1 Clone
+
 ![Mozilla Spoke](/docs_img/spoke.png)
 
 ```
@@ -103,6 +119,15 @@ git clone https://github.com/mozilla/Spoke.git
 cd Spoke
 yarn install
 ```
+
+### 1.3.2 Change the routes
+
+I hope you know the basic `react-router-dom` with the defaut url in slash `/` on `localhost:9090` 
+but in the end we will access the spoke on `localhost:4000/spoke` so in the react code we must change base `/` with `/spoke` for the entire url in spoke direcktory.
+
+![Mozilla Spoke](/docs_img/spoke_change.png)
+
+You know what i mean right ?
 
 ## 1.4 Hubs
 
