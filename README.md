@@ -79,8 +79,7 @@ You can use `pip` to install. take a look on this [tutorial](https://docs.ansibl
 
 Using mediasoup RTC this will handling audio and video realtime communication. like camera stream, share screen.
 
-### 1.2.1
-Clone and get dependencies
+### 1.2.1 Clone and get dependencies
 
 ```bash
 git clone https://github.com/mozilla/dialog.git
@@ -123,7 +122,7 @@ yarn install
 ### 1.3.2 Change the routes
 
 I hope you know the basic `react-router-dom` with the defaut url in slash `/` on `localhost:9090` 
-but in the end we will access the spoke on `localhost:4000/spoke` so in the react code we must change base `/` with `/spoke` for the entire url in spoke direcktory.
+but in the end we will access the spoke on `localhost:4000/spoke` so in the react code we must change base `/` with `/spoke` for the entire url in spoke directory.
 
 ![Mozilla Spoke](/docs_img/spoke_change.png)
 
@@ -146,7 +145,7 @@ npm ci
 
 ## 1.5 Hubs Admin
 
-from the hubs repo you can move to `hubs/admin` then run
+from the [hubs repo](#14-hubs) you can move to `hubs/admin` then run
 
 ```
 npm install
