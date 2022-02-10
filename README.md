@@ -278,8 +278,6 @@ each with command
 npm run local
 ```
 
-![Running success](/docs_img/success.png)
-
 Urrraaa, Now you can access
 
 with lock symbol (SSL secure)
