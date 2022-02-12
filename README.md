@@ -11,6 +11,7 @@ Before we start lets see the requirement.
 # Requirement:
 
 ### Hardware:
+
 - at least 8GB of RAM
 - recomended using fast CPU
 
@@ -19,14 +20,14 @@ Before we start lets see the requirement.
 - Node js installed. when im install this hubs i use v16
 
 ### Knowledge
-I assume you already know 
+
+I assume you already know
 
 - Javascript
 - React js
 - Basic Webpack dev server
 - Basic Elixir and phoenix
 - Basic Web Socket
-
 
 # Overview
 
@@ -45,9 +46,9 @@ There is major step [Cloning and Preparation](#1-cloning-and-preparation) -> [Se
 
 ## 1.1 Reticulum
 
-Its a backend server that using elixir and phoenix. 
+Its a backend server that using elixir and phoenix.
 
-### 1.1.1 Clone 
+### 1.1.1 Clone
 
 ```bash
 git clone https://github.com/mozilla/reticulum.git
@@ -74,22 +75,26 @@ You can use `pip` to install. take a look on this [tutorial](https://docs.ansibl
 
 1. `mix deps.get`
 2. `mix ecto.create`
-    * If step 2 fails, you may need to change the password for the `postgres` role to match the password configured `dev.exs`.
-    * From within the `psql` shell, enter `ALTER USER postgres WITH PASSWORD 'postgres';`
-    * If you receive an error that the `ret_dev` database does not exist, (using psql again) enter `create database ret_dev;`
+   - If step 2 fails, you may need to change the password for the `postgres` role to match the password configured `dev.exs`.
+   - From within the `psql` shell, enter `ALTER USER postgres WITH PASSWORD 'postgres';`
+   - If you receive an error that the `ret_dev` database does not exist, (using psql again) enter `create database ret_dev;`
 3. From the project directory `mkdir -p storage/dev`
 
 ### 1.1.4 Run Reticulum against a local Dialog instance
 
-1. Update the Janus host in `dev.exs`: 
+1. Update the Janus host in `dev.exs`:
+
 ```elixir
 dev_janus_host = "localhost"
 ```
+
 2. Update the Janus port in `dev.exs`:
+
 ```elixir
 config :ret, Ret.JanusLoadStatus, default_janus_host: dev_janus_host, janus_port: 4443
 ```
-3. Add the Dialog meta endpoint to the CSP rules in `add_csp.ex`: 
+
+3. Add the Dialog meta endpoint to the CSP rules in `add_csp.ex`:
 
 ```elixir
 default_janus_csp_rule =
@@ -100,7 +105,8 @@ default_janus_csp_rule =
 
 4. Find on google how to install coturn, and manage it
 
-5. Edit the Dialog configuration file *turnserver.conf* and update the PostgreSQL database connection string to use the *coturn* schema from the Reticulum database:
+5. Edit the Dialog configuration file _turnserver.conf_ and update the PostgreSQL database connection string to use the _coturn_ schema from the Reticulum database:
+
 ```
 psql-userdb="host=hubs.local dbname=ret_dev user=postgres password=postgres options='-c search_path=coturn' connect_timeout=30"
 ```
@@ -134,7 +140,6 @@ Goto reticulum directory on `reticulum/config/dev.exs` change PermsToken with th
 config :ret, Ret.PermsToken, perms_key: "-----BEGIN RSA PRIVATE KEY----- paste here copyed key but add every line \n before END RSA PRIVATE KEY-----"
 ```
 
-
 ## 1.3 Spoke
 
 In here you can create / edit the scenes / buildings whatever you call it.
@@ -151,7 +156,7 @@ yarn install
 
 ### 1.3.2 Change the routes
 
-I hope you know the basic `react-router-dom` with the defaut url in slash `/` on `localhost:9090` 
+I hope you know the basic `react-router-dom` with the defaut url in slash `/` on `localhost:9090`
 but in the end we will access the spoke on `localhost:4000/spoke` so in the react code we must change base `/` with `/spoke` for the entire url in spoke directory.
 
 ![Mozilla Spoke](/docs_img/spoke_change.png)
@@ -161,7 +166,6 @@ You know what i mean right ?
 ## 1.4 Hubs
 
 In this [repo](https://github.com/mozilla/hubs) contains the hubs client and hubs admin (hubs/admin)
-
 
 ![System Overview](/docs_img/hubs_overview.jpeg)
 
@@ -187,13 +191,11 @@ We are not using `hubs.local` domain. we use `localhost`
 
 so change every host configuration on reticulum, dialog, hubs, hubs admin, spoke.
 
-
 # 3. Setting up HTTPS (SSL)
 
-all the server must serve with https. so inside the reticulum directory you must generate certificate and key file 
+all the server must serve with https. so inside the reticulum directory you must generate certificate and key file
 
 run command `mix phx.gen.cert` it will generate key `selfsigned_key.pem` and certificate `selfsigned.pem`
-
 
 rename `selfsigned_key.pem` to `key.pem`
 
@@ -207,10 +209,9 @@ Open the `cert.pem` on the tab system find that certificate then click twice and
 
 ![Https mozilla hubs](/docs_img/cert.png)
 
-Select the `cert.pem` and `key.pem` and copy it. next step we will distribute those two file into hubs, hubs admin, spoke, dialog, and reticulum. 
+Select the `cert.pem` and `key.pem` and copy it. next step we will distribute those two file into hubs, hubs admin, spoke, dialog, and reticulum.
 
 Oke first setting up in the reticulum.
-
 
 ## 3.1 Setting https for reticulum
 
@@ -227,7 +228,6 @@ config :my_app, MyAppWeb.Endpoint,
   ]
 ```
 
-
 ## 3.2 Setting https for hubs
 
 Paste that file into `hubs/certs`
@@ -241,10 +241,9 @@ Like this picture
 
 ![ssl hubs](/docs_img/ssl_hubs.png)
 
-
 ## 3.3 Setting https for hubs admin
 
-Paste that file into `hubs/admin/certs` 
+Paste that file into `hubs/admin/certs`
 
 We run hubs with `npm run local` right?
 so add additional params on `package.json`
@@ -255,7 +254,6 @@ Like this picture
 
 ![ssl hubs admin](/docs_img/ssl_hubs_admin.png)
 
-
 ## 3.4 Setting https for spoke
 
 Paste that file into `spoke/certs`
@@ -265,13 +263,11 @@ So change the `start` command
 
 ![ssl hubs admin](/docs_img/ssl_spoke.png)
 
-
 With this
 
 ```
 cross-env NODE_ENV=development BASE_ASSETS_PATH=https://localhost:9090/ webpack-dev-server --mode development --https --cert certs/cert.pem --key certs/key.pem
 ```
-
 
 ## 3.5 Setting https for dialog
 
@@ -283,7 +279,6 @@ rename `key.pem` to `privkey.pem`
 
 ![ssl hubs dialog](/docs_img/ssl_dialog_1.png)
 
-
 # 4. Running
 
 Open five terminals. for each reticulum, dialog, spoke, hubs, hubs admin.
@@ -291,13 +286,17 @@ Open five terminals. for each reticulum, dialog, spoke, hubs, hubs admin.
 ![Running preparation](/docs_img/ss.png)
 
 ## 4.1 Run reticulum
+
 with command
+
 ```bash
 iex -S mix phx.server
 ```
 
 ## 4.2 Run dialog
+
 with command
+
 ```bash
 MEDIASOUP_LISTEN_IP=127.0.0.1 MEDIASOUP_ANNOUNCED_IP=127.0.0.1 npm start
 ```
@@ -309,13 +308,17 @@ sudo nano /etc/hosts
 ```
 
 ## 4.3 Run spoke
+
 with command
+
 ```bash
 yarn start
 ```
 
 ## 4.4 Run hubs and hubs admin
+
 each with command
+
 ```bash
 npm run local
 ```
@@ -324,7 +327,7 @@ Urrraaa, Now you can access
 
 with lock symbol (SSL secure)
 
-Hubs 
+Hubs
 
 [https://localhost:4000](https://localhost:4000)
 
@@ -336,17 +339,15 @@ Spoke
 
 [https://localhost:4000/spoke](https://localhost:4000/spoke)
 
-
 # The problem i still faced
 
-1. 502 server communication error in hubs admin like this issue 
+1. 502 server communication error in hubs admin like this issue
 
 https://github.com/mozilla/hubs/issues/4970#issue-1087523703
 
-
 # The problem i faced and i already solved
 
-### Local scene asset failed to load 403 Forbidden
+## 1. Local scene asset failed to load 403 Forbidden
 
 Api call POST to `/api/v1/media` 403 Forbidden
 
@@ -364,5 +365,26 @@ Add this function
 def resolve_with_local_assets(%MediaResolverQuery{url: %URI{} = uri}) do
   content_type = MIME.from_path(uri.path)
   uri |> resolved(%{expected_content_type: content_type})
+end
+```
+
+## 2. Architecture Kit Failed to load and import
+
+We dont need `CORS_PROXY_SERVER` so set it with empty string
+
+![env spoke](/docs_img/env_spoke.png)
+
+and make condition like this picture bellow
+
+![env spoke](/docs_img/env_spoke_1.png)
+
+On spoke if we want to import some object in architecture kit we got error 500 from
+Api call POST to `/api/v1/media` like above.
+
+the solution is add another resolve function that root_host equal to `reticulum.io`
+
+```elixir
+def resolve(%MediaResolverQuery{} = query, "reticulum.io" = _root_host) do
+    resolve_with_context_type(query)
 end
 ```
