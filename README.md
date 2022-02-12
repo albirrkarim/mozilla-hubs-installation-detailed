@@ -193,15 +193,25 @@ so change every host configuration on reticulum, dialog, hubs, hubs admin, spoke
 
 # 3. Setting up HTTPS (SSL)
 
-all the server must serve with https. so inside the reticulum directory you must generate certificate and key file
+All the server must serve with https. you must generate certificate and key file
 
-run command `mix phx.gen.cert` it will generate key `selfsigned_key.pem` and certificate `selfsigned.pem`
+## 3.1 Generating Certificate and make it trust
 
-rename `selfsigned_key.pem` to `key.pem`
+Open terimnal in reticulum directory
 
-rename `selfsigned.pem` to `cert.pem`
+run command 
 
-in reticulum directory move that two file into `priv/` folder
+```bash
+mix phx.gen.cert
+```
+
+It will generate key `selfsigned_key.pem` and certificate `selfsigned.pem` in the `piv/cert` folder
+
+Rename `selfsigned_key.pem` to `key.pem`
+
+Rename `selfsigned.pem` to `cert.pem`
+
+## Now we have `key.pem` and `cert.pem` file
 
 In Mac OS, I don't know in windows or linux. please find it your self
 
@@ -213,22 +223,13 @@ Select the `cert.pem` and `key.pem` and copy it. next step we will distribute th
 
 Oke first setting up in the reticulum.
 
-## 3.1 Setting https for reticulum
+## 3.2 Setting https for reticulum
 
-then change the `config/dev.exs` setting path for the certificate and key file.
+On the `config/dev.exs` We must setting path for the certificate and key file.
 
-```elixir
-config :my_app, MyAppWeb.Endpoint,
-  ...
-  https: [
-    port: 4001,
-    cipher_suite: :strong,
-    keyfile: "priv/key.pem",
-    certfile: "priv/cert.pem"
-  ]
-```
+![Https mozilla hubs](/docs_img/cert_1.png)
 
-## 3.2 Setting https for hubs
+## 3.3 Setting https for hubs
 
 Paste that file into `hubs/certs`
 
@@ -241,7 +242,7 @@ Like this picture
 
 ![ssl hubs](/docs_img/ssl_hubs.png)
 
-## 3.3 Setting https for hubs admin
+## 3.4 Setting https for hubs admin
 
 Paste that file into `hubs/admin/certs`
 
@@ -254,7 +255,7 @@ Like this picture
 
 ![ssl hubs admin](/docs_img/ssl_hubs_admin.png)
 
-## 3.4 Setting https for spoke
+## 3.5 Setting https for spoke
 
 Paste that file into `spoke/certs`
 
@@ -269,7 +270,7 @@ With this
 cross-env NODE_ENV=development BASE_ASSETS_PATH=https://localhost:9090/ webpack-dev-server --mode development --https --cert certs/cert.pem --key certs/key.pem
 ```
 
-## 3.5 Setting https for dialog
+## 3.6 Setting https for dialog
 
 Paste that file into `dialog/certs`
 
