@@ -169,7 +169,7 @@ In this [repo](https://github.com/mozilla/hubs) contains the hubs client and hub
 
 ![System Overview](/docs_img/hubs_overview.jpeg)
 
-Run this and it will start on `localhost:8080`
+Clone and installing dependencies
 
 ```
 git clone https://github.com/mozilla/hubs.git
