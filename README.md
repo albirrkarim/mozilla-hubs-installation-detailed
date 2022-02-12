@@ -342,3 +342,27 @@ Spoke
 1. 502 server communication error in hubs admin like this issue 
 
 https://github.com/mozilla/hubs/issues/4970#issue-1087523703
+
+
+# The problem i faced and i already solved
+
+### Local scene asset failed to load 403 Forbidden
+
+Api call POST to `/api/v1/media` 403 Forbidden
+
+![Local assets](/docs_img//local_assets_failed.png)
+
+Solved with
+
+Goto `media_resolver.ex` file and change the return `:forbidden` with return from `resolve_with_local_assets`
+
+![Local assets](/docs_img/local_assets_solution.png)
+
+Add this function
+
+```elixir
+def resolve_with_local_assets(%MediaResolverQuery{url: %URI{} = uri}) do
+  content_type = MIME.from_path(uri.path)
+  uri |> resolved(%{expected_content_type: content_type})
+end
+```
