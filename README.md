@@ -211,7 +211,7 @@ Rename `selfsigned_key.pem` to `key.pem`
 
 Rename `selfsigned.pem` to `cert.pem`
 
-## Now we have `key.pem` and `cert.pem` file
+#### Now we have `key.pem` and `cert.pem` file
 
 In Mac OS, I don't know in windows or linux. please find it your self
 
@@ -231,7 +231,7 @@ On the `config/dev.exs` We must setting path for the certificate and key file.
 
 ## 3.3 Setting https for hubs
 
-Paste that file into `hubs/certs`
+Paste [that](#now-we-have-keypem-and-certpem-file) file into `hubs/certs`
 
 We run hubs with `npm run local` right?
 so add additional params on `package.json`
@@ -244,7 +244,7 @@ Like this picture
 
 ## 3.4 Setting https for hubs admin
 
-Paste that file into `hubs/admin/certs`
+Paste [that](#now-we-have-keypem-and-certpem-file) file into `hubs/admin/certs`
 
 We run hubs with `npm run local` right?
 so add additional params on `package.json`
@@ -257,7 +257,7 @@ Like this picture
 
 ## 3.5 Setting https for spoke
 
-Paste that file into `spoke/certs`
+Paste [that](#now-we-have-keypem-and-certpem-file) file into `spoke/certs`
 
 We run spoke with `yarn start` right ?
 So change the `start` command
@@ -270,9 +270,13 @@ With this
 cross-env NODE_ENV=development BASE_ASSETS_PATH=https://localhost:9090/ webpack-dev-server --mode development --https --cert certs/cert.pem --key certs/key.pem
 ```
 
+Short description:
+
+BASE_ASSETS_PATH = basicaly we run the spoke on localhost:9090
+
 ## 3.6 Setting https for dialog
 
-Paste that file into `dialog/certs`
+Paste [that](#now-we-have-keypem-and-certpem-file) file into `dialog/certs`
 
 rename `cert.pem` to `fullchain.pem`
 
