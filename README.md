@@ -350,6 +350,11 @@ Spoke
 
 https://github.com/mozilla/hubs/issues/4970#issue-1087523703
 
+<br>
+<br>
+<br>
+<br>
+
 # The problem i faced and i already solved
 
 ## 1. Local scene asset failed to load 403 Forbidden
@@ -357,21 +362,6 @@ https://github.com/mozilla/hubs/issues/4970#issue-1087523703
 Api call POST to `/api/v1/media` 403 Forbidden
 
 ![Local assets](/docs_img//local_assets_failed.png)
-
-Solved with
-
-Goto `media_resolver.ex` file and change the return `:forbidden` with return from `resolve_with_local_assets`
-
-![Local assets](/docs_img//spoke_failed.png)
-
-Add this function
-
-```elixir
-def resolve_with_content_type(%MediaResolverQuery{url: %URI{} = uri}) do
-   content_type = MIME.from_path(uri.path)
-   uri |> resolved(%{expected_content_type: content_type})
-end
-```
 
 ## 2. Architecture Kit Failed to load and import
 
@@ -385,7 +375,30 @@ and make condition like this picture bellow
 
 On spoke if we want to import some object in architecture kit we got error 500 from api call POST to `/api/v1/media` like number 1 above.
 
-The solution is add another resolve function that `root_host` equal to `reticulum.io`
+## 3. Link thumbnail fail to load thumbnail
+
+Call `api/v1/media` got 500
+
+
+## The solution for number 1,2,3
+
+Goto `media_controller.ex` give fallback like this picture
+![Local assets](/docs_img/spoke_failed_2.png)
+
+Goto `media_resolver.ex` file and change the return `:forbidden` with like this picture
+
+![Local assets](/docs_img/spoke_failed.png)
+
+Add this function
+
+```elixir
+def resolve_with_content_type(%MediaResolverQuery{url: %URI{} = uri}) do
+   content_type = MIME.from_path(uri.path)
+   uri |> resolved(%{expected_content_type: content_type})
+end
+```
+
+Below is the solution for number 2. Add another resolve function that `root_host` equal to `reticulum.io`
 
 ```elixir
 def resolve(%MediaResolverQuery{} = query, "reticulum.io" = _root_host) do
