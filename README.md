@@ -346,9 +346,50 @@ Spoke
 
 # The problem i still faced
 
-1. 502 server communication error in hubs admin like this issue
+1. 502 server communication error in hubs admin like this [issue](https://github.com/mozilla/hubs/issues/4970#issue-1087523703)
 
-https://github.com/mozilla/hubs/issues/4970#issue-1087523703
+Oke let's give try solve this.
+
+The problem is api call to this route
+
+`/api/ita/admin-info`
+
+and other with slash ita `/ita`
+
+if we check where is the code in the reticulum which handle that
+open the `router.ex` ita api call the `RetWeb.Plugs.ItaProxy` if you in vs code you can command+click / ctrl+click for find the function is called.
+
+```elixir
+
+scope "/api/postgrest" do
+   pipe_through([:secure_headers, :auth_required, :admin_required, :proxy_api])
+   forward("/", RetWeb.Plugs.PostgrestProxy)
+end
+
+scope "/api/ita" do
+   pipe_through([:secure_headers, :auth_required, :admin_required, :proxy_api])
+   forward("/", RetWeb.Plugs.ItaProxy)
+end
+
+```
+
+So it will open the `proxies.ex`
+
+```elixir
+defmodule RetWeb.Plugs.PostgrestProxy do
+  use Plug.Builder
+  plug ReverseProxyPlug, upstream: "http://localhost:3000"
+end
+
+defmodule RetWeb.Plugs.ItaProxy do
+  use Plug.Builder
+  plug ReverseProxyPlug, upstream: "http://localhost:6000"
+end
+```
+So what is `localhost:6000` ? 
+
+I think mozilla not providing the source code for that. We have to provide our own backend service
+
 
 <br>
 <br>
@@ -375,12 +416,16 @@ and make condition like this picture bellow
 
 On spoke if we want to import some object in architecture kit we got error 500 from api call POST to `/api/v1/media` like number 1 above.
 
-## 3. Link thumbnail fail to load thumbnail
+## 3. Link element fail to load thumbnail
+
+On the spoke we can put link to external web. like `github.com/albirrkarim` normally hubs will show up the screenshot of that web link.
 
 Call `api/v1/media` got 500
 
+<br>
+<br>
 
-## The solution for number 1,2,3
+# The solution for number 1,2,3
 
 Goto `media_controller.ex` give fallback like this picture
 ![Local assets](/docs_img/spoke_failed_2.png)
