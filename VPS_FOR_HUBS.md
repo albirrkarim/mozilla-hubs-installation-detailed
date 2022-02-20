@@ -29,7 +29,7 @@ Other
 
 # Installation
 
-## 1. First step
+## 1. Install Nginx
 
 Login with SSH
 
@@ -140,6 +140,15 @@ Upload your certificates file that we have download before.
 ## 5. Make sure it on private repository
 
 The entire hubs (reticulum,dialog,hubs,spoke) make it private repo. just to be sure it safe. later we will save the SSL certificates on the repository.
+
+
+## 6. Install postgresql
+
+[tutorial](https://phoenixnap.com/kb/how-to-install-postgresql-on-ubuntu)
+
+## 7. Setting up github actions
+
+On reticulum 
 
 ## 6. Wait, I will update this soon. Give me star for supporting me
 
