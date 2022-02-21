@@ -35,7 +35,7 @@ I assume you already know
 
 ![System Overview](/docs_img/System_Overview.jpeg)
 
-The image above made with [figma](figma.com) you can read more description on [documentation](https://hubs.mozilla.com/docs/system-overview.html)
+The image above made with [figma](https://www.figma.com/) you can read more description on [documentation](https://hubs.mozilla.com/docs/system-overview.html)
 
 <br/>
 <br/>
