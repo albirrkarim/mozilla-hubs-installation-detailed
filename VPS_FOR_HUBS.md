@@ -1,6 +1,6 @@
 # Introduction
 
-This Article is about hosting the mozilla hubs into vps / self hosted server.
+This Article is about hosting the mozilla hubs into vps / self hosted server. I spend 4 days of trying to install hubs on vps.
 
 You must understand [installing mozilla hubs on local](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/README.md) before you read this article.
 
@@ -10,7 +10,7 @@ You must understand [installing mozilla hubs on local](https://github.com/albirr
 
 # Requirement
 
-Knowledge
+**Knowledge**
 
 Before you must understand the basic first. look this youtube video [Automatic Deployment With Github Actions](https://www.youtube.com/watch?v=X3F3El_yvFg)
 
@@ -20,16 +20,16 @@ Before you must understand the basic first. look this youtube video [Automatic D
 - Github Actions
 - Remoting VPS via ssh
 
-Software
+**Software**
 
-- VPS with ubuntu based
+- VPS with ubuntu based. I suggest using LTS version
 
-Other
+**Other**
 
+We will go on a long journey, so this is important requirement
 - Enough sleep
-- Coffee
+- Fruit juice, few coffee
 - Calm music
-- Public IP
 
 <br>
 
