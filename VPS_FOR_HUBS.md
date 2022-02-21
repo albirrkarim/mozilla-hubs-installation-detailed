@@ -12,8 +12,12 @@ You must understand [installing mozilla hubs on local](https://github.com/albirr
 
 Knowledge
 
+Before you must understand the basic first. look this youtube video [Automatic Deployment With Github Actions](https://www.youtube.com/watch?v=X3F3El_yvFg)
+
+![Up skill](/docs_img/excercise.gif)
+
 - Basic CLI linux
-- Github Actions, if you dont know please goto youtube.
+- Github Actions
 - Remoting VPS via ssh
 
 Software
@@ -57,21 +61,50 @@ We are using ufw. firewall is some software to blocking / allow port.
 
 Please look at this [tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-18-04)
 
-### 2.2 Setting up
+### 2.2 Add Rules
 
 Now we must allow some port
 
+**I dont know exactly what is this port haha, just allow it**
 ```
 ufw allow http,https,ssh,OpenSSH,'Nginx full'
 ```
 
-The hubs port
+**The hubs port**
 
 ![System Overview](/docs_img/System_Overview.jpeg)
+
+**Allow for tcp and udp protocol**
 
 ```
 ufw allow proto tcp from any to any port 4000,4443,8080,9090,8989
 ```
+
+```
+ufw allow proto udp from any to any port 4000,4443,8080,9090,8989
+```
+
+**The Dialog port**
+
+```
+ufw allow proto tcp from any to any port 40000:49999
+```
+
+```
+ufw allow proto udp from any to any port 40000:49999
+```
+
+Now you can see all rules with
+
+```
+ufw status numbered
+```
+
+or delete with 
+```
+ufw delete <number>
+```
+
 
 ## 3. Setting up https for your domain
 
@@ -141,18 +174,72 @@ Upload your certificates file that we have download before.
 
 ## 5. Make sure it on private repository
 
-The entire hubs (reticulum,dialog,hubs,spoke) make it private repo. just to be sure it safe. later we will save the SSL certificates on the repository.
+The entire hubs (reticulum,dialog,hubs,spoke) make it private repo. just to be sure it safe.
+
+## 7. Install Dependencies
+
+**Install database**
+
+[Install postgres on linux ubuntu](https://phoenixnap.com/kb/how-to-install-postgresql-on-ubuntu)
+
+**Elixir and Erlang (Elixir 1.12.3 and erlang version 23.3)**
+
+You can installing those with follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
+
+Becareful about the version of elixir and erlang.
+
+you can check the current elixir and erlang with 
+```
+asdf current
+```
+
+If you got problem when installing erlang you must install their deps.
 
 
-## 6. Install postgresql
 
-[tutorial](https://phoenixnap.com/kb/how-to-install-postgresql-on-ubuntu)
+**Install Process Management**
 
-## 7. Setting up github actions
+Later we will run all node js server like dialog, hubs, hubs admin, spoke on different port. so we need process management for running that on the background.
 
+See [install pm2](https://pm2.keymetrics.io/)
+
+
+## 8. Setting up github actions
+
+I assume you 
+
+### 8.1 Elixir based
 On reticulum 
 
-## 6. Wait, I will update this soon. Give me star for supporting me
+
+
+### 8.2 Node js based
+
+Goto the action tab and new workflow -> choose node js
+
+#### Hubs
+
+Setting up yml file like this
+
+#### Hubs admin
+
+Setting up yml file like this
+
+#### Spoke
+
+Setting up yml file like this
+
+#### Dialog
+
+Setting up yml file like this
+
+<br>
+<br>
+<br>
+
+## Thank you for read this, I will update this soon. Give me star for supporting me.
+
+## If you have a questions feel free to open and issue
 
 <br>
 <br>
