@@ -23,7 +23,9 @@ Now i trying to [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/moz
 
 ### Knowledge
 
-I assume you already know
+I assume you already know, if no you must up skill first
+
+![Up skill](/docs_img/excercise.gif)
 
 - Javascript
 - React js
