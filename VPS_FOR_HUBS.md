@@ -4,6 +4,8 @@ This Article is about hosting the mozilla hubs into vps / self hosted server.
 
 You must understand [installing mozilla hubs on local](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/README.md) before you read this article.
 
+## Warning, this tutorial is not complete yet.
+
 <br>
 
 # Requirement
