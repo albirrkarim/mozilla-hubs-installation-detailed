@@ -156,14 +156,22 @@ cd Spoke
 yarn install
 ```
 
-### 1.3.2 Change the routes
+### 1.3.2 Set the base routes
 
 I hope you know the basic `react-router-dom` with the defaut url in slash `/` on `localhost:9090`
-but in the end we will access the spoke on `localhost:4000/spoke` so in the react code we must change base `/` with `/spoke` for the entire url in spoke directory.
+
+But in the end we will access the spoke on `localhost:4000/spoke`
+
+So we must set base URL to `/spoke`
+
+Add the `ROUTER_BASE_PATH=/spoke` params to the `start` command on `package.json`
+
 
 ![Mozilla Spoke](/docs_img/spoke_change.png)
 
-You know what i mean right ?
+```
+cross-env NODE_ENV=development ROUTER_BASE_PATH=/spoke BASE_ASSETS_PATH=https://localhost:9090/ webpack-dev-server --mode development --https --cert certs/cert.pem --key certs/key.pem
+```
 
 ## 1.4 Hubs
 
@@ -269,7 +277,7 @@ So change the `start` command
 With this
 
 ```
-cross-env NODE_ENV=development BASE_ASSETS_PATH=https://localhost:9090/ webpack-dev-server --mode development --https --cert certs/cert.pem --key certs/key.pem
+cross-env NODE_ENV=development ROUTER_BASE_PATH=/spoke BASE_ASSETS_PATH=https://localhost:9090/ webpack-dev-server --mode development --https --cert certs/cert.pem --key certs/key.pem
 ```
 
 Short description:
