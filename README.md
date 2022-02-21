@@ -6,6 +6,8 @@ I want to share with you how to do.
 This is about running mozilla hubs on locally. this is detailed version, step by step what i do.
 Give me star on this repository for supporting me to always update this.
 
+Now i trying to [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
+
 ## Disclaimer - this tutorial maybe isn't a best practice
 
 # Requirement:
