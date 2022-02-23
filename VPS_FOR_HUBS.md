@@ -391,7 +391,7 @@ root
 
 **Reticulum**
 
-Basicaly we can start manually with this. But previously we have done set auto deploy on 
+Basicaly we can start manually with this. But [previously](#reticulum) we have done set auto deploy
 
 Start with this command
 ```bash
