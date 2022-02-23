@@ -377,8 +377,7 @@ Above you can see `runs-on: self-hosted` it means the command bellow it, will ru
 
 There you can follow the tutorial provided by github
 
-I suggest you to setting clean folder
-
+I suggest you to setting clean folder structure on your vps
 ```
 root
     hubs_project      <- wrap up with some folder
@@ -416,6 +415,44 @@ $(lsof -ti:4000) && kill -9 $(lsof -ti:4000)
 
 
 ### 9.2 Node js based
+
+Move to hubs action runner directory
+
+and try to run first with 
+
+```
+npm run prod
+```
+if its ok (no error), then using pm2
+
+with
+```
+pm2 start npm --name hubs_server -- run prod
+```
+
+
+**Useful pm2 command**
+
+**Start a process on background**
+```
+pm2 start EXECUTABLE --name PROCESS_NAME -- SOME_PARAMS
+```
+**See all process**
+```
+pm2 status
+```
+
+**Stoping process**
+```
+pm2 stop PROCESS_NAME
+```
+
+**Restart process**
+```
+pm2 restart PROCESS_NAME
+```
+
+The `PROCESS_NAME` params can be change to `all` to affect all process
 
 
 
