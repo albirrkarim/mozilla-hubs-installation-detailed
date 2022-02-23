@@ -37,15 +37,18 @@ We will go on a long journey, so this is important requirement
 
 <br>
 
-# Installation
+# Installing
 
 Table of content
 
-- [Install Nginx](#1-install-nginx)
-- [Install Firewall and setting up](#2-install-firewall-and-setting-up)
-- [Setting up https for your domain](#3-setting-up-https-for-your-domain)
-- []()
-- [Install resources monitoring for vps (optional)](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/RESOURCE_MONITORING.md)
+1. [Install Nginx](#1-install-nginx)
+2. [Install Firewall and Setting Up](#2-install-firewall-and-setting-up)
+3. [Setting up HTTPS for Your Domain](#3-setting-up-https-for-your-domain)
+4. [Install Dependencies](#4-install-dependencies)
+5. [Setting up Github Actions](#5-setting-up-github-actions)
+6. [Run all](#6-run-all)
+7. [Setting up NGINX](#7-setting-up-nginx)
+8. [Resources Monitoring for VPS (optional)](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/RESOURCE_MONITORING.md)
 
 
 ## 1. Install Nginx
@@ -124,7 +127,7 @@ or delete with
 ufw delete <number>
 ```
 
-## 3. Setting up https for your domain
+## 3. Setting up HTTPS for Your Domain
 
 Install certbot
 
@@ -191,7 +194,7 @@ Later we will run all node js server like dialog, hubs, hubs admin, spoke on dif
 
 See [install pm2](https://pm2.keymetrics.io/)
 
-## 5. Setting up github actions
+## 5. Setting up Github Actions
 
 ### 5.1 Elixir based
 
@@ -471,7 +474,7 @@ If no error then start with pm2
 pm2 start yarn --name spoke_server -- prod
 ```
 
-## 7 Setting up NGINX
+## 7. Setting up NGINX
 
 We must pass everything to the port 4000
 
@@ -559,11 +562,19 @@ server {
 }
 ```
 
+Restart NGINX
+
+```bash
+sudo systemctl restart nginx
+```
+
 <br>
 <br>
 <br>
 
 ## Thank you for read this, I will update this soon. Give me star for supporting me.
+
+<br>
 
 ## If you have a questions feel free to open and issue
 
@@ -574,3 +585,4 @@ server {
 # Useful reference
 
 [Automatic Deployment With Github Actions](https://www.youtube.com/watch?v=X3F3El_yvFg)
+[TCP vs UDP](https://www.youtube.com/watch?v=uwoD5YsGACg)
