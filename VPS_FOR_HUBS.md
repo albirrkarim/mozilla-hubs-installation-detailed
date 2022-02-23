@@ -38,19 +38,20 @@ We will go on a long journey, so this is important requirement
 
 ## 1. Install Nginx
 
-Login with SSH
-
+Login with SSH. if the ssh is takes long or forever to connect, try using VPN. it will works.
 ```
 ssh username@your_IP
 ```
 
-Update all to the latest
+Update all to the latest update
 
 ```
 sudo su
 apt-get update
 apt-get upgrade
 ```
+
+We using Nginx for server, and proxy pass
 
 [Install Nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04)
 
@@ -111,7 +112,7 @@ ufw delete <number>
 
 ## 3. Setting up https for your domain
 
-Installing certbot and use letsencrypt.
+Install certbot
 
 ```
 sudo add-apt-repository ppa:certbot/certbot
@@ -131,7 +132,7 @@ sudo su
 cd /etc/letsencrypt/live/example.com
 ```
 
-In here you will see the cert.pem chain.pem fullchain.pem privkey.pem.
+In here you will see the `cert.pem` `chain.pem` `fullchain.pem` `privkey.pem`
 
 We will need that file so download it.
 
@@ -155,13 +156,13 @@ it will download from server and save to the Downloads folder. `/Downloads` is t
 We are using [webmin](https://www.webmin.com/deb.html). this for monitoring server resources like CPU, RAM, and memory.
 We dont know the resource usage hubs yet, so we must monitoring it.
 
-Maybe on installation of web min you got some error like me
+Maybe on installation of webmin you got some error like me:
 
 **Can't connet on port 10000**
 
 The default port of webmin is 10000 but some ISP block that port. so we need to change with 1000. [see](https://serverfault.com/a/578397)
 
-and don't forget about we must allow rules on `ufw` firewall
+Don't forget, we must allow rules on `ufw` firewall
 
 ```
 sudo ufw allow proto tcp from any to any port 1000
@@ -169,7 +170,7 @@ sudo ufw allow proto tcp from any to any port 1000
 
 **HTTPS error**
 
-If you can't open webmin ( port 1000) on chrome, please use mozilla firefox
+If you can't open webmin ( port 1000) on chrome, please use mozilla firefox.
 
 Go to [this web](https://www.inmotionhosting.com/support/product-guides/cloud-server/ssl-errors-and-https-in-webmin/)
 
@@ -187,9 +188,9 @@ The entire hubs (reticulum,dialog,hubs,spoke) make it private repo. just to be s
 
 **Elixir and Erlang (Elixir 1.12.3 and erlang version 23.3)**
 
-You can installing those with follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
+You can installing those with `asdf` please follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
 
-Becareful about the version of elixir and erlang.
+Becareful about the version of elixir and erlang, you must exact same version with this tutorial.
 
 you can check the current elixir and erlang with 
 ```
@@ -368,6 +369,26 @@ jobs:
     - run: npm i
 ```
 
+### 8.3 Add self hosted
+
+Above you can see `runs-on: self-hosted` it means the command bellow it, will run on your server.
+
+![Setting](/docs_img/self-hosted.png)
+
+There you can follow the tutorial provided by github
+
+I suggest you to setting clean folder
+
+```
+root
+    hubs_project      <- wrap up with some folder
+        hubs          <- where you put gihub action runner
+        reticulum     <- where you put gihub action runner
+        dialog        <- where you put gihub action runner
+        spoke         <- where you put gihub action runner
+```
+
+
 ## 9. Run all
 
 ### 9.1 Elixir based
@@ -385,6 +406,12 @@ lsof -n -i4TCP:4000
 Kill with PID
 ```
 kill -9 PID
+```
+
+Or with [single command](https://stackoverflow.com/a/55115797)
+
+```
+$(lsof -ti:4000) && kill -9 $(lsof -ti:4000)
 ```
 
 
