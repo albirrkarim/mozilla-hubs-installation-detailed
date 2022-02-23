@@ -1,8 +1,10 @@
 # Introduction
 
-This Article is about hosting the mozilla hubs into vps / self hosted server. I spend 4 days of trying to install hubs on vps.
+This article is about hosting the mozilla hubs into vps / self hosted server. I spend 4 days of trying to install hubs on vps.
 
 You must understand [installing mozilla hubs on local](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/README.md) before you read this article.
+
+For the entire hubs (reticulum,dialog,hubs,spoke) make it private repo. just to be sure it safe.
 
 ## Warning, this tutorial is not complete yet. so dont follow this tutorial
 
@@ -179,11 +181,8 @@ Go to [this web](https://www.inmotionhosting.com/support/product-guides/cloud-se
 
 Upload your certificates file that we have download before.
 
-## 5. Make sure it on private repository
 
-The entire hubs (reticulum,dialog,hubs,spoke) make it private repo. just to be sure it safe.
-
-## 7. Install Dependencies
+## 6. Install Dependencies
 
 **Install database**
 
@@ -209,9 +208,9 @@ Later we will run all node js server like dialog, hubs, hubs admin, spoke on dif
 
 See [install pm2](https://pm2.keymetrics.io/)
 
-## 8. Setting up github actions
+## 7. Setting up github actions
 
-### 8.1 Elixir based
+### 7.1 Elixir based
 
 #### Reticulum
 
@@ -263,7 +262,7 @@ jobs:
           PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
 ```
 
-### 8.2 Node js based
+### 7.2 Node js based
 
 Goto the action tab and new workflow -> choose node js
 
@@ -360,7 +359,7 @@ jobs:
       - run: npm i
 ```
 
-### 8.3 Add self hosted
+### 7.3 Add self hosted
 
 Above you can see `runs-on: self-hosted` it means the command bellow it, will run on your server.
 
@@ -379,9 +378,9 @@ root
         spoke               <- where you put gihub action runner
 ```
 
-## 9. Run all
+## 8. Run all
 
-### 9.1 Elixir based
+### 8.1 Elixir based
 
 **Reticulum**
 
@@ -411,9 +410,9 @@ Or with [single command](https://stackoverflow.com/a/55115797)
 $(lsof -ti:4000) && kill -9 $(lsof -ti:4000)
 ```
 
-### 9.2 Node js based
+### 8.2 Node js based
 
-#### 9.2.1 Process manager
+#### 8.2.1 Process manager
 
 If we run node js project we using terminal. if we close that terminal the node js server will die. so we need run that server in background. with `pm2` we can manage process like start, stop, restart, watch server logs.
 
@@ -451,7 +450,7 @@ pm2 restart PROCESS_NAME
 
 The `PROCESS_NAME` params can be change to `all` to affect all process
 
-#### 9.2.2 Run node js server
+#### 8.2.2 Run node js server
 
 **Hubs, Hubs admin, Dialog**
 
@@ -489,7 +488,7 @@ If no error then start with pm2
 pm2 start yarn --name spoke_server -- prod
 ```
 
-## 10 Setting up NGINX
+## 9 Setting up NGINX
 
 We must pass everything to the port 4000
 
