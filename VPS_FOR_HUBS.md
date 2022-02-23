@@ -28,6 +28,7 @@ Before you must understand the basic first. look this youtube video [Automatic D
 **Other**
 
 We will go on a long journey, so this is important requirement
+
 - Enough sleep
 - Fruit juice, few coffee
 - Calm music
@@ -39,6 +40,7 @@ We will go on a long journey, so this is important requirement
 ## 1. Install Nginx
 
 Login with SSH. if the ssh is takes long or forever to connect, try using VPN. it will works.
+
 ```
 ssh username@your_IP
 ```
@@ -68,6 +70,7 @@ Please look at this [tutorial](https://www.digitalocean.com/community/tutorials/
 Now we must allow some port.
 
 **I dont know exactly what is this port haha, just allow it**
+
 ```
 ufw allow http,https,ssh,OpenSSH,'Nginx full'
 ```
@@ -104,11 +107,11 @@ Now you can see all rules with
 ufw status numbered
 ```
 
-or delete with 
+or delete with
+
 ```
 ufw delete <number>
 ```
-
 
 ## 3. Setting up https for your domain
 
@@ -192,14 +195,13 @@ You can installing those with `asdf` please follow [this tutorial](https://www.p
 
 Becareful about the version of elixir and erlang, you must exact same version with this tutorial.
 
-you can check the current elixir and erlang with 
+you can check the current elixir and erlang with
+
 ```
 asdf current
 ```
 
 If you got problem when installing erlang you must install their deps.
-
-
 
 **Install Process Management**
 
@@ -207,14 +209,13 @@ Later we will run all node js server like dialog, hubs, hubs admin, spoke on dif
 
 See [install pm2](https://pm2.keymetrics.io/)
 
-
 ## 8. Setting up github actions
 
 ### 8.1 Elixir based
 
 #### Reticulum
 
-On your  reticulum repository goto actions tab on github. and create new workflow then choose elixir. 
+On your reticulum repository goto actions tab on github. and create new workflow then choose elixir.
 
 it will create `.github/workflow/elixir.yml`
 
@@ -225,45 +226,42 @@ name: Elixir CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
-
     name: Build and test
     runs-on: self-hosted
-    
-    env: 
+
+    env:
       ImageOS: ubuntu20
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Elixir
-      uses: erlef/setup-beam@988e02bfe678367a02564f65ca2e37726dc0268f
-      with:
-        # Define the elixir version [required]
-        elixir-version: '1.12.3' 
-        # Define the OTP version [required]
-        otp-version: '23.1' 
-    - name: Restore dependencies cache
-      uses: actions/cache@v2
-      with:
-        path: deps
-        key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
-        restore-keys: ${{ runner.os }}-mix-
-    - name: Install dependencies
-      run: mix deps.get
-    - name: Compile production release
-      run: MIX_ENV=prod mix release
-    - name: Start server
-      run: |
-        MIX_ENV=prod mix compile
-        PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
-
+      - uses: actions/checkout@v2
+      - name: Set up Elixir
+        uses: erlef/setup-beam@988e02bfe678367a02564f65ca2e37726dc0268f
+        with:
+          # Define the elixir version [required]
+          elixir-version: "1.12.3"
+          # Define the OTP version [required]
+          otp-version: "23.1"
+      - name: Restore dependencies cache
+        uses: actions/cache@v2
+        with:
+          path: deps
+          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+          restore-keys: ${{ runner.os }}-mix-
+      - name: Install dependencies
+        run: mix deps.get
+      - name: Compile production release
+        run: MIX_ENV=prod mix release
+      - name: Start server
+        run: |
+          MIX_ENV=prod mix compile
+          PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
 ```
-
 
 ### 8.2 Node js based
 
@@ -278,13 +276,12 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
-
     runs-on: self-hosted
 
     strategy:
@@ -292,16 +289,15 @@ jobs:
         node-version: [16.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - run: npm i --force
-    - run: | 
-        cd admin/
-        pwd
-        npm i --force
-        ls
-    - run: pm2 restart hubs_server
-    - run: pm2 restart hubs_admin_server
-
+      - uses: actions/checkout@v2
+      - run: npm i --force
+      - run: |
+          cd admin/
+          pwd
+          npm i --force
+          ls
+      - run: pm2 restart hubs_server
+      - run: pm2 restart hubs_admin_server
 ```
 
 #### Spoke
@@ -313,13 +309,12 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
-
     runs-on: self-hosted
 
     strategy:
@@ -327,16 +322,16 @@ jobs:
         node-version: [16.x]
 
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        
-    - run: yarn install
-    - run: pm2 restart spoke_server
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - run: yarn install
+      - run: pm2 restart spoke_server
 ```
 
 #### Dialog
@@ -348,13 +343,12 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
-
     runs-on: self-hosted
 
     strategy:
@@ -362,8 +356,8 @@ jobs:
         node-version: [16.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - run: npm i
+      - uses: actions/checkout@v2
+      - run: npm i
 ```
 
 ### 8.3 Add self hosted
@@ -375,15 +369,15 @@ Above you can see `runs-on: self-hosted` it means the command bellow it, will ru
 There you can follow the tutorial provided by github
 
 I suggest you to setting clean folder structure on your vps
+
 ```
 root
-    hubs_project      <- wrap up with some folder
-        hubs          <- where you put gihub action runner
-        reticulum     <- where you put gihub action runner
-        dialog        <- where you put gihub action runner
-        spoke         <- where you put gihub action runner
+    hubs_actions_runner     <- wrap up with some folder
+        hubs                <- where you put gihub action runner
+        reticulum           <- where you put gihub action runner
+        dialog              <- where you put gihub action runner
+        spoke               <- where you put gihub action runner
 ```
-
 
 ## 9. Run all
 
@@ -394,14 +388,19 @@ root
 Basicaly we can start manually with this. But [previously](#reticulum) we have done set auto deploy
 
 Start with this command
+
 ```bash
 PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
 ```
+
 List the process which run on port 4000
+
 ```
 lsof -n -i4TCP:4000
 ```
+
 Kill with PID
+
 ```
 kill -9 PID
 ```
@@ -412,9 +411,7 @@ Or with [single command](https://stackoverflow.com/a/55115797)
 $(lsof -ti:4000) && kill -9 $(lsof -ti:4000)
 ```
 
-
 ### 9.2 Node js based
-
 
 #### 9.2.1 Process manager
 
@@ -423,31 +420,36 @@ If we run node js project we using terminal. if we close that terminal the node 
 Useful pm2 command:
 
 **Start a process on background**
+
 ```
 pm2 start EXECUTABLE --name PROCESS_NAME -- SOME_PARAMS
 ```
+
 **Wachting server logs**
+
 ```
 pm2 logs
 ```
 
 **See all process**
+
 ```
 pm2 status
 ```
 
 **Stoping process**
+
 ```
 pm2 stop PROCESS_NAME
 ```
 
 **Restart process**
+
 ```
 pm2 restart PROCESS_NAME
 ```
 
 The `PROCESS_NAME` params can be change to `all` to affect all process
-
 
 #### 9.2.2 Run node js server
 
@@ -455,37 +457,125 @@ The `PROCESS_NAME` params can be change to `all` to affect all process
 
 Move to hubs action runner directory
 
-and try to run first with 
+and try to run first with
 
 ```
 npm run prod
 ```
+
 if its ok (no error), then using pm2
 
 with
+
 ```
 pm2 start npm --name hubs_server -- run prod
 ```
 
 do that too to dialog, hubs admin
 
-
 **Spoke**
 
 Move to spoke action runner directory
 
 Try to start the server
+
 ```
 yarn prod
 ```
 
 If no error then start with pm2
+
 ```
 pm2 start yarn --name spoke_server -- prod
 ```
 
+## 10 Setting up NGINX
+
+We must pass everything to the port 4000
+
+So setting up
+`proxy_pass` on nginx
+
+```
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    server_name meta.dinus.ac.id;
+
+    location / {
+        # First attempt to serve request as file, then
+        # as directory, then fall back to displaying a 404.
+        # try_files $uri $uri/ =404;
+
+        #match everything
+        rewrite ^\/(.*)$ /$1 break;
+        # Proxy passing to port 4000
+        proxy_pass https://meta.dinus.ac.id:4000;
+
+        # Proxy Header
+        #proxy_set_header        Host $host;
+        #proxy_set_header        X-Real-IP $remote_addr;
+        #proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        #proxy_set_header        X-Forwarded-Proto $scheme;
 
 
+        # The Important Websocket Bits!
+        #proxy_http_version 1.1;
+        #proxy_set_header Upgrade $http_upgrade;
+        #proxy_set_header Connection "upgrade";
+
+        #Give larger upstream buffers
+        fastcgi_buffers 16 16k;
+        fastcgi_buffer_size 32k;
+        proxy_buffer_size 128k;
+        proxy_buffers 4 256k;
+        proxy_busy_buffers_size 256k;
+    }
+}
+
+
+server {
+    server_name example.com;
+
+     location / {
+        # First attempt to serve request as file, then
+        # as directory, then fall back to displaying a 404.
+        #try_files $uri $uri/ =404;
+
+        #match everything
+        rewrite ^\/(.*)$ /$1 break;
+        # Proxy passing to port 4000
+        proxy_pass https://example.com:4000;
+
+        # Proxy Header
+        #proxy_set_header        Host $host;
+        #proxy_set_header        X-Real-IP $remote_addr;
+        #proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        #proxy_set_header        X-Forwarded-Proto $scheme;
+
+
+        # The Important Websocket Bits!
+        #proxy_http_version 1.1;
+        #proxy_set_header Upgrade $http_upgrade;
+        #proxy_set_header Connection "upgrade";
+
+        #Give larger upstream buffers
+        fastcgi_buffers 16 16k;
+        fastcgi_buffer_size 32k;
+        proxy_buffer_size 128k;
+        proxy_buffers 4 256k;
+        proxy_busy_buffers_size 256k;
+    }
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+```
 
 <br>
 <br>
