@@ -44,7 +44,8 @@ Table of content
 - [Install Nginx](#1-install-nginx)
 - [Install Firewall and setting up](#2-install-firewall-and-setting-up)
 - [Setting up https for your domain](#3-setting-up-https-for-your-domain)
-- [Install resources monitoring for vps](#4-install-resources-monitoring-for-vps)
+- []()
+- [Install resources monitoring for vps (optional)](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/RESOURCE_MONITORING.md)
 
 
 ## 1. Install Nginx
@@ -164,7 +165,7 @@ sudo scp username@your_ip:/temp.zip /Downloads
 
 it will download from server and save to the Downloads folder. `/Downloads` is the destination where you save the file.
 
-## 5. Install Dependencies
+## 4. Install Dependencies
 
 **Install database**
 
@@ -190,9 +191,9 @@ Later we will run all node js server like dialog, hubs, hubs admin, spoke on dif
 
 See [install pm2](https://pm2.keymetrics.io/)
 
-## 6. Setting up github actions
+## 5. Setting up github actions
 
-### 6.1 Elixir based
+### 5.1 Elixir based
 
 #### Reticulum
 
@@ -244,7 +245,7 @@ jobs:
           PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
 ```
 
-### 6.2 Node js based
+### 5.2 Node js based
 
 Goto the action tab and new workflow -> choose node js
 
@@ -341,7 +342,7 @@ jobs:
       - run: npm i
 ```
 
-### 6.3 Add self hosted
+### 5.3 Add self hosted
 
 Above you can see `runs-on: self-hosted` it means the command bellow it, will run on your server.
 
@@ -360,9 +361,9 @@ root
         spoke               <- where you put gihub action runner
 ```
 
-## 7. Run all
+## 6. Run all
 
-### 7.1 Elixir based
+### 6.1 Elixir based
 
 **Reticulum**
 
@@ -392,9 +393,9 @@ Or with [single command](https://stackoverflow.com/a/55115797)
 $(lsof -ti:4000) && kill -9 $(lsof -ti:4000)
 ```
 
-### 7.2 Node js based
+### 6.2 Node js based
 
-#### 7.2.1 Process manager
+#### 6.2.1 Process manager
 
 If we run node js project we using terminal. if we close that terminal the node js server will die. so we need run that server in background. with `pm2` we can manage process like start, stop, restart, watch server logs.
 
@@ -432,7 +433,7 @@ pm2 restart PROCESS_NAME
 
 The `PROCESS_NAME` params can be change to `all` to affect all process
 
-#### 7.2.2 Run node js server
+#### 6.2.2 Run node js server
 
 **Hubs, Hubs admin, Dialog**
 
@@ -470,7 +471,7 @@ If no error then start with pm2
 pm2 start yarn --name spoke_server -- prod
 ```
 
-## 8 Setting up NGINX
+## 7 Setting up NGINX
 
 We must pass everything to the port 4000
 
