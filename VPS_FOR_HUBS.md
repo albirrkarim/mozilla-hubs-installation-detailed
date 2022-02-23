@@ -4,7 +4,7 @@ This Article is about hosting the mozilla hubs into vps / self hosted server. I 
 
 You must understand [installing mozilla hubs on local](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/README.md) before you read this article.
 
-## Warning, this tutorial is not complete yet.
+## Warning, this tutorial is not complete yet. so dont follow this tutorial
 
 <br>
 
@@ -19,6 +19,7 @@ Before you must understand the basic first. look this youtube video [Automatic D
 - Basic CLI linux
 - Github Actions
 - Remoting VPS via ssh
+- little about protocol TCP and UDP
 
 **Software**
 
@@ -63,7 +64,7 @@ Please look at this [tutorial](https://www.digitalocean.com/community/tutorials/
 
 ### 2.2 Add Rules
 
-Now we must allow some port
+Now we must allow some port.
 
 **I dont know exactly what is this port haha, just allow it**
 ```
@@ -72,16 +73,18 @@ ufw allow http,https,ssh,OpenSSH,'Nginx full'
 
 **The hubs port**
 
-![System Overview](/docs_img/System_Overview.jpeg)
+![Up skill](/docs_img/port.png)
 
 **Allow for tcp and udp protocol**
 
+For now I don't really understand about ports lets just allow it
+
 ```
-ufw allow proto tcp from any to any port 4000,4443,8080,9090,8989
+ufw allow proto tcp from any to any port 4443,8080,9090,8989
 ```
 
 ```
-ufw allow proto udp from any to any port 4000,4443,8080,9090,8989
+ufw allow proto udp from any to any port 4443,8080,9090,8989
 ```
 
 **The Dialog port**
@@ -132,7 +135,7 @@ In here you will see the cert.pem chain.pem fullchain.pem privkey.pem.
 
 We will need that file so download it.
 
-Goto `/etc/letsencrypt/live` we will zip the folder `example.com` and move it too the `/`
+Goto `/etc/letsencrypt/live` we will zip the folder `example.com` and move it to the `/`
 
 ```
 zip -r temp.zip example.com
@@ -156,7 +159,7 @@ Maybe on installation of web min you got some error like me
 
 **Can't connet on port 10000**
 
-the default port of webmin is 10000 but some ISP block that port. so we need to change with 1000. [see](https://serverfault.com/a/578397)
+The default port of webmin is 10000 but some ISP block that port. so we need to change with 1000. [see](https://serverfault.com/a/578397)
 
 and don't forget about we must allow rules on `ufw` firewall
 
@@ -206,11 +209,59 @@ See [install pm2](https://pm2.keymetrics.io/)
 
 ## 8. Setting up github actions
 
-I assume you 
-
 ### 8.1 Elixir based
-On reticulum 
 
+**Reticulum**
+
+On your  reticulum repository goto actions tab on github. and create new workflow then choose elixir. 
+
+it will create `.github/workflow/elixir.yml`
+
+change the content `elixir.yml` with
+
+```yml
+name: Elixir CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    name: Build and test
+    runs-on: self-hosted
+    
+    env: 
+      ImageOS: ubuntu20
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Elixir
+      uses: erlef/setup-beam@988e02bfe678367a02564f65ca2e37726dc0268f
+      with:
+        # Define the elixir version [required]
+        elixir-version: '1.12.3' 
+        # Define the OTP version [required]
+        otp-version: '23.1' 
+    - name: Restore dependencies cache
+      uses: actions/cache@v2
+      with:
+        path: deps
+        key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+        restore-keys: ${{ runner.os }}-mix-
+    - name: Install dependencies
+      run: mix deps.get
+    - name: Compile production release
+      run: MIX_ENV=prod mix release
+    - name: Start server
+      run: |
+        MIX_ENV=prod mix compile
+        PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
+
+```
 
 
 ### 8.2 Node js based
@@ -221,17 +272,125 @@ Goto the action tab and new workflow -> choose node js
 
 Setting up yml file like this
 
-#### Hubs admin
+```yml
+name: Node.js CI
 
-Setting up yml file like this
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: npm i --force
+    - run: | 
+        cd admin/
+        pwd
+        npm i --force
+        ls
+    - run: pm2 restart hubs_server
+    - run: pm2 restart hubs_admin_server
+
+```
 
 #### Spoke
 
 Setting up yml file like this
 
+```yml
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        
+    - run: yarn install
+    - run: pm2 restart spoke_server
+```
+
 #### Dialog
 
 Setting up yml file like this
+
+```yml
+name: Node.js CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: npm i
+```
+
+## 9. Run all
+
+### 9.1 Elixir based
+
+On reticulum
+
+Start with this command
+```bash
+PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
+```
+List the process which run on port 4000
+```
+lsof -n -i4TCP:4000
+```
+Kill with PID
+```
+kill -9 PID
+```
+
+
+### 9.2 Node js based
+
+
 
 <br>
 <br>
