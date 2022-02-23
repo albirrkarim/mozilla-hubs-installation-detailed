@@ -392,7 +392,9 @@ root
 
 ### 9.1 Elixir based
 
-On reticulum
+**Reticulum**
+
+Basicaly we can start manually with this. But previously we have done set auto deploy on 
 
 Start with this command
 ```bash
@@ -416,27 +418,22 @@ $(lsof -ti:4000) && kill -9 $(lsof -ti:4000)
 
 ### 9.2 Node js based
 
-Move to hubs action runner directory
 
-and try to run first with 
+#### 9.2.1 Process manager
 
-```
-npm run prod
-```
-if its ok (no error), then using pm2
+If we run node js project we using terminal. if we close that terminal the node js server will die. so we need run that server in background. with `pm2` we can manage process like start, stop, restart, watch server logs.
 
-with
-```
-pm2 start npm --name hubs_server -- run prod
-```
-
-
-**Useful pm2 command**
+Useful pm2 command:
 
 **Start a process on background**
 ```
 pm2 start EXECUTABLE --name PROCESS_NAME -- SOME_PARAMS
 ```
+**Wachting server logs**
+```
+pm2 logs
+```
+
 **See all process**
 ```
 pm2 status
@@ -453,6 +450,43 @@ pm2 restart PROCESS_NAME
 ```
 
 The `PROCESS_NAME` params can be change to `all` to affect all process
+
+
+#### 9.2.2 Run node js server
+
+**Hubs, Hubs admin, Dialog**
+
+Move to hubs action runner directory
+
+and try to run first with 
+
+```
+npm run prod
+```
+if its ok (no error), then using pm2
+
+with
+```
+pm2 start npm --name hubs_server -- run prod
+```
+
+do that too to dialog, hubs admin
+
+
+**Spoke**
+
+Move to spoke action runner directory
+
+Try to start the server
+```
+yarn prod
+```
+
+If no error then start with pm2
+```
+pm2 start yarn --name spoke_server -- prod
+```
+
 
 
 
