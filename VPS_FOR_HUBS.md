@@ -212,7 +212,7 @@ See [install pm2](https://pm2.keymetrics.io/)
 
 ### 8.1 Elixir based
 
-**Reticulum**
+#### Reticulum
 
 On your  reticulum repository goto actions tab on github. and create new workflow then choose elixir. 
 
@@ -309,9 +309,6 @@ jobs:
 Setting up yml file like this
 
 ```yml
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
 name: Node.js CI
 
 on:
