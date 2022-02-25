@@ -8,7 +8,8 @@ For the entire hubs (reticulum,dialog,hubs,spoke) make it private repo. just to 
 
 Star this repo for supporting me. and if you interesting about web 3d like this you can follow my [github account](https://github.com/albirrkarim).
 
-<br><br>
+<br>
+<br>
 
 ## Warning, this tutorial is not complete yet. so dont follow this tutorial
 
@@ -427,21 +428,85 @@ MEDIASOUP_LISTEN_IP=123.xxx.xxx.xxx MEDIASOUP_ANNOUNCED_IP=123.xxx.xxx.xxx HTTPS
 
 ### 6.3 Hubs
 
-Wait
-
-In `package.json` make new script
+In `package.json` make new script named `prod`
 
 ```
 webpack-dev-server --mode=production --env.prodVps --https --cert /etc/letsencrypt/live/example.com/cert.pem --key /etc/letsencrypt/live/example.com/privkey.pem
 ```
 
+In `webpack.config.js` add this
+
+```js
+if (argv.mode === "production") {
+  if (env.prodVps) {
+    // Production on VPS
+    const your_domain = "example.com";
+    const port_reticulum = 4000;
+
+    Object.assign(process.env, {
+      HOST_IP: your_domain,
+      SHORTLINK_DOMAIN: `${your_domain}:${port_reticulum}`,
+      HOST: your_domain,
+      RETICULUM_SOCKET_SERVER: your_domain,
+      CORS_PROXY_SERVER: `${your_domain}:${port_reticulum}`,
+      NON_CORS_PROXY_DOMAINS: `${your_domain},dev.reticulum.io`,
+      BASE_ASSETS_PATH: `https://${your_domain}:8080/`,
+      RETICULUM_SERVER: `${your_domain}:${port_reticulum}`,
+      POSTGREST_SERVER: "",
+      ITA_SERVER: "",
+      UPLOADS_HOST: `https://${your_domain}:${port_reticulum}`,
+    });
+  }
+}
+```
+
 ### 6.4 Hubs admin
 
-Wait
+on `package.json` add new command named `prod`
+
+```bash
+webpack-dev-server --mode=production --env.prod=true --https --cert /etc/letsencrypt/live/meta.dinus.ac.id/cert.pem --key /etc/letsencrypt/live/meta.dinus.ac.id/privkey.pem
+```
+
+In `webpack.config.js` add this
+```js
+if (env.prod) {
+  const your_domain = "meta.dinus.ac.id";
+  Object.assign(process.env, {
+    HOST: your_domain,
+    RETICULUM_SOCKET_SERVER: your_domain,
+    CORS_PROXY_SERVER: "hubs-proxy.com",
+    NON_CORS_PROXY_DOMAINS: `${your_domain},dev.reticulum.io`,
+    BASE_ASSETS_PATH: `https://${your_domain}:8989/`,
+    RETICULUM_SERVER: `${your_domain}:4000`,
+    POSTGREST_SERVER: "",
+    ITA_SERVER: "",
+    HOST_IP: your_domain
+  });
+}
+```
 
 ### 6.5 Spoke
 
-Wait
+on `package.json` add new command named `prod`
+```
+cross-env NODE_ENV=production HOST_IP=example.com BASE_ASSETS_PATH=https://example.com:9090/ webpack-dev-server --mode production --https --cert /etc/letsencrypt/live/example.com/cert.pem --key /etc/letsencrypt/live/example.com/privkey.pem
+```
+
+Edit the `.env.prod`
+```
+HUBS_SERVER="example.com:4000"
+RETICULUM_SERVER="example.com:4000"
+FARSPARK_SERVER="farspark.reticulum.io"
+CORS_PROXY=""
+NON_CORS_PROXY_DOMAINS="example.com:4000,reticulum.io"
+ROUTER_BASE_PATH="/spoke"
+GITHUB_ORG="mozilla"
+GITHUB_REPO="spoke"
+GITHUB_PUBLIC_TOKEN="ghp_SAFEPB2zzes9TEpAOSx2McNjJLQ1GXLBES2FsfWU"
+IS_MOZ="false"
+CORS_PROXY_SERVER=""
+```
 
 ## 7. Run all
 
@@ -654,8 +719,6 @@ sudo systemctl restart nginx
 ## Thank you for read this, I will update this soon. Give me star for supporting me.
 
 <br>
-
-<br>
 <br>
 
 ## IF you have a questions feel free to open an issue
@@ -666,4 +729,5 @@ sudo systemctl restart nginx
 # Useful reference
 
 [Automatic Deployment With Github Actions](https://www.youtube.com/watch?v=X3F3El_yvFg)
+
 [TCP vs UDP](https://www.youtube.com/watch?v=uwoD5YsGACg)
