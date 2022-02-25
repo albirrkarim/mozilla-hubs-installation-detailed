@@ -364,6 +364,23 @@ root
         spoke               <- where you put gihub action runner
 ```
 
+
+## 6. Setting up public IP and domain
+
+
+### 6.1 Reticulum
+
+Take a look at 
+
+### 6.2 Dialog
+
+### 6.3 Hubs
+
+### 6.4 Hubs admin
+
+### 6.5 Spoke
+
+
 ## 6. Run all
 
 ### 6.1 Elixir based
