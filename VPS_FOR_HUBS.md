@@ -6,6 +6,8 @@ You must understand [installing mozilla hubs on local](https://github.com/albirr
 
 For the entire hubs (reticulum,dialog,hubs,spoke) make it private repo. just to be sure it safe.
 
+Star this repo for supporting me. and if you interesting about web 3d like this you can follow my [github account](https://github.com/albirrkarim).
+
 ## Warning, this tutorial is not complete yet. so dont follow this tutorial
 
 <br>
@@ -365,25 +367,78 @@ root
 ```
 
 
-## 6. Setting up public IP and domain
+## 6. Set Your Public IP and Domain
 
 
 ### 6.1 Reticulum
 
-Take a look at 
+Let me explain how i do that. I copy the `config/dev.exs` and name it with `prod.exs` then i modify a little.
+
+Take a look at [prod.exs](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/source_code/prod.exs)
+
+<br>
+
+**The part you should pay attention to**
+
+**- The host**
+
+Fill it with your domain
+
+**- at endpoint config**
+```elixir
+config :ret, RetWeb.Endpoint,
+```
+The [path](#3-setting-up-https-for-your-domain) of keyfile and certfile
+
+Change the `secret_key_base` with your key which result from `mix phx.gen.secret`
+
+**- at the database config**
+```elixir
+# Configure your database
+config :ret, Ret.Repo,
+config :ret, Ret.SessionLockRepo,
+```
+db name is `ret_dev`
+
+host is `localhost`
+
+**- at the janus load status**
+
+```elixir
+config :ret, Ret.JanusLoadStatus,
+```
+the port is 4443
 
 ### 6.2 Dialog
 
+On `package.json` make new command `prod`
+
+Change the IP with you public IP and the domain of course
+```
+MEDIASOUP_LISTEN_IP=123.xxx.xxx.xxx MEDIASOUP_ANNOUNCED_IP=123.xxx.xxx.xxx HTTPS_CERT_FULLCHAIN=/etc/letsencrypt/live/example.com/fullchain.pem HTTPS_CERT_PRIVKEY=/etc/letsencrypt/live/example.com/privkey.pem DOMAIN=example.com node index.js
+```
+
 ### 6.3 Hubs
+
+Wait
+
+In `package.json` make new script
+
+```
+webpack-dev-server --mode=production --env.prodVps --https --cert /etc/letsencrypt/live/example.com/cert.pem --key /etc/letsencrypt/live/example.com/privkey.pem
+```
 
 ### 6.4 Hubs admin
 
+Wait
+
 ### 6.5 Spoke
 
+Wait
 
-## 6. Run all
+## 7. Run all
 
-### 6.1 Elixir based
+### 7.1 Elixir based
 
 **Reticulum**
 
@@ -413,9 +468,9 @@ Or with [single command](https://stackoverflow.com/a/55115797)
 $(lsof -ti:4000) && kill -9 $(lsof -ti:4000)
 ```
 
-### 6.2 Node js based
+### 7.2 Node js based
 
-#### 6.2.1 Process manager
+#### 7.2.1 Process manager
 
 If we run node js project we using terminal. if we close that terminal the node js server will die. so we need run that server in background. with `pm2` we can manage process like start, stop, restart, watch server logs.
 
@@ -453,7 +508,7 @@ pm2 restart PROCESS_NAME
 
 The `PROCESS_NAME` params can be change to `all` to affect all process
 
-#### 6.2.2 Run node js server
+#### 7.2.2 Run node js server
 
 **Hubs, Hubs admin, Dialog**
 
@@ -491,7 +546,7 @@ If no error then start with pm2
 pm2 start yarn --name spoke_server -- prod
 ```
 
-## 7. Setting up NGINX
+## 8. Setting up NGINX
 
 We must pass everything to the port 4000
 
