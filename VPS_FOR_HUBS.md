@@ -8,8 +8,11 @@ For the entire hubs (reticulum,dialog,hubs,spoke) make it private repo. just to 
 
 Star this repo for supporting me. and if you interesting about web 3d like this you can follow my [github account](https://github.com/albirrkarim).
 
+<br><br>
+
 ## Warning, this tutorial is not complete yet. so dont follow this tutorial
 
+<br>
 <br>
 
 # Requirement
@@ -48,10 +51,10 @@ Table of content
 3. [Setting up HTTPS for Your Domain](#3-setting-up-https-for-your-domain)
 4. [Install Dependencies](#4-install-dependencies)
 5. [Setting up Github Actions](#5-setting-up-github-actions)
-6. [Run all](#6-run-all)
-7. [Setting up NGINX](#7-setting-up-nginx)
-8. [Resources Monitoring for VPS (optional)](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/RESOURCE_MONITORING.md)
-
+6. [Set Your Public IP and Domain](#6-set-your-public-ip-and-domain)
+7. [Run all](#7-run-all)
+8. [Setting up NGINX](#8-setting-up-nginx)
+9. [Resources Monitoring for VPS (optional)](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/RESOURCE_MONITORING.md)
 
 ## 1. Install Nginx
 
@@ -366,9 +369,7 @@ root
         spoke               <- where you put gihub action runner
 ```
 
-
 ## 6. Set Your Public IP and Domain
-
 
 ### 6.1 Reticulum
 
@@ -385,19 +386,23 @@ Take a look at [prod.exs](https://github.com/albirrkarim/mozilla-hubs-installati
 Fill it with your domain
 
 **- at endpoint config**
+
 ```elixir
 config :ret, RetWeb.Endpoint,
 ```
+
 The [path](#3-setting-up-https-for-your-domain) of keyfile and certfile
 
 Change the `secret_key_base` with your key which result from `mix phx.gen.secret`
 
 **- at the database config**
+
 ```elixir
 # Configure your database
 config :ret, Ret.Repo,
 config :ret, Ret.SessionLockRepo,
 ```
+
 db name is `ret_dev`
 
 host is `localhost`
@@ -407,6 +412,7 @@ host is `localhost`
 ```elixir
 config :ret, Ret.JanusLoadStatus,
 ```
+
 the port is 4443
 
 ### 6.2 Dialog
@@ -414,6 +420,7 @@ the port is 4443
 On `package.json` make new command `prod`
 
 Change the IP with you public IP and the domain of course
+
 ```
 MEDIASOUP_LISTEN_IP=123.xxx.xxx.xxx MEDIASOUP_ANNOUNCED_IP=123.xxx.xxx.xxx HTTPS_CERT_FULLCHAIN=/etc/letsencrypt/live/example.com/fullchain.pem HTTPS_CERT_PRIVKEY=/etc/letsencrypt/live/example.com/privkey.pem DOMAIN=example.com node index.js
 ```
@@ -645,6 +652,7 @@ sudo systemctl restart nginx
 <br>
 
 ## Thank you for read this, I will update this soon. Give me star for supporting me.
+
 <br>
 
 <br>
