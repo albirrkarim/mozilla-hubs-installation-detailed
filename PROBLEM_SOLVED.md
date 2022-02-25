@@ -1,5 +1,10 @@
 # The problem i faced and i already solved
 
+If you dont get problem like me you dont have to follow this
+
+<br>
+<br>
+
 ## 1. Local scene asset failed to load 403 Forbidden
 
 Api call POST to `/api/v1/media` 403 Forbidden
@@ -54,3 +59,12 @@ end
 ```
 
 FYI: the `root_host` is a variabel, but why i add some underscore `_` at the begining? because it's unused variable in the body of function. we just need that var for conditioning on head of function.
+
+
+<br>
+<br>
+
+## IF you have a questions feel free to open an issue
+
+<br>
+<br>

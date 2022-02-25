@@ -573,12 +573,13 @@ sudo systemctl restart nginx
 <br>
 
 ## Thank you for read this, I will update this soon. Give me star for supporting me.
-
 <br>
 
-## If you have a questions feel free to open an issue
-
 <br>
+<br>
+
+## IF you have a questions feel free to open an issue
+
 <br>
 <br>
 

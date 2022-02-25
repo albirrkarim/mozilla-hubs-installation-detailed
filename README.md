@@ -370,7 +370,7 @@ Spoke
 <br>
 <br>
 
-## If you have a questions feel free to open an issue
+## IF you have a questions feel free to open an issue
 
 <br>
 <br>
