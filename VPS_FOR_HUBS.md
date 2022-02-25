@@ -380,7 +380,7 @@ Take a look at [prod.exs](https://github.com/albirrkarim/mozilla-hubs-installati
 
 Fill it with your domain
 
-**- at endpoint config**
+**- Endpoint config**
 
 ```elixir
 config :ret, RetWeb.Endpoint,
@@ -390,7 +390,7 @@ The [path](#3-setting-up-https-for-your-domain) of keyfile and certfile
 
 Change the `secret_key_base` with your key which result from `mix phx.gen.secret`
 
-**- at the database config**
+**- Database config**
 
 ```elixir
 # Configure your database
@@ -402,7 +402,7 @@ db name is `ret_dev`
 
 host is `localhost`
 
-**- at the janus load status**
+**- Janus load status**
 
 ```elixir
 config :ret, Ret.JanusLoadStatus,
@@ -627,29 +627,13 @@ server {
     listen 80 default_server;
     listen [::]:80 default_server;
 
-    server_name meta.dinus.ac.id;
+    server_name example.com;
 
     location / {
-        # First attempt to serve request as file, then
-        # as directory, then fall back to displaying a 404.
-        # try_files $uri $uri/ =404;
-
-        #match everything
+        # match everything
         rewrite ^\/(.*)$ /$1 break;
         # Proxy passing to port 4000
-        proxy_pass https://meta.dinus.ac.id:4000;
-
-        # Proxy Header
-        #proxy_set_header        Host $host;
-        #proxy_set_header        X-Real-IP $remote_addr;
-        #proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-        #proxy_set_header        X-Forwarded-Proto $scheme;
-
-
-        # The Important Websocket Bits!
-        #proxy_http_version 1.1;
-        #proxy_set_header Upgrade $http_upgrade;
-        #proxy_set_header Connection "upgrade";
+        proxy_pass https://example.com:4000;
 
         #Give larger upstream buffers
         fastcgi_buffers 16 16k;
@@ -665,26 +649,10 @@ server {
     server_name example.com;
 
      location / {
-        # First attempt to serve request as file, then
-        # as directory, then fall back to displaying a 404.
-        #try_files $uri $uri/ =404;
-
         #match everything
         rewrite ^\/(.*)$ /$1 break;
         # Proxy passing to port 4000
         proxy_pass https://example.com:4000;
-
-        # Proxy Header
-        #proxy_set_header        Host $host;
-        #proxy_set_header        X-Real-IP $remote_addr;
-        #proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-        #proxy_set_header        X-Forwarded-Proto $scheme;
-
-
-        # The Important Websocket Bits!
-        #proxy_http_version 1.1;
-        #proxy_set_header Upgrade $http_upgrade;
-        #proxy_set_header Connection "upgrade";
 
         #Give larger upstream buffers
         fastcgi_buffers 16 16k;
