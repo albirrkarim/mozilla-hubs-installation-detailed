@@ -364,6 +364,8 @@ root
 
 ## 6. Set Your Public IP and Domain
 
+Attention! For this section you will need change `example.com` with your domain. don`t just copy and paste it.
+
 ### 6.1 Reticulum
 
 Let me explain how i do that. I copy the `config/dev.exs` and name it with `prod.exs` then i modify a little.
@@ -457,14 +459,14 @@ if (argv.mode === "production") {
 on `package.json` add new command named `prod`
 
 ```bash
-webpack-dev-server --mode=production --env.prod=true --https --cert /etc/letsencrypt/live/meta.dinus.ac.id/cert.pem --key /etc/letsencrypt/live/meta.dinus.ac.id/privkey.pem
+webpack-dev-server --mode=production --env.prod=true --https --cert /etc/letsencrypt/live/example.com/cert.pem --key /etc/letsencrypt/live/example.com/privkey.pem
 ```
 
 In `webpack.config.js` add this
 
 ```js
 if (env.prod) {
-  const your_domain = "meta.dinus.ac.id";
+  const your_domain = "example.com";
   Object.assign(process.env, {
     HOST: your_domain,
     RETICULUM_SOCKET_SERVER: your_domain,
