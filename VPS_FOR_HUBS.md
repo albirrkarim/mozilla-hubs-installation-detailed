@@ -8,14 +8,6 @@ For the entire hubs (reticulum,dialog,hubs,spoke) make it private repo. just to 
 
 Star this repo for supporting me. and if you interesting about web 3d like this you can follow my [github account](https://github.com/albirrkarim).
 
-<br>
-<br>
-
-## Warning, this tutorial is not complete yet. so dont follow this tutorial
-
-<br>
-<br>
-
 # Requirement
 
 **Knowledge**
@@ -469,6 +461,7 @@ webpack-dev-server --mode=production --env.prod=true --https --cert /etc/letsenc
 ```
 
 In `webpack.config.js` add this
+
 ```js
 if (env.prod) {
   const your_domain = "meta.dinus.ac.id";
@@ -481,7 +474,7 @@ if (env.prod) {
     RETICULUM_SERVER: `${your_domain}:4000`,
     POSTGREST_SERVER: "",
     ITA_SERVER: "",
-    HOST_IP: your_domain
+    HOST_IP: your_domain,
   });
 }
 ```
@@ -489,11 +482,13 @@ if (env.prod) {
 ### 6.5 Spoke
 
 on `package.json` add new command named `prod`
+
 ```
 cross-env NODE_ENV=production HOST_IP=example.com BASE_ASSETS_PATH=https://example.com:9090/ webpack-dev-server --mode production --https --cert /etc/letsencrypt/live/example.com/cert.pem --key /etc/letsencrypt/live/example.com/privkey.pem
 ```
 
 Edit the `.env.prod`
+
 ```
 HUBS_SERVER="example.com:4000"
 RETICULUM_SERVER="example.com:4000"
@@ -711,12 +706,6 @@ Restart NGINX
 ```bash
 sudo systemctl restart nginx
 ```
-
-<br>
-<br>
-<br>
-
-## Thank you for read this, I will update this soon. Give me star for supporting me.
 
 <br>
 <br>
