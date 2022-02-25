@@ -314,10 +314,19 @@ iex -S mix phx.server
 
 ## 4.2 Run dialog
 
-with command
+Edit the `start` command on the package.json with 
 
-```bash
-MEDIASOUP_LISTEN_IP=127.0.0.1 MEDIASOUP_ANNOUNCED_IP=127.0.0.1 npm start
+```
+MEDIASOUP_LISTEN_IP=127.0.0.1 MEDIASOUP_ANNOUNCED_IP=127.0.0.1 DEBUG=${DEBUG:='*mediasoup* *INFO* *WARN* *ERROR*'} INTERACTIVE=${INTERACTIVE:='true'} node index.js
+```
+
+For giving params `MEDIASOUP_LISTEN_IP` and `MEDIASOUP_ANNOUNCED_IP`
+
+![Running preparation](/docs_img/run_dialog.png)
+
+Start dialog server with command:
+```
+npm run start
 ```
 
 `127.0.0.1` is default IP of localhost on Mac / Linux you can look the IP with this command:
@@ -361,7 +370,7 @@ Spoke
 <br>
 <br>
 
-## If you have a questions feel free to open and issue
+## If you have a questions feel free to open an issue
 
 <br>
 <br>
