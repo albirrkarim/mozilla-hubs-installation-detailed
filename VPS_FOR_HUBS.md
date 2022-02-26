@@ -710,6 +710,17 @@ sudo systemctl restart nginx
 <br>
 <br>
 
+# Also see
+
+[The problem i still faced](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_UNSOLVED.md)
+
+[The problem i faced and i already solved](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_SOLVED.md)
+
+[Basic information for modification](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/HOW_TO_MODIFY.md)
+
+<br>
+<br>
+
 # Useful reference
 
 [Automatic Deployment With Github Actions](https://www.youtube.com/watch?v=X3F3El_yvFg)
