@@ -6,7 +6,9 @@ You must understand [installing mozilla hubs on local](https://github.com/albirr
 
 For the entire hubs (reticulum,dialog,hubs,spoke) make it private repo. just to be sure it safe.
 
-Star this repo for supporting me. and if you interesting about web 3d like this you can follow my [github account](https://github.com/albirrkarim).
+Star this repo for supporting me. and if you interesting about web 3D like this you can follow my [github account](https://github.com/albirrkarim).
+
+# This tutorial isn't complete yet
 
 # Requirement
 
@@ -355,7 +357,7 @@ I suggest you to setting clean folder structure on your vps
 
 ```
 root
-    hubs_actions_runner     <- wrap up with some folder
+    hubs-actions-runner     <- wrap up with some folder
         hubs                <- where you put gihub action runner
         reticulum           <- where you put gihub action runner
         dialog              <- where you put gihub action runner
@@ -409,6 +411,29 @@ config :ret, Ret.JanusLoadStatus,
 ```
 
 the port is 4443
+
+**- Storage**
+```
+config :ret, Ret.Storage,
+  host: "https://#{host}:4000",
+  storage_path: "/home/admin/hubs-actions-runner/reticulum/storage",
+  ttl: 60 * 60 * 24
+```
+
+By default the configuration for storage is `storage/`. it mean like this
+```
+/home/your_username/hubs-actions-runner/reticulum/_work/reticulum/reticulum/storage
+```
+
+If we set storage path to the inside repo action runner like above it will auto remove by git repository synchronization.
+
+so we need make new folder on `/home/admin/hubs-actions-runner/reticulum`
+
+```
+mkdir -p storage/dev
+```
+
+To show the current path in terminal you can use `pwd` command
 
 ### 6.2 Dialog
 
