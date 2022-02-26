@@ -8,7 +8,7 @@ For the entire hubs (reticulum,dialog,hubs,spoke) make it private repo. just to 
 
 Star this repo for supporting me. and if you interesting about web 3D like this you can follow my [github account](https://github.com/albirrkarim).
 
-# This tutorial isn't complete yet
+Later i will make backend API service for hubs admin
 
 # Requirement
 
@@ -53,7 +53,7 @@ Optional
 
 - [Resources Monitoring for VPS (optional)](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/RESOURCE_MONITORING.md)
 
-## 1. Install Nginx
+## 1. Install Dependencies
 
 Login with SSH. if the ssh is takes long or forever to connect, try using VPN. it will works.
 
@@ -61,7 +61,7 @@ Login with SSH. if the ssh is takes long or forever to connect, try using VPN. i
 ssh username@your_IP
 ```
 
-Update all to the latest update
+**Update all to the latest update**
 
 ```
 sudo su
@@ -69,7 +69,7 @@ apt-get update
 apt-get upgrade
 ```
 
-We using Nginx for server, and proxy pass
+**We using Nginx for server**
 
 [Install Nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04)
 
