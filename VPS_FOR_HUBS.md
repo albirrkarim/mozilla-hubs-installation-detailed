@@ -41,15 +41,17 @@ We will go on a long journey, so this is important requirement
 
 Table of content
 
-1. [Install Nginx](#1-install-nginx)
+1. [Install Dependencies](#1-install-dependencies)
 2. [Install Firewall and Setting Up](#2-install-firewall-and-setting-up)
 3. [Setting up HTTPS for Your Domain](#3-setting-up-https-for-your-domain)
-4. [Install Dependencies](#4-install-dependencies)
-5. [Setting up Github Actions](#5-setting-up-github-actions)
-6. [Set Your Public IP and Domain](#6-set-your-public-ip-and-domain)
-7. [Run all](#7-run-all)
-8. [Setting up NGINX](#8-setting-up-nginx)
-9. [Resources Monitoring for VPS (optional)](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/RESOURCE_MONITORING.md)
+4. [Setting up Github Actions](#4-setting-up-github-actions)
+5. [Set Your Public IP and Domain](#5-set-your-public-ip-and-domain)
+6. [Run all](#6-run-all)
+7. [Setting up NGINX](#7-setting-up-nginx)
+
+Optional
+
+- [Resources Monitoring for VPS (optional)](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/RESOURCE_MONITORING.md)
 
 ## 1. Install Nginx
 
@@ -70,6 +72,30 @@ apt-get upgrade
 We using Nginx for server, and proxy pass
 
 [Install Nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04)
+
+**Install database**
+
+[Install postgres on linux ubuntu](https://phoenixnap.com/kb/how-to-install-postgresql-on-ubuntu)
+
+**Elixir and Erlang (Elixir 1.12.3 and erlang version 23.3)**
+
+You can installing those with `asdf` please follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
+
+Becareful about the version of elixir and erlang, you must exact same version with this tutorial.
+
+you can check the current elixir and erlang with
+
+```
+asdf current
+```
+
+If you got problem when installing erlang you must install their deps.
+
+**Install Process Management**
+
+Later we will run all node js server like dialog, hubs, hubs admin, spoke on different port. so we need process management for running that on the background.
+
+See [install pm2](https://pm2.keymetrics.io/)
 
 ## 2. Install Firewall and setting up
 
@@ -168,35 +194,9 @@ sudo scp username@your_ip:/temp.zip /Downloads
 
 it will download from server and save to the Downloads folder. `/Downloads` is the destination where you save the file.
 
-## 4. Install Dependencies
+## 4. Setting up Github Actions
 
-**Install database**
-
-[Install postgres on linux ubuntu](https://phoenixnap.com/kb/how-to-install-postgresql-on-ubuntu)
-
-**Elixir and Erlang (Elixir 1.12.3 and erlang version 23.3)**
-
-You can installing those with `asdf` please follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
-
-Becareful about the version of elixir and erlang, you must exact same version with this tutorial.
-
-you can check the current elixir and erlang with
-
-```
-asdf current
-```
-
-If you got problem when installing erlang you must install their deps.
-
-**Install Process Management**
-
-Later we will run all node js server like dialog, hubs, hubs admin, spoke on different port. so we need process management for running that on the background.
-
-See [install pm2](https://pm2.keymetrics.io/)
-
-## 5. Setting up Github Actions
-
-### 5.1 Elixir based
+### 4.1 Elixir based
 
 #### Reticulum
 
@@ -248,7 +248,7 @@ jobs:
           PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
 ```
 
-### 5.2 Node js based
+### 4.2 Node js based
 
 Goto the action tab and new workflow -> choose node js
 
@@ -345,7 +345,7 @@ jobs:
       - run: npm i
 ```
 
-### 5.3 Add self hosted
+### 4.3 Add self hosted
 
 Above you can see `runs-on: self-hosted` it means the command bellow it, will run on your server.
 
@@ -364,11 +364,11 @@ root
         spoke               <- where you put gihub action runner
 ```
 
-## 6. Set Your Public IP and Domain
+## 5. Set Your Public IP and Domain
 
 Attention! For this section you will need change `example.com` with your domain. don`t just copy and paste it.
 
-### 6.1 Reticulum
+### 5.1 Reticulum
 
 Let me explain how i do that. I copy the `config/dev.exs` and name it with `prod.exs` then i modify a little.
 
@@ -435,7 +435,7 @@ mkdir -p storage/dev
 
 To show the current path in terminal you can use `pwd` command
 
-### 6.2 Dialog
+### 5.2 Dialog
 
 On `package.json` make new command `prod`
 
@@ -445,7 +445,7 @@ Change the IP with you public IP and the domain of course
 MEDIASOUP_LISTEN_IP=123.xxx.xxx.xxx MEDIASOUP_ANNOUNCED_IP=123.xxx.xxx.xxx HTTPS_CERT_FULLCHAIN=/etc/letsencrypt/live/example.com/fullchain.pem HTTPS_CERT_PRIVKEY=/etc/letsencrypt/live/example.com/privkey.pem DOMAIN=example.com node index.js
 ```
 
-### 6.3 Hubs
+### 5.3 Hubs
 
 In `package.json` make new script named `prod`
 
@@ -479,7 +479,7 @@ if (argv.mode === "production") {
 }
 ```
 
-### 6.4 Hubs admin
+### 5.4 Hubs admin
 
 on `package.json` add new command named `prod`
 
@@ -506,7 +506,7 @@ if (env.prod) {
 }
 ```
 
-### 6.5 Spoke
+### 5.5 Spoke
 
 on `package.json` add new command named `prod`
 
@@ -530,9 +530,9 @@ IS_MOZ="false"
 CORS_PROXY_SERVER=""
 ```
 
-## 7. Run all
+## 6. Run all
 
-### 7.1 Elixir based
+### 6.1 Elixir based
 
 **Reticulum**
 
@@ -562,9 +562,9 @@ Or with [single command](https://stackoverflow.com/a/55115797)
 $(lsof -ti:4000) && kill -9 $(lsof -ti:4000)
 ```
 
-### 7.2 Node js based
+### 6.2 Node js based
 
-#### 7.2.1 Process manager
+#### 6.2.1 Process manager
 
 If we run node js project we using terminal. if we close that terminal the node js server will die. so we need run that server in background. with `pm2` we can manage process like start, stop, restart, watch server logs.
 
@@ -602,7 +602,7 @@ pm2 restart PROCESS_NAME
 
 The `PROCESS_NAME` params can be change to `all` to affect all process
 
-#### 7.2.2 Run node js server
+#### 6.2.2 Run node js server
 
 **Hubs, Hubs admin, Dialog**
 
@@ -640,7 +640,7 @@ If no error then start with pm2
 pm2 start yarn --name spoke_server -- prod
 ```
 
-## 8. Setting up NGINX
+## 7. Setting up NGINX
 
 We must pass everything to the port 4000
 
