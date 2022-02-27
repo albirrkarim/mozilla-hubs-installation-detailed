@@ -155,14 +155,14 @@ ufw delete <number>
 
 ## 3. Setting up HTTPS for Your Domain
 
-Install certbot
+**Install certbot**
 
 ```
 sudo add-apt-repository ppa:certbot/certbot
 sudo apt install python3-certbot-nginx
 ```
 
-Generating certificates
+**Generating certificates**
 
 ```
 sudo certbot --nginx -d example.com -d www.example.com
@@ -177,7 +177,9 @@ cd /etc/letsencrypt/live/example.com
 
 In here you will see the `cert.pem` `chain.pem` `fullchain.pem` `privkey.pem`
 
-We will need that file so download it.
+**Backup the certificates**
+
+We will need that file to give ssl certificate to the [monitoring resource](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/RESOURCE_MONITORING.md)
 
 Goto `/etc/letsencrypt/live` we will zip the folder `example.com` and move it to the `/`
 
@@ -192,7 +194,14 @@ Then download it with `scp` command.
 sudo scp username@your_ip:/temp.zip /Downloads
 ```
 
-it will download from server and save to the Downloads folder. `/Downloads` is the destination where you save the file.
+It will download from server and save to the Downloads folder. `/Downloads` is the destination where you save the file.
+
+**Make it accesible**
+
+[Change the permision](https://www.google.com/search?q=give+user+folder+permissions+linux) for `live` folder so it can be accessed from hubs projects.
+
+Inside `/etc/letsencrypt/live/` i remove the `example.com` folder and make a new 
+`example.com` folder which contains all cert files that we have backup before. because i dont know why my files is empty.
 
 ## 4. Setting up Github Actions
 
