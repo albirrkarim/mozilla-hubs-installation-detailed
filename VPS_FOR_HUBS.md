@@ -203,6 +203,10 @@ It will download from server and save to the Downloads folder. `/Downloads` is t
 Inside `/etc/letsencrypt/live/` i remove the `example.com` folder and make a new 
 `example.com` folder which contains all cert files that we have backup before. because i dont know why my files is empty.
 
+**Automatically renew certificates**
+
+Follow [this](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/up)
+
 ## 4. Setting up Github Actions
 
 ### 4.1 Elixir based
