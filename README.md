@@ -77,7 +77,9 @@ cd reticulum
 
 **Postgres Database**
 
-https://postgresapp.com/downloads.html
+Install on [linux ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart)
+
+Install on [mac](https://postgresapp.com/downloads.html)
 
 **Elixir and Erlang (Elixir 1.12 and erlang version 23)**
 
