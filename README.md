@@ -4,11 +4,23 @@ My journey installing mozilla hubs, im new on project like this. so im confused 
 I want to share with you how to do.
 
 This is about running mozilla hubs on locally. this is detailed version, step by step what i do.
-Give me star on this repository for supporting me to always update this.
 
-Now i trying to [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
+
+I have done [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
+
+Now i move to make backend services for hubs admin
+
+Give me star on this repository or giving a donation with this button bellow for supporting me to always update this.
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q5Q0BC92X)
+
+<br>
+<br>
 
 ## Disclaimer - this tutorial maybe isn't a best practice
+
+<br>
+<br>
 
 # Requirement:
 
@@ -374,8 +386,12 @@ Spoke
 
 ## IF you have a questions feel free to open an issue
 
+
 <br>
 <br>
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q5Q0BC92X)
+
 
 ## Also read:
 

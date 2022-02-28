@@ -22,3 +22,26 @@ If you can't open webmin ( port 1000) on chrome, please use mozilla firefox.
 Go to [this web](https://www.inmotionhosting.com/support/product-guides/cloud-server/ssl-errors-and-https-in-webmin/)
 
 Upload your certificates file that we have download before.
+
+
+<br>
+<br>
+
+## IF you have a questions feel free to open an issue
+
+
+<br>
+<br>
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q5Q0BC92X)
+
+
+## Also read:
+
+[Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
+
+[The problem i still faced](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_UNSOLVED.md)
+
+[The problem i faced and i already solved](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_SOLVED.md)
+
+[Basic information for modification](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/HOW_TO_MODIFY.md)

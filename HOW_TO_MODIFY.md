@@ -6,6 +6,9 @@ Give me star if you think this repo is good.
 
 I try to make sofware overview, architecure, and tables on database. you can see my [figma project](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/%D0%B0%D1%80%D1%85%D0%B8%D1%82%D0%B5%D0%BA%D1%82%D1%83%D1%80%D0%B0)
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q5Q0BC92X)
+
+
 ## Where is the database schema?
 
 `priv/repo/migrations/`
