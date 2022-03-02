@@ -5,6 +5,7 @@ I want to share with you how to do.
 
 This is about running mozilla hubs on locally. this is detailed version, step by step what i do.
 
+Remember! if you got problem with npm or dependency that you cant solve for 1 hour. Just restart your PC. Trust me.
 
 I have done [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
 
