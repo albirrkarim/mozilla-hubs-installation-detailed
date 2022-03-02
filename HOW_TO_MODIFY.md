@@ -11,9 +11,7 @@ I try to make sofware overview, architecure, and tables on database. you can see
 
 ## Where is the database schema?
 
-`priv/repo/migrations/`
-
-above contains the migration files. 
+[see this first](https://www.youtube.com/watch?v=X9AggnaEXrM)
 
 ##  How to make hubs scene with blender
 
