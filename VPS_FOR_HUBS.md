@@ -664,6 +664,15 @@ We must pass everything to the port 4000
 So setting up
 `proxy_pass` on nginx
 
+
+Open the nginx config file with 
+
+```
+sudo nano /etc/nginx/sites-available/default
+```
+
+And replace the content with this code
+
 ```
 server {
     listen 80 default_server;
