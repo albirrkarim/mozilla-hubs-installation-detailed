@@ -80,7 +80,26 @@ cd reticulum
 
 Install on [linux ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart)
 
-Install on [mac](https://postgresapp.com/downloads.html)
+Install on mac
+
+With brew for installing CLI postgres
+
+```
+brew install postgres
+```
+
+Then create user / change password
+
+user: `postgres`
+
+password : `postgres`
+
+and alter it 
+
+```
+ALTER USER postgres WITH SUPERUSER
+```
+
 
 **Elixir and Erlang (Elixir 1.12 and erlang version 23)**
 
