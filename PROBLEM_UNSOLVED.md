@@ -65,7 +65,7 @@ jwt-role-claim-key = ".postgrest_role"
 jwt-secret = "jwk.json"
 ```
 
-But until now i solved that problem yet.
+But until now im not able to solve
 
 I will update this repo if i already solve
 
