@@ -40,6 +40,38 @@ defmodule RetWeb.Plugs.ItaProxy do
   plug ReverseProxyPlug, upstream: "http://localhost:6000"
 end
 ```
-So what is `localhost:6000` ? 
+
+## What is port 3000?
+
+Thanks to contributor that give me a clue about the port 3000
+
+its a [PostgREST](https://postgrest.org/en/stable/index.html)
+
+[see](https://github.com/mozilla/hubs-ops/blob/master/ansible/roles/postgrest/templates/postgrest.toml.j2)
+
+postREST config 
+
+```
+db-uri = "postgres://postgres:postgres@localhost:5432/ret_dev"
+db-schema = "ret0_admin"
+db-anon-role = "postgrest_anonymous"
+server-host = "localhost"
+server-port = 3000
+log-level = "info"
+
+jwt-secret-enabled = true
+jwt-aud = "ret_perms"
+jwt-role-claim-key = ".postgrest_role"
+jwt-secret = "jwk.json"
+```
+
+But until now i solved that problem yet.
+
+I will update this repo if i already solve
+
+
+## and what is `localhost:6000` ? 
 
 I think mozilla not providing the source code for that. We have to provide our own backend service
+
+
