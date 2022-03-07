@@ -65,9 +65,7 @@ jwt-role-claim-key = ".postgrest_role"
 jwt-secret = "jwk.json"
 ```
 
-But until now im not able to solve
-
-I will update this repo if i already solve
+I will update this repo if i already solve this
 
 
 ## and what is `localhost:6000` ? 
