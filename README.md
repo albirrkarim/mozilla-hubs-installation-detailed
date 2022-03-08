@@ -9,7 +9,7 @@ Remember! if you got problem with npm or dependency that you cant solve for 1 ho
 
 I have done [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
 
-Now, i try to make backend services for hubs admin
+Now, i try to make custom hubs admin
 
 Give me star on this repository or giving a donation with this button bellow for supporting me to always update this.
 
