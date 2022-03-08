@@ -209,7 +209,7 @@ Inside `/etc/letsencrypt/live/` i remove the `example.com` folder and make a new
 
 **Automatically renew certificates**
 
-Follow [this](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/up)
+Follow [this](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx)
 
 ## 4. Setting up Github Actions
 
