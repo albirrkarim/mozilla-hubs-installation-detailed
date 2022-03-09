@@ -259,7 +259,7 @@ run command
 mix phx.gen.cert
 ```
 
-It will generate key `selfsigned_key.pem` and certificate `selfsigned.pem` in the `piv/cert` folder
+It will generate key `selfsigned_key.pem` and certificate `selfsigned.pem` in the `priv/cert` folder
 
 Rename `selfsigned_key.pem` to `key.pem`
 
