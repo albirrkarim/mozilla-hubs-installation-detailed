@@ -555,19 +555,19 @@ CORS_PROXY_SERVER=""
 
 Basicaly we can start manually with this. But [previously](#reticulum) we have done set auto deploy
 
-Start with this command
+To start manualy you can use this command, this will start the reticulum server in the background. 
 
 ```bash
 PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
 ```
 
-List the process which run on port 4000
+For checking the reticulum is running use this command to list the process which run on port 4000
 
 ```
 lsof -n -i4TCP:4000
 ```
 
-Kill with PID
+To stop the process you can kill with PID
 
 ```
 kill -9 PID
