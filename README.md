@@ -11,6 +11,10 @@ I have done [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla
 
 Now, i try to make custom hubs admin
 
+You can send me a message via [discord](https://discord.com/)
+
+albirrkarim#8171
+
 Give me star on this repository or giving a donation with this button bellow for supporting me to always update this.
 
 <a href='https://ko-fi.com/Q5Q0BC92X' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
