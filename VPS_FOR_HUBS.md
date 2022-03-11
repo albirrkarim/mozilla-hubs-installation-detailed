@@ -300,14 +300,26 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: npm i --force
-      - run: |
+      - name : Stop server
+        run: | 
+          pm2 stop hubs_server
+          pm2 stop hubs_admin_server
+
+      - name: Install hubs deps
+        run: npm i --force
+
+      - name: Install hubs admin deps
+        run: |
           cd admin/
           pwd
           npm i --force
           ls
-      - run: pm2 restart hubs_server
-      - run: pm2 restart hubs_admin_server
+      
+      - name: Start hubs server
+        run: pm2 start hubs_server
+
+      - name: Start hubs admin server
+        run: pm2 start hubs_admin_server
 ```
 
 #### Spoke
@@ -340,8 +352,14 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
 
-      - run: yarn install
-      - run: pm2 restart spoke_server
+      - name: Stop server
+        run: pm2 stop spoke_server
+
+      - name: Install deps
+        run: yarn install
+
+      - name: Start server
+        run: pm2 start spoke_server
 ```
 
 #### Dialog
@@ -367,7 +385,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: npm i
+
+      - name: Stop server
+        run: pm2 stop dialog_server
+
+      - name: Install deps
+        run: npm i
+
+      - name: Start server
+        run: pm2 start dialog_server
 ```
 
 ### 4.3 Add self hosted
@@ -687,7 +713,11 @@ The `PROCESS_NAME` params can be change to `all` to affect all process
 
 **Hubs, Hubs admin, Dialog**
 
-Move to hubs action runner directory
+Move to `hubs` repo files location
+
+```
+cd /hubs-actions-runner/hubs/_work/hubs/hubs
+```
 
 and try to run first with
 
@@ -703,7 +733,7 @@ with
 pm2 start npm --name hubs_server -- run prod
 ```
 
-do that too to dialog, hubs admin
+do that also to dialog, hubs admin
 
 **Spoke**
 
