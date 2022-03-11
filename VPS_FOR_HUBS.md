@@ -751,6 +751,17 @@ If no error then start with pm2
 pm2 start yarn --name spoke_server -- prod
 ```
 
+#### 6.2.3 Make sure
+
+Make sure the process name is same as in [.yml files](#node-js-based)
+
+```
+dialog_server
+spoke_server
+hubs_server
+hubs_admin_server
+```
+
 ## 7. Setting up NGINX
 
 We must pass everything to the port 4000
