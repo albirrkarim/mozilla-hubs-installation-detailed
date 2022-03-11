@@ -267,7 +267,13 @@ jobs:
 
 ### 4.2 Node js based
 
-Goto the action tab and new workflow -> choose node js
+One workflow (.yml) is for one repo
+
+Do this step to each repository:
+
+Goto the action tab -> new workflow -> choose node js. 
+
+It will creating default .yml file. Then replace the content with this:
 
 #### Hubs
 
