@@ -213,6 +213,8 @@ Follow [this](https://www.nginx.com/blog/using-free-ssltls-certificates-from-let
 
 ## 4. Setting up Github Actions
 
+Make sure you watch [this](https://www.youtube.com/watch?v=X3F3El_yvFg) first
+
 ### 4.1 Elixir based
 
 #### Reticulum
@@ -370,13 +372,22 @@ jobs:
 
 ### 4.3 Add self hosted
 
+Make sure you watch [this](https://www.youtube.com/watch?v=X3F3El_yvFg) first
+
 Above you can see `runs-on: self-hosted` it means the command bellow it, will run on your server.
 
-![Setting](/docs_img/self-hosted.png)
 
-There you can follow the tutorial provided by github
+#### Folder for the action runner
 
-I suggest you to setting clean folder structure on your vps
+I suggest you to preparing clean folder structure on your vps
+
+Before you add the actions runner. Make a new empty folder like this. just run 
+
+```
+mkdir folder_name
+```
+
+Remember! this is an empty folder not your "cloned repo"
 
 ```
 root
@@ -386,6 +397,22 @@ root
         dialog              <- where you put gihub action runner
         spoke               <- where you put gihub action runner
 ```
+
+Okay, take a look on this picture below
+ 
+![Setting](/docs_img/action_runner.png)
+
+There you can follow the tutorial provided by github
+
+Skip the create folder step. because we have [already make empty folder](#folder-for-the-action-runner) for that.
+
+the get in on each folder
+
+for example for reticulum
+
+`cd /hubs-actions-runner/reticulum`
+
+then follow the tutorial provided by github (see the images above) like download the tar file -> config -> run 
 
 the tutorial from github action runner is running with `sudo ./run.sh` it will run. but if we close the terminal it will die.
 
@@ -403,11 +430,18 @@ then
 sudo ./svh.sh start
 ```
 
-For your information. github action runner will automatically pull from github to your server in the folder :
+For your information. github action runner will automatically pull from github to your server in the folder:
 
 ```
 /hubs-actions-runner/hubs/_work/hubs/hubs/IN_HERE
 ```
+
+```
+/hubs-actions-runner/reticulum/_work/reticulum/reticulum/IN_HERE
+```
+
+etc
+
 
 ## 5. Set Your Public IP and Domain
 
