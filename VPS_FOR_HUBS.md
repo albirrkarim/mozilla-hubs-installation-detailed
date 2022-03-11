@@ -204,7 +204,7 @@ It will download from server and save to the Downloads folder. `/Downloads` is t
 
 [Change the permision](https://www.google.com/search?q=give+user+folder+permissions+linux) for `live` folder so it can be accessed from hubs projects.
 
-Inside `/etc/letsencrypt/live/` i remove the `example.com` folder and make a new 
+Inside `/etc/letsencrypt/live/` i remove the `example.com` folder and make a new
 `example.com` folder which contains all cert files that we have backup before. because i dont know why my files is empty.
 
 **Automatically renew certificates**
@@ -271,7 +271,7 @@ One workflow (.yml) is for one repo
 
 Do this step to each repository:
 
-Goto the action tab -> new workflow -> choose node js. 
+Goto the action tab -> new workflow -> choose node js.
 
 It will creating default .yml file. Then replace the content with this:
 
@@ -387,6 +387,28 @@ root
         spoke               <- where you put gihub action runner
 ```
 
+the tutorial from github action runner is running with `sudo ./run.sh` it will run. but if we close the terminal it will die.
+
+On the runner folder on your server. you can see `svh.sh` along side with `run.sh`
+
+run
+
+```
+sudo ./svh.sh install
+```
+
+then
+
+```
+sudo ./svh.sh start
+```
+
+For your information. github action runner will automatically pull from github to your server in the folder :
+
+```
+/hubs-actions-runner/hubs/_work/hubs/hubs/IN_HERE
+```
+
 ## 5. Set Your Public IP and Domain
 
 Attention! For this section you will need change `example.com` with your domain. don`t just copy and paste it.
@@ -436,6 +458,7 @@ config :ret, Ret.JanusLoadStatus,
 the port is 4443
 
 **- Storage**
+
 ```
 config :ret, Ret.Storage,
   host: "https://#{host}:4000",
@@ -444,6 +467,7 @@ config :ret, Ret.Storage,
 ```
 
 By default the configuration for storage is `storage/`. it mean like this
+
 ```
 /home/your_username/hubs-actions-runner/reticulum/_work/reticulum/reticulum/storage
 ```
@@ -561,7 +585,7 @@ CORS_PROXY_SERVER=""
 
 Basicaly we can start manually with this. But [previously](#reticulum) we have done set auto deploy
 
-To start manualy you can use this command, this will start the reticulum server in the background. 
+To start manualy you can use this command, this will start the reticulum server in the background.
 
 ```bash
 PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
@@ -582,7 +606,7 @@ kill -9 PID
 Or with [single command](https://stackoverflow.com/a/55115797)
 
 ```
-$(lsof -ti:4000) && kill -9 $(lsof -ti:4000)
+(lsof -ti:4000) && kill -9 $(lsof -ti:4000)
 ```
 
 ### 6.2 Node js based
@@ -670,8 +694,7 @@ We must pass everything to the port 4000
 So setting up
 `proxy_pass` on nginx
 
-
-Open the nginx config file with 
+Open the nginx config file with
 
 ```
 sudo nano /etc/nginx/sites-available/default
