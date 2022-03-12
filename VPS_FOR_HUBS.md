@@ -582,7 +582,7 @@ if (argv.mode === "production") {
       CORS_PROXY_SERVER: `${your_domain}:${port_reticulum}`,
       NON_CORS_PROXY_DOMAINS: `${your_domain},dev.reticulum.io`,
       BASE_ASSETS_PATH: `https://${your_domain}:8080/`,
-      RETICULUM_SERVER: `${your_domain}:${port_reticulum}`,
+      RETICULUM_SERVER: your_domain,
       POSTGREST_SERVER: "",
       ITA_SERVER: "",
       UPLOADS_HOST: `https://${your_domain}:${port_reticulum}`,
@@ -610,7 +610,7 @@ if (env.prod) {
     CORS_PROXY_SERVER: "hubs-proxy.com",
     NON_CORS_PROXY_DOMAINS: `${your_domain},dev.reticulum.io`,
     BASE_ASSETS_PATH: `https://${your_domain}:8989/`,
-    RETICULUM_SERVER: `${your_domain}:4000`,
+    RETICULUM_SERVER: your_domain,
     POSTGREST_SERVER: "",
     ITA_SERVER: "",
     HOST_IP: your_domain,
@@ -630,7 +630,7 @@ Edit the `.env.prod`
 
 ```
 HUBS_SERVER="example.com:4000"
-RETICULUM_SERVER="example.com:4000"
+RETICULUM_SERVER="example.com"
 FARSPARK_SERVER="farspark.reticulum.io"
 CORS_PROXY=""
 NON_CORS_PROXY_DOMAINS="example.com:4000,reticulum.io"
