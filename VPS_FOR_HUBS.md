@@ -791,19 +791,12 @@ pm2 save
 
 For the reticulum we need make a bash script for automatic start
 
-thanks to [this](https://stackoverflow.com/questions/12973777/how-to-run-a-shell-script-at-startup)
-
-Make sure the env variable is set for `mix` and `elixir` command. run this:
-
-```
-source .bashrc
-$PATH
-```
+Thanks to [this](https://stackoverflow.com/questions/12973777/how-to-run-a-shell-script-at-startup)
 
 On root dir, make .sh file named `start_reticulum_server.sh`
 
-```
-#!/bin/sh
+```bash
+#!/bin/bash
 
 echo "STARTING RETICULUM SERVER"
 export PATH=$PATH:/home/admin/.asdf/shims
