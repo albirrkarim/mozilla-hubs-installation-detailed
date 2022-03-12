@@ -804,25 +804,44 @@ On root dir, make .sh file named `start_reticulum_server.sh`
 
 ```
 #!/bin/sh
+
+echo "STARTING RETICULUM SERVER"
+export PATH=$PATH:/home/admin/.asdf/shims
+echo $PATH
+
 cd /hubs-actions-runner/reticulum/_work/reticulum/reticulum
 (lsof -ti:4000) && kill -9 $(lsof -ti:4000)
 MIX_ENV=prod mix release --overwrite
-MIX_ENV=prod mix compile
 PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
+
+sleep 3
+
+(lsof -ti:4000) && echo "Server started"
 ```
 
-then run 
+Info: the export path is for crontab knows the `mix` command location
+
+
+Then make the .sh file is executable 
+
+```
+chmod +x start_reticulum_server.sh
+```
+
+Open the crontab with this command
 
 ```
 crontab -e
 ```
+
 and paste this command on the bottom then quit and save
 
 ```
 # For starting reticulum server
-@reboot /home/admin/start reticulum server.sh
+@reboot /home/admin/start_reticulum_server.sh >> /home/admin/start_reticulum.log 2>&1
 ```
 
+from the command above it means on reboot crontab will run command `start_reticulum_server.sh` and save the logs to `start_reticulum.log`
 
 ## 7. Setting up NGINX
 
