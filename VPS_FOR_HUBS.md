@@ -751,7 +751,7 @@ If no error then start with pm2
 pm2 start yarn --name spoke_server -- prod
 ```
 
-#### 6.2.3 Make sure
+#### 6.2.3 Make sure it runs well
 
 Make sure the process name is same as in [.yml files](#node-js-based)
 
@@ -761,6 +761,68 @@ spoke_server
 hubs_server
 hubs_admin_server
 ```
+
+run 
+
+```
+pm2 status
+```
+
+![status](/docs_img/pm2_status.png)
+
+
+### 6.3 Auto start your all server on start up
+
+Basically the all process will killed if your server is reboot.
+
+thanks to [this](https://stackoverflow.com/questions/45412600/pm2-process-disappears-after-reboot), with pm2 run:
+
+```
+pm2 startup
+```
+
+![status](/docs_img/pm2_startup.png)
+
+then run 
+
+```
+pm2 save
+```
+
+For the reticulum we need make a bash script for automatic start
+
+thanks to [this](https://stackoverflow.com/questions/12973777/how-to-run-a-shell-script-at-startup)
+
+Make sure the env variable is set for `mix` and `elixir` command. run this:
+
+```
+source .bashrc
+$PATH
+```
+
+On root dir, make .sh file named `start_reticulum_server.sh`
+
+```
+#!/bin/sh
+cd /hubs-actions-runner/reticulum/_work/reticulum/reticulum
+(lsof -ti:4000) && kill -9 $(lsof -ti:4000)
+MIX_ENV=prod mix release --overwrite
+MIX_ENV=prod mix compile
+PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
+```
+
+then run 
+
+```
+crontab -e
+```
+and paste this command on the bottom then quit and save
+
+```
+# For starting reticulum server
+@reboot /home/admin/start reticulum server.sh
+```
+
 
 ## 7. Setting up NGINX
 
