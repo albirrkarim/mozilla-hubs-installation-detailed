@@ -248,23 +248,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Elixir
-        uses: erlef/setup-beam@988e02bfe678367a02564f65ca2e37726dc0268f
-        with:
-          # Define the elixir version [required]
-          elixir-version: "1.12.3"
-          # Define the OTP version [required]
-          otp-version: "23.1"
-      - name: Restore dependencies cache
-        uses: actions/cache@v2
-        with:
-          path: deps
-          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
-          restore-keys: ${{ runner.os }}-mix-
+ 
       - name: Install dependencies
         run: mix deps.get
+
       - name: Compile production release
         run: MIX_ENV=prod mix release
+
       - name: Start server
         run: |
           MIX_ENV=prod mix compile
@@ -349,12 +339,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
 
       - name: Stop server
         run: pm2 stop spoke_server
@@ -472,6 +456,12 @@ For your information. github action runner will automatically pull from github t
 ```
 
 etc
+
+
+### 4.4 Setting path yarn, mix, elixir
+
+[see](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/SETTING_PATH_GITHUB_RUNNER.md)
+
 
 
 ## 5. Set Your Public IP and Domain
