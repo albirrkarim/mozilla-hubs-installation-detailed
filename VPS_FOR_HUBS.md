@@ -420,12 +420,13 @@ mkdir folder_name
 Remember! this is an empty folder not your "cloned repo"
 
 ```
-root
-    hubs-actions-runner     <- wrap up with some folder
-        hubs                <- where you put gihub action runner
-        reticulum           <- where you put gihub action runner
-        dialog              <- where you put gihub action runner
-        spoke               <- where you put gihub action runner
+home
+    your_username
+        hubs-actions-runner     <- wrap up with some folder
+            hubs                <- where you put gihub action runner
+            reticulum           <- where you put gihub action runner
+            dialog              <- where you put gihub action runner
+            spoke               <- where you put gihub action runner
 ```
 
 Okay, take a look on this picture below
