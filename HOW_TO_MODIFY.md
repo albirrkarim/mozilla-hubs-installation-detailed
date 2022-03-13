@@ -18,6 +18,30 @@ Give me star if you think this repo is good.
 [make scene](https://www.youtube.com/watch?v=ldHwbnMMKVY)
 
 
+## Reduce logs info for webpack server based
+
+Many logs message on hubs, hubs admin, spoke terminal sometimes makes us more confused. We can reduce it by adding this on `devServer` object on `webpack.config.js`
+
+```
+devServer: {
+      // This is for reducing logs output on terminal
+      quiet: false,
+      noInfo: false,
+      stats: {
+        assets: false,
+        children: false,
+        chunks: false,
+        chunkModules: false,
+        colors: true,
+        entrypoints: false,
+        hash: false,
+        modules: false,
+        timings: false,
+        version: false
+      }
+}
+```
+
 <br>
 <br>
 
