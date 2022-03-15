@@ -1,17 +1,17 @@
-# The problem i still faced
+# The problem I still faced
 
 1. 502 server communication error in hubs admin like this [issue](https://github.com/mozilla/hubs/issues/4970#issue-1087523703)
 
-Oke let's give try solve this.
+Ok, let's give try to solve this.
 
-The problem is api call to this route
+The problem is an API call to this route
 
 `/api/ita/admin-info`
 
 and other with slash ita `/ita`
 
-if we check where is the code in the reticulum which handle that
-open the `router.ex` ita api call the `RetWeb.Plugs.ItaProxy` if you in vs code you can command+click / ctrl+click for find the function is called.
+if we check where is the code in the reticulum which handles that
+open the `router.ex` ita API call the `RetWeb.Plugs.ItaProxy` if you in vs code you can command+click / ctrl+click for find the function is called.
 
 ```elixir
 
@@ -43,7 +43,7 @@ end
 
 ## What is port 3000?
 
-Thanks to contributor that give me a clue about the port 3000
+Thanks to the contributor that give me a clue about the port 3000
 
 its a [PostgREST](https://postgrest.org/en/stable/index.html)
 
@@ -65,12 +65,12 @@ jwt-role-claim-key = ".postgrest_role"
 jwt-secret = "jwk.json"
 ```
 
-I will update this repo if i already solve this
+I will update this repo if i have already solve this
 
 
-## and what is `localhost:6000` ? 
+## and what is `localhost:6000`? 
 
-I think mozilla not providing the source code for that. We have to provide our own backend service
+I think Mozilla not providing the source code for that. We have to provide our own backend service
 
 <br>
 <br>

@@ -8,15 +8,17 @@ For the entire hubs (reticulum, dialog, hubs, spoke) make it private repo. just 
 
 Star this repo for supporting me. and if you are interested in web 3D like this you can follow my [github account](https://github.com/albirrkarim).
 
-Later I will make a backend API service for hubs admin.
-
 I try to make software overview, architecture, and tables on the database. you can see my [figma project](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/Overview-Mozilla-Hubs-Project?node-id=0%3A1)
 
 [Paypal](https://paypal.me/AlbirrKarim)
 
 <a href='https://ko-fi.com/Q5Q0BC92X' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-# Warning, this tutorial is not complete yet
+# Warning
+
+Sometimes there's a step that I'm not writing down on my tutorial. you know some little hack that we sometimes do but we forget about it.
+
+You can give it a try. and give me messages if there is a missing step/bug that I forget to write it down
 
 # Requirement
 
