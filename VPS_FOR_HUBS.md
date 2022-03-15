@@ -1,16 +1,16 @@
 # Introduction
 
-This article is about hosting the mozilla hubs into vps / self hosted server. I spend 4 days of trying to install hubs on vps.
+This article is about hosting the Mozilla hubs into VPS / self-hosted server. I spend 4 days trying to install hubs on VPS.
 
-You must understand [installing mozilla hubs on local](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/README.md) before you read this article.
+You must understand [installing Mozilla hubs on local](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/README.md) before you read this article.
 
-For the entire hubs (reticulum,dialog,hubs,spoke) make it private repo. just to be sure it safe.
+For the entire hubs (reticulum, dialog, hubs, spoke) make it private repo. just to be sure it is safe.
 
-Star this repo for supporting me. and if you interesting about web 3D like this you can follow my [github account](https://github.com/albirrkarim).
+Star this repo for supporting me. and if you are interested in web 3D like this you can follow my [github account](https://github.com/albirrkarim).
 
-Later i will make backend API service for hubs admin.
+Later I will make a backend API service for hubs admin.
 
-I try to make sofware overview, architecure, and tables on database. you can see my [figma project](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/Overview-Mozilla-Hubs-Project?node-id=0%3A1)
+I try to make software overview, architecture, and tables on the database. you can see my [figma project](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/Overview-Mozilla-Hubs-Project?node-id=0%3A1)
 
 [Paypal](https://paypal.me/AlbirrKarim)
 
@@ -22,25 +22,25 @@ I try to make sofware overview, architecure, and tables on database. you can see
 
 **Knowledge**
 
-Before you must understand the basic first. look this youtube video [Automatic Deployment With Github Actions](https://www.youtube.com/watch?v=X3F3El_yvFg)
+Before you must understand the basics first. look at this youtube video [Automatic Deployment With Github Actions](https://www.youtube.com/watch?v=X3F3El_yvFg)
 
 ![Up skill](/docs_img/excercise.gif)
 
-- Basic CLI linux
+- Basic CLI Linux
 - Github Actions
 - Remoting VPS via ssh
 - little about protocol TCP and UDP
 
 **Software**
 
-- VPS with ubuntu based. I suggest using LTS version
+- VPS with ubuntu based. I suggest using the LTS version
 
 **Other**
 
-We will go on a long journey, so this is important requirement
+We will go on a long journey, so this is an important requirement
 
 - Enough sleep
-- Fruit juice, few coffee
+- Fruit juice, a few coffees
 - Calm music
 
 <br>
@@ -63,7 +63,7 @@ Optional
 
 ## 1. Install Dependencies
 
-Login with SSH. if the ssh is takes long or forever to connect, try using VPN. it will works.
+Login with SSH. if the ssh is taking long or forever to connect, try using VPN. it will work.
 
 ```
 ssh username@your_IP
@@ -83,13 +83,13 @@ apt-get upgrade
 
 **Install database**
 
-[Install postgres on linux ubuntu](https://phoenixnap.com/kb/how-to-install-postgresql-on-ubuntu)
+[Install Postgres on Linux ubuntu](https://phoenixnap.com/kb/how-to-install-postgresql-on-ubuntu)
 
 **Elixir and Erlang (Elixir 1.12.3 and erlang version 23.3)**
 
-You can installing those with `asdf` please follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
+You can be installing those with `asdf` please follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
 
-Becareful about the version of elixir and erlang, you must exact same version with this tutorial.
+Be careful about the version of elixir and erlang, you must exact the same version with this tutorial.
 
 you can check the current elixir and erlang with
 
@@ -97,19 +97,19 @@ you can check the current elixir and erlang with
 asdf current
 ```
 
-If you got problem when installing erlang you must install their deps.
+If you got a problem when installing erlang you must install their dependencies.
 
 **Install Process Management**
 
-Later we will run all node js server like dialog, hubs, hubs admin, spoke on different port. so we need process management for running that on the background.
+Later we will run all node js servers like dialog, hubs, hubs admin, spoke on a different port. so we need process management for running that in the background.
 
 See [install pm2](https://pm2.keymetrics.io/)
 
-## 2. Install Firewall and setting up
+## 2. Install Firewall and set up
 
 ### 2.1 Install
 
-We are using ufw. firewall is some software to blocking / allow port.
+We are using ufw. a firewall is some software to block/allow ports.
 
 Please look at this [tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-18-04)
 
@@ -117,7 +117,7 @@ Please look at this [tutorial](https://www.digitalocean.com/community/tutorials/
 
 Now we must allow some port.
 
-**I dont know exactly what is this port haha, just allow it**
+**I don't know exactly what is this port haha, just allow it**
 
 ```
 ufw allow http,https,ssh,OpenSSH,'Nginx full'
@@ -127,9 +127,9 @@ ufw allow http,https,ssh,OpenSSH,'Nginx full'
 
 ![Up skill](/docs_img/port.png)
 
-**Allow for tcp and udp protocol**
+**Allow for TCP and UDP protocol**
 
-For now I don't really understand about ports lets just allow it
+For now, I don't really understand about ports let's just allow it
 
 ```
 ufw allow proto tcp from any to any port 4443,8080,9090,8989
@@ -176,7 +176,7 @@ sudo apt install python3-certbot-nginx
 sudo certbot --nginx -d example.com -d www.example.com
 ```
 
-It will generate certificate for that domain. so where the file?
+It will generate the certificate for that domain. so where is the file?
 
 ```
 sudo su
@@ -187,7 +187,7 @@ In here you will see the `cert.pem` `chain.pem` `fullchain.pem` `privkey.pem`
 
 **Backup the certificates**
 
-We will need that file to give ssl certificate to the [monitoring resource](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/RESOURCE_MONITORING.md)
+We will need that file to give SSL certificate to the [monitoring resource](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/RESOURCE_MONITORING.md)
 
 Goto `/etc/letsencrypt/live` we will zip the folder `example.com` and move it to the `/`
 
@@ -202,14 +202,14 @@ Then download it with `scp` command.
 sudo scp username@your_ip:/temp.zip /Downloads
 ```
 
-It will download from server and save to the Downloads folder. `/Downloads` is the destination where you save the file.
+It will download from the server and save to the Downloads folder. `/Downloads` is the destination where you save the file.
 
-**Make it accesible**
+**Make it accessible**
 
 [Change the permision](https://www.google.com/search?q=give+user+folder+permissions+linux) for `live` folder so it can be accessed from hubs projects.
 
 Inside `/etc/letsencrypt/live/` i remove the `example.com` folder and make a new
-`example.com` folder which contains all cert files that we have backup before. because i dont know why my files is empty.
+`example.com` folder which contains all cert files that we have a backup before. because I don't know why my files are empty.
 
 **Automatically renew certificates**
 
@@ -223,7 +223,7 @@ Make sure you watch [this](https://www.youtube.com/watch?v=X3F3El_yvFg) first
 
 #### Reticulum
 
-On your reticulum repository goto actions tab on github. and create new workflow then choose elixir.
+On your reticulum repository go to the actions tab on Github. and create a new workflow then choose elixir.
 
 it will create `.github/workflow/elixir.yml`
 
@@ -269,7 +269,7 @@ Do this step to each repository:
 
 Goto the action tab -> new workflow -> choose node js.
 
-It will creating default .yml file. Then replace the content with this:
+It will create a default .yml file. Then replace the content with this:
 
 #### Hubs
 
@@ -384,16 +384,16 @@ jobs:
         run: pm2 start dialog_server
 ```
 
-### 4.3 Add self hosted
+### 4.3 Add self-hosted
 
 Make sure you watch [this](https://www.youtube.com/watch?v=X3F3El_yvFg) first
 
-Above you can see `runs-on: self-hosted` it means the command bellow it, will run on your server.
+Above you can see `runs-on: self-hosted` it means the command below it, will run on your server.
 
 
 #### Folder for the action runner
 
-I suggest you to preparing clean folder structure on your vps
+I suggest you to preparing a clean folder structure on your VPS
 
 Before you add the actions runner. Make a new empty folder like this. just run 
 
@@ -401,7 +401,7 @@ Before you add the actions runner. Make a new empty folder like this. just run
 mkdir folder_name
 ```
 
-Remember! this is an empty folder not your "cloned repo"
+Remember! this is an empty folder, not your "cloned repo"
 
 ```
 home
@@ -413,25 +413,25 @@ home
             spoke               <- where you put gihub action runner
 ```
 
-Okay, take a look on this picture below
+Okay, take a look at this picture below
  
 ![Setting](/docs_img/action_runner.png)
 
-There you can follow the tutorial provided by github
+There you can follow the tutorial provided by GitHub
 
 Skip the create folder step. because we have [already make empty folder](#folder-for-the-action-runner) for that.
 
 the get in on each folder
 
-for example for reticulum
+for example reticulum
 
 `cd /hubs-actions-runner/reticulum`
 
-then follow the tutorial provided by github (see the images above) like download the tar file -> config -> run 
+then follow the tutorial provided by GitHub (see the images above) like download the tar file -> config -> run 
 
-the tutorial from github action runner is running with `sudo ./run.sh` it will run. but if we close the terminal it will die.
+the tutorial from GitHub action runner is running with `sudo ./run.sh` it will run. but if we close the terminal it will die.
 
-On the runner folder on your server. you can see `svh.sh` along side with `run.sh`
+On the runner folder on your server. you can see `svh.sh` alongside with `run.sh`
 
 run
 
@@ -445,7 +445,7 @@ then
 sudo ./svh.sh start
 ```
 
-For your information. github action runner will automatically pull from github to your server in the folder:
+For your information. GitHub action runner will automatically pull from GitHub to your server in the folder:
 
 ```
 /hubs-actions-runner/hubs/_work/hubs/hubs/IN_HERE
@@ -466,11 +466,11 @@ etc
 
 ## 5. Set Your Public IP and Domain
 
-Attention! For this section you will need change `example.com` with your domain. don`t just copy and paste it.
+Attention! For this section, you will need to change `example.com` with your domain. don`t just copy and paste it.
 
 ### 5.1 Reticulum
 
-Let me explain how i do that. I copy the `config/dev.exs` and name it with `prod.exs` then i modify a little.
+Let me explain how I do that. I copy the `config/dev.exs` and name it with `prod.exs` then I modify it a little.
 
 Take a look at [prod.exs](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/source_code/prod.exs)
 
@@ -500,9 +500,9 @@ config :ret, Ret.Repo,
 config :ret, Ret.SessionLockRepo,
 ```
 
-db name is `ret_dev`
+DB name is `ret_dev`
 
-host is `localhost`
+the host is `localhost`
 
 **- Janus load status**
 
@@ -521,13 +521,13 @@ config :ret, Ret.Storage,
   ttl: 60 * 60 * 24
 ```
 
-By default the configuration for storage is `storage/`. it mean like this
+By default, the configuration for storage is `storage/`. it means like this
 
 ```
 /home/your_username/hubs-actions-runner/reticulum/_work/reticulum/reticulum/storage
 ```
 
-If we set storage path to the inside repo action runner like above it will auto remove by git repository synchronization.
+If we set the storage path to the inside repo action runner like above it will auto remove by git repository synchronization.
 
 so we need make new folder on `/home/admin/hubs-actions-runner/reticulum`
 
@@ -535,13 +535,13 @@ so we need make new folder on `/home/admin/hubs-actions-runner/reticulum`
 mkdir -p storage/dev
 ```
 
-To show the current path in terminal you can use `pwd` command
+To show the current path in the terminal you can use `pwd` command
 
 ### 5.2 Dialog
 
 On `package.json` make new command `prod`
 
-Change the IP with you public IP and the domain of course
+Change the IP with your public IP and the domain of course
 
 ```
 MEDIASOUP_LISTEN_IP=123.xxx.xxx.xxx MEDIASOUP_ANNOUNCED_IP=123.xxx.xxx.xxx HTTPS_CERT_FULLCHAIN=/etc/letsencrypt/live/example.com/fullchain.pem HTTPS_CERT_PRIVKEY=/etc/letsencrypt/live/example.com/privkey.pem DOMAIN=example.com node index.js
@@ -549,7 +549,7 @@ MEDIASOUP_LISTEN_IP=123.xxx.xxx.xxx MEDIASOUP_ANNOUNCED_IP=123.xxx.xxx.xxx HTTPS
 
 ### 5.3 Hubs
 
-In `package.json` make new script named `prod`
+In `package.json` make a new script named `prod`
 
 ```
 webpack-dev-server --mode=production --env.prodVps --https --cert /etc/letsencrypt/live/example.com/cert.pem --key /etc/letsencrypt/live/example.com/privkey.pem
@@ -638,15 +638,15 @@ CORS_PROXY_SERVER=""
 
 **Reticulum**
 
-Basicaly we can start manually with this. But [previously](#reticulum) we have done set auto deploy
+Basically, we can start manually with this. But [previously](#reticulum) we have done set auto-deploy
 
-To start manualy you can use this command, this will start the reticulum server in the background.
+To start manually you can use this command, this will start the reticulum server in the background.
 
 ```bash
 PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
 ```
 
-For checking the reticulum is running use this command to list the process which run on port 4000
+For checking the reticulum is running use this command to list the process which runs on port 4000
 
 ```
 lsof -n -i4TCP:4000
@@ -668,7 +668,7 @@ Or with [single command](https://stackoverflow.com/a/55115797)
 
 #### 6.2.1 Process manager
 
-If we run node js project we using terminal. if we close that terminal the node js server will die. so we need run that server in background. with `pm2` we can manage process like start, stop, restart, watch server logs.
+If we run the node js project we use terminal. if we close that terminal the node js server will die. so we need to run that server in the background. with `pm2` we can manage the process like start, stop, restart, watch server logs.
 
 Useful pm2 command:
 
@@ -678,7 +678,7 @@ Useful pm2 command:
 pm2 start EXECUTABLE --name PROCESS_NAME -- SOME_PARAMS
 ```
 
-**Wachting server logs**
+**Watching server logs**
 
 ```
 pm2 logs
@@ -702,7 +702,7 @@ pm2 stop PROCESS_NAME
 pm2 restart PROCESS_NAME
 ```
 
-The `PROCESS_NAME` params can be change to `all` to affect all process
+The `PROCESS_NAME` params can be changed to `all` to affect all process
 
 #### 6.2.2 Run node js server
 
@@ -728,7 +728,7 @@ with
 pm2 start npm --name hubs_server -- run prod
 ```
 
-do that also to dialog, hubs admin
+do that also to the dialog, hubs admin
 
 **Spoke**
 
@@ -766,9 +766,9 @@ pm2 status
 ![status](/docs_img/pm2_status.png)
 
 
-### 6.3 Auto start your all server on start up
+### 6.3 Auto start your all server on startup
 
-Basically the all process will killed if your server is reboot.
+Basically, all processes will be killed if your server is rebooted.
 
 thanks to [this](https://stackoverflow.com/questions/45412600/pm2-process-disappears-after-reboot), with pm2 run:
 
@@ -784,7 +784,7 @@ then run
 pm2 save
 ```
 
-For the reticulum we need make a bash script for automatic start
+For the reticulum, we need to make a bash script for automatic start
 
 Thanks to [this](https://stackoverflow.com/questions/12973777/how-to-run-a-shell-script-at-startup)
 
@@ -833,12 +833,12 @@ from the command above it means on reboot crontab will run command `start_reticu
 
 ## 7. Setting up NGINX
 
-We must pass everything to the port 4000
+We must pass everything to port 4000
 
 So setting up
-`proxy_pass` on nginx
+`proxy_pass` on Nginx
 
-Open the nginx config file with
+Open the Nginx config file with
 
 ```
 sudo nano /etc/nginx/sites-available/default
@@ -904,7 +904,7 @@ sudo systemctl restart nginx
 <br>
 <br>
 
-## IF you have a questions feel free to open an issue
+## IF you have questions feel free to open an issue
 
 <br>
 <br>

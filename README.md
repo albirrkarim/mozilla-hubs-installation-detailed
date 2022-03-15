@@ -1,21 +1,21 @@
 # Introduction
 
-My journey installing mozilla hubs, im new on project like this. so im confused of course. 4 days of figuring how this program work and finaly i can running mozilla hubs on my macbook air m1.
-I want to share with you how to do.
+My journey installing Mozilla hubs, I'm new to a project like this. so I'm confused. After 4 days of figuring out how this program work finally I can run Mozilla hubs on my MacBook air m1.
+I want to share with you how to do it.
 
-This is about running mozilla hubs on locally. this is detailed version, step by step what i do.
+This is about running Mozilla hubs locally. this is a detailed version, step by step what I do.
 
-Remember! if you got problem with npm or dependency that you cant solve for 1 hour. Just restart your PC. Trust me.
+Remember! if you got a problem with npm or dependency that you cant to solve for 1 hour. Just restart your PC. Trust me.
 
 I have done [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
 
-Now, i try to make custom hubs admin
+Now, I try to make custom hubs admin
 
 You can send me a message via [discord](https://discord.com/)
 
 albirrkarim#8171
 
-Give me star on this repository or giving a donation with this button bellow for supporting me to always update this.
+Give me a star on this repository or give a donation with this button below for supporting me to always update this.
 
 [Paypal](https://paypal.me/AlbirrKarim)
 
@@ -34,15 +34,15 @@ Give me star on this repository or giving a donation with this button bellow for
 ### Hardware:
 
 - at least 8GB of RAM
-- recomended using fast CPU
+- recommended using fast CPU
 
 ### Software
 
-- Node js installed. when im install this hubs i use v16
+- Node js installed. when I install this hubs I use v16
 
 ### Knowledge
 
-I assume you already know, if no you must up skill first
+I assume you already know, if no you must up-skill first
 
 ![Up skill](/docs_img/excercise.gif)
 
@@ -58,12 +58,12 @@ I assume you already know, if no you must up skill first
 
 The image above made with [figma](https://www.figma.com/) you can read more description on [documentation](https://hubs.mozilla.com/docs/system-overview.html)
 
-I try to make sofware overview, architecure, and tables on database. you can see my [figma project](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/Overview-Mozilla-Hubs-Project?node-id=0%3A1)
+I try to make software overview, architecture, and tables on the database. you can see my [figma project](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/Overview-Mozilla-Hubs-Project?node-id=0%3A1)
 
 <br/>
 <br/>
 
-# Attention !
+# Attention!
 
 There is major step [Cloning and Preparation](#1-cloning-and-preparation) -> [Setting up HOST](#2-setting-up-host) -> [Setting up HTTPS (SSL)](#3-setting-up-https-ssl) -> [Running](#4-runing)
 
@@ -71,7 +71,7 @@ There is major step [Cloning and Preparation](#1-cloning-and-preparation) -> [Se
 
 ## 1.1 Reticulum
 
-Its a backend server that using elixir and phoenix.
+It's a backend server that uses elixir and phoenix.
 
 ### 1.1.1 Clone
 
@@ -88,13 +88,13 @@ Install on [linux ubuntu](https://www.digitalocean.com/community/tutorials/how-t
 
 Install on mac
 
-With brew for installing CLI postgres
+With brew for installing CLI Postgres
 
 ```
 brew install postgres
 ```
 
-Then create user / change password
+Then create user/change password
 
 user: `postgres`
 
@@ -109,13 +109,13 @@ ALTER USER postgres WITH SUPERUSER
 
 **Elixir and Erlang (Elixir 1.12 and erlang version 23)**
 
-You can installing those with follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
+You can install those with follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
 
-Becareful about the version of elixir and erlang.
+Be careful about the version of elixir and erlang.
 
 **Ansible**
 
-You can use `pip` to install. take a look on this [tutorial](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#from-pip)
+You can use `pip` to install. take a look at this [tutorial](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#from-pip)
 
 ### 1.1.3 run this command
 
@@ -161,7 +161,7 @@ psql-userdb="host=localhost dbname=ret_dev user=postgres password=postgres optio
 
 ## 1.2 Dialog
 
-Using mediasoup RTC this will handling audio and video realtime communication. like camera stream, share screen.
+Using mediasoup RTC will handle audio and video real-time communication. like camera stream, share screen.
 
 ### 1.2.1 Clone and get dependencies
 
@@ -190,7 +190,7 @@ config :ret, Ret.PermsToken, perms_key: "-----BEGIN RSA PRIVATE KEY----- paste h
 
 ## 1.3 Spoke
 
-In here you can create / edit the scenes / buildings whatever you call it.
+In here you can create/edit the scenes/buildings whatever you call it.
 
 ### 1.3.1 Clone
 
@@ -204,11 +204,11 @@ yarn install
 
 ### 1.3.2 Set the base routes
 
-I hope you know the basic `react-router-dom` with the defaut url in slash `/` on `localhost:9090`
+I hope you know the basic `react-router-dom` with the default URL in  slash `/` on `localhost:9090`
 
-But in the end we will access the spoke on `localhost:4000/spoke`
+But in the end, we will access the spoke on `localhost:4000/spoke`
 
-So we must set base URL to `/spoke`
+So we must set the base URL to `/spoke`
 
 Add the `ROUTER_BASE_PATH=/spoke` params to the `start` command on `package.json`
 
@@ -225,7 +225,7 @@ In this [repo](https://github.com/mozilla/hubs) contains the hubs client and hub
 
 ![System Overview](/docs_img/hubs_overview.jpeg)
 
-Clone and installing dependencies
+Clone and install dependencies
 
 ```
 git clone https://github.com/mozilla/hubs.git
@@ -249,11 +249,11 @@ so change every host configuration on reticulum, dialog, hubs, hubs admin, spoke
 
 # 3. Setting up HTTPS (SSL)
 
-All the server must serve with https. you must generate certificate and key file
+All the servers must serve with HTTPS. you must generate a certificate and key file
 
-## 3.1 Generating Certificate and make it trust
+## 3.1 Generating certificate and making it trust
 
-Open terimnal in reticulum directory
+Open terminal in reticulum directory
 
 run command
 
@@ -269,23 +269,23 @@ Rename `selfsigned.pem` to `cert.pem`
 
 #### Now we have `key.pem` and `cert.pem` file
 
-In Mac OS, I don't know in windows or linux. please find it your self
+In Mac OS, I don't know in windows or Linux. please find it yourself
 
-Open the `cert.pem` on the tab system find that certificate then click twice and change to always trust.
+Open the `cert.pem` on the tab system find that certificate then clicks twice and change to always trust.
 
 ![Https mozilla hubs](/docs_img/cert.png)
 
-Select the `cert.pem` and `key.pem` and copy it. next step we will distribute those two file into hubs, hubs admin, spoke, dialog, and reticulum.
+Select the `cert.pem` and `key.pem` and copy it. next step we will distribute those two files into hubs, hubs admin, spoke, dialog, and reticulum.
 
-Oke first setting up in the reticulum.
+Oke first set up in the reticulum.
 
 ## 3.2 Setting https for reticulum
 
-On the `config/dev.exs` We must setting path for the certificate and key file.
+On the `config/dev.exs` We must be setting the path for the certificate and key file.
 
 ![Https mozilla hubs](/docs_img/cert_1.png)
 
-## 3.3 Setting https for hubs
+## 3.3 Setting HTTPS for hubs
 
 Paste [that](#now-we-have-keypem-and-certpem-file) file into `hubs/certs`
 
@@ -298,7 +298,7 @@ Like this picture
 
 ![ssl hubs](/docs_img/ssl_hubs.png)
 
-## 3.4 Setting https for hubs admin
+## 3.4 Setting HTTPS for hubs admin
 
 Paste [that](#now-we-have-keypem-and-certpem-file) file into `hubs/admin/certs`
 
@@ -311,11 +311,11 @@ Like this picture
 
 ![ssl hubs admin](/docs_img/ssl_hubs_admin.png)
 
-## 3.5 Setting https for spoke
+## 3.5 Setting HTTPS for spoke
 
 Paste [that](#now-we-have-keypem-and-certpem-file) file into `spoke/certs`
 
-We run spoke with `yarn start` right ?
+We run spoke with `yarn start` right?
 So change the `start` command
 
 ![ssl hubs admin](/docs_img/ssl_spoke.png)
@@ -371,7 +371,7 @@ Start dialog server with command:
 npm run start
 ```
 
-`127.0.0.1` is default IP of localhost on Mac / Linux you can look the IP with this command:
+`127.0.0.1` is the default IP of localhost on Mac / Linux you can look at the IP with this command:
 
 ```bash
 sudo nano /etc/hosts
@@ -412,8 +412,7 @@ Spoke
 <br>
 <br>
 
-## IF you have a questions feel free to open an issue
-
+## IF you have questions feel free to open an issue
 
 <br>
 <br>
