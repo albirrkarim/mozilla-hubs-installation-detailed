@@ -17,23 +17,31 @@ Many logs message on hubs, hubs admin, spoke terminal sometimes makes us more co
 
 ```
 devServer: {
-      // This is for reducing logs output on terminal
-      quiet: false,
-      noInfo: false,
-      stats: {
-        assets: false,
-        children: false,
-        chunks: false,
-        chunkModules: false,
-        colors: true,
-        entrypoints: false,
-        hash: false,
-        modules: false,
-        timings: false,
-        version: false
-      }
+  // This is for reducing logs output on terminal
+  quiet: false,
+  noInfo: false,
+  stats: {
+    assets: false,
+    children: false,
+    chunks: false,
+    chunkModules: false,
+    colors: true,
+    entrypoints: false,
+    hash: false,
+    modules: false,
+    timings: false,
+    version: false
+  }
 }
 ```
+
+##  How to login & create admin account?
+
+[see](https://github.com/mozilla/reticulum#5-logging-in)
+
+## What you want to know ?
+
+Write it on the discussion. maybe i can help you.
 
 <br>
 <br>
