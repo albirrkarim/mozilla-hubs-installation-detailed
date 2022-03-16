@@ -564,20 +564,21 @@ if (argv.mode === "production") {
   if (env.prodVps) {
     // Production on VPS
     const your_domain = "example.com";
-    const port_reticulum = 4000;
+    
+    // We dont use the reticulum port 4000 because later we will proxy pass from port 443 to 4000
 
     Object.assign(process.env, {
       HOST_IP: your_domain,
-      SHORTLINK_DOMAIN: `${your_domain}:${port_reticulum}`,
+      SHORTLINK_DOMAIN: `${your_domain}`,
       HOST: your_domain,
       RETICULUM_SOCKET_SERVER: your_domain,
-      CORS_PROXY_SERVER: `${your_domain}:${port_reticulum}`,
+      CORS_PROXY_SERVER: `${your_domain}`,
       NON_CORS_PROXY_DOMAINS: `${your_domain},dev.reticulum.io`,
       BASE_ASSETS_PATH: `https://${your_domain}:8080/`,
       RETICULUM_SERVER: your_domain,
       POSTGREST_SERVER: "",
       ITA_SERVER: "",
-      UPLOADS_HOST: `https://${your_domain}:${port_reticulum}`,
+      UPLOADS_HOST: `https://${your_domain}`,
     });
   }
 }
