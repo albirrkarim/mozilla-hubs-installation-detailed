@@ -6,10 +6,9 @@ After [installing Mozilla hubs on local](https://github.com/albirrkarim/mozilla-
 
 [see this first](https://www.youtube.com/watch?v=X9AggnaEXrM)
 
-##  How to make hubs scene with blender
+## How to make hubs scene with blender
 
 [make scene](https://www.youtube.com/watch?v=ldHwbnMMKVY)
-
 
 ## Reduce logs info for webpack server based
 
@@ -35,9 +34,46 @@ devServer: {
 }
 ```
 
-##  How to login & create admin account?
+## How to login & create admin account?
 
 [see](https://github.com/mozilla/reticulum#5-logging-in)
+
+<br>
+<br>
+
+## How to modify UI?
+
+### 1. Take a look on the overview or make your own
+
+[Overview System With Figma](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/Overview-Mozilla-Hubs-Project?node-id=0%3A1)
+
+### 2. Reverse engineering from the Output
+
+Output -> ComponentChild -> ComponentParent -> etc ... -> Main.js -> Main.html
+
+if you see some teks on the hubs output ( on browser) for example is "Avatar Settings" then copy that string and goto your vscode and find using search tool. then you can find the `ComponentChild` and search again what component which calling it until you found the thing that you need.
+
+### 3. Becareful when editing the code
+
+React js will rerender the page if there is state updated. as my experience if the web are complex. If the component structure is bad sometimes it over rendering. and cause FPS drop, Memory leak.
+
+### 4. Testing
+
+#### 4.1 Memory & FPS
+
+Open memory menu on chrome. (inspect element>memory) and [fps monitor](https://www.bleepingcomputer.com/news/google/google-chrome-rolls-back-fps-meter-changes-after-user-complaints/#:~:text=To%20open%20the%20FPS%20meter,press%20enter%20as%20shown%20below.) on chrome
+
+First, See the memory usage
+
+Try to press all your layout button. and do some frequent actions.
+
+If the memory is growing up maybe there's a problem with your code.
+
+
+<br>
+<br>
+<br>
+<br>
 
 ## What you want to know ?
 
