@@ -2,7 +2,7 @@
 
 This article is about hosting the Mozilla hubs into VPS / self-hosted server. I spend 4 days trying to install hubs on VPS.
 
-You must understand [installing Mozilla hubs on local](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/README.md) before you read this article.
+**You must try** [installing Mozilla hubs on local] first(https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/README.md) before you read this article.
 
 For the entire hubs (reticulum, dialog, hubs, spoke) make it private repo. just to be sure it is safe.
 
@@ -354,37 +354,7 @@ jobs:
 
 #### Dialog
 
-Setting up yml file like this
-
-```yml
-name: Node.js CI
-
-on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
-
-jobs:
-  build:
-    runs-on: self-hosted
-
-    strategy:
-      matrix:
-        node-version: [16.x]
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Stop server
-        run: pm2 stop dialog_server
-
-      - name: Install deps
-        run: npm i
-
-      - name: Start server
-        run: pm2 start dialog_server
-```
+Only dialog im not using github actions. because i got some problem setting up github action for this.
 
 ### 4.3 Add self-hosted
 
