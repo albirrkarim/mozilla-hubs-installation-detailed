@@ -1,6 +1,6 @@
 # The problem I faced and I already solved
 
-If you don't get a problem like me you don't have to follow this
+## If you don't get a problem like me you don't have to follow this
 
 <br>
 <br>
