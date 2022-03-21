@@ -2,7 +2,7 @@
 
 This article is about hosting the Mozilla hubs into VPS / self-hosted server. I spend 4 days trying to install hubs on VPS.
 
-**You must try** [installing Mozilla hubs on local](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/README.md) **before you read this article. If not you will get lost**.
+**You must try** [**installing Mozilla hubs on local**](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/README.md) **before you read this article. If not you will get lost**.
 
 For the entire hubs (reticulum, dialog, hubs, spoke) make it private repo. just to be sure it is safe.
 
