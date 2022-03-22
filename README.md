@@ -3,6 +3,8 @@
 My journey installing Mozilla hubs, I'm new to a project like this. so I'm confused. After 4 days of figuring out how this program work finally I can run Mozilla hubs on my MacBook air m1.
 I want to share with you how to do it.
 
+For make it clear i provide this tutorial in [youtube video](https://youtu.be/KH1T9u9DaCo). give me like and subscribe to supporting me making the other video about this.
+
 This is about running Mozilla hubs locally. this is a detailed version, step by step what I do.
 
 Remember! if you got a problem with npm or dependency that you cant to solve for 1 hour. Just restart your PC. Trust me.
