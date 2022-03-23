@@ -2,7 +2,18 @@
 
 ## If you don't get a problem like me you don't have to follow this
 
-this article not ready yet
+
+## 1. Architecture Kit Failed to load and import
+
+This problem is related to number 1 above. We don't need `CORS_PROXY_SERVER` so set it with an empty string
+
+![env spoke](/docs_img/env_spoke.png)
+
+and make condition like this picture bellow
+
+![env spoke](/docs_img/env_spoke_1.png)
+
+On spoke if we want to import some object in architecture kit we got error 500 from API call POST to `/api/v1/media` like number 1 above.
 
 <br>
 <br>
