@@ -20,6 +20,15 @@ Edit Api.js
 
 ![env spoke](/docs_img/spoke_failed_3.png)
 
+## 3. Spoke console error prefetch-src 
+
+I got error like this
+
+![Spoke console error](/docs_img/spoke_console_error.png)
+
+Then add rule `prefetch-src` like this.
+
+![Spoke console fix](/docs_img/spoke_console_fix.png)
 
 <br>
 <br>
