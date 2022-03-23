@@ -13,7 +13,13 @@ and make condition like this picture bellow
 
 ![env spoke](/docs_img/env_spoke_1.png)
 
-On spoke if we want to import some object in architecture kit we got error 500 from API call POST to `/api/v1/media` like number 1 above.
+
+## 2. Spoke thumbnail not showing on production
+
+Edit Api.js
+
+![env spoke](/docs_img/spoke_failed_3.png)
+
 
 <br>
 <br>
