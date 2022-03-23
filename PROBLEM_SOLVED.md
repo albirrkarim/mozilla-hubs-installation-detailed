@@ -30,6 +30,35 @@ Then add rule `prefetch-src` like this.
 
 ![Spoke console fix](/docs_img/spoke_console_fix.png)
 
+## 3. Upload assets too large on spoke production
+
+It because nginx
+
+Open up the nginx configuration file
+
+```
+sudo nano /etc/nginx/nginx.conf
+```
+
+add this `client_max_body_size` to the http section
+
+```
+http {
+    
+    # other line...
+
+    client_max_body_size 100M;
+}  
+```
+
+Then restart nginx
+
+```
+sudo systemctl restart nginx
+```
+
+for more detail see [this article](https://www.tecmint.com/limit-file-upload-size-in-nginx/)
+
 <br>
 <br>
 
