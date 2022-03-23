@@ -45,9 +45,9 @@ then paste the `/home/admin/.nvm/versions/node/v16.14.0/bin`
 
 so the `.path` become
 
-`aaaaa:bbbb:cccc:/home/admin/.nvm/versions/node/v16.14.0/bin`
+`/home/admin/.nvm/versions/node/v16.14.0/bin:aaaaa:bbbb:cccc`
 
-**Don't add the enter or something. Just give the `:` and paste next to it**
+**Don't add the enter or something. Just give paste and give the `:` next to it**
 
 ### Restart runner 
 You need restart it. so it will load the new path
