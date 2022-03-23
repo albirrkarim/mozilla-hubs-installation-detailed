@@ -14,7 +14,7 @@ and make condition like this picture bellow
 ![env spoke](/docs_img/env_spoke_1.png)
 
 
-## 2. Spoke thumbnail not showing on production
+## 2. Spoke assets thumbnail not showing on production
 
 Edit Api.js
 
