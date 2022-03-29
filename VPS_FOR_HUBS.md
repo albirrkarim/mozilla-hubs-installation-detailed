@@ -1,6 +1,12 @@
 # Introduction
 
-This article is about hosting the Mozilla hubs into VPS / self-hosted server. I spend 4 days trying to install hubs on VPS.
+This article is about hosting the Mozilla hubs into VPS / self-hosted server. 
+
+Hubs provide easy deploy on AWS. its just work. But I don't want to buy some server on AWS. because i have my own server. so how to do that?
+
+I spend 4 days trying to install hubs on VPS.
+
+Basically im not a dev ops person. im react js and laravel little bit fullstack.
 
 **You must try** [**installing Mozilla hubs on local**](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/README.md) **before you read this article. If not you will get lost**.
 
