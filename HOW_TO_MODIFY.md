@@ -41,7 +41,7 @@ devServer: {
 <br>
 <br>
 
-## How to modify UI?
+## How to modify UI (web2D)?
 
 ### 1. Take a look on the overview or make your own
 
@@ -68,6 +68,25 @@ First, See the memory usage
 Try to press all your layout button. and do some frequent actions.
 
 If the memory is growing up maybe there's a problem with your code.
+
+<br>
+<br>
+
+## How to modify UI (Web 3D / Aframe Component)?
+
+![Component 3D](/docs_img/component_3d.png)
+
+Like the position etc. its on the `hub.html` file
+
+hubs using native html and controlled with native javascript.
+
+you can reverse engineering it with search for the class name or id.
+
+for example in vscode you can find the `video-volume-label`. its a class name
+
+![Component 3D](/docs_img/reverse_engineering_3d.png)
+
+You can see the aframe element (the output) and the javascript file which controlling that.
 
 
 <br>
