@@ -8,10 +8,6 @@ I spend 4 days trying to install hubs on VPS.
 
 Basically im not a dev ops person. im react js and laravel little bit fullstack.
 
-**You must try** [**installing Mozilla hubs on local**](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/README.md) **before you read this article. If not you will get lost**.
-
-For the entire hubs (reticulum, dialog, hubs, spoke) make it private repo. just to be sure it is safe.
-
 Star this repo for supporting me. and if you are interested in web 3D like this you can follow my [github account](https://github.com/albirrkarim).
 
 I try to make software overview, architecture, and tables on the database. you can see my [figma project](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/Overview-Mozilla-Hubs-Project?node-id=0%3A1)
@@ -19,6 +15,27 @@ I try to make software overview, architecture, and tables on the database. you c
 [Paypal](https://paypal.me/AlbirrKarim)
 
 <a href='https://ko-fi.com/Q5Q0BC92X' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+
+# Attention
+
+You must try [installing Mozilla hubs on local](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/README.md) before you read this article. If not you will get lost.
+
+Why i told you for give try to running hubs project locally first (localhost)?
+
+For me as a fullstack programmer with 3 years experience i will make sure the code is work, features is work and the configuration also, in the local.
+
+Because it will be more difficult to debug on the server rather than on local.
+
+And you will understand how this project is going on. 
+
+**You can't instantly just clone and host hubs on the server.**
+
+Please don't send me a message (about problems installing hubs on a server) on discord if you are not trying to run this locally first and succeed to do it.
+
+# Advice
+
+For the entire hubs (reticulum, dialog, hubs, spoke) make it private repo. just to be sure it is safe.
+
 
 # Warning
 

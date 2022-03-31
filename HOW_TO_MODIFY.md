@@ -89,6 +89,10 @@ for example in vscode you can find the `video-volume-label`. its a class name
 You can see the aframe element (the output) and the javascript file which controlling that.
 
 
+## add Content Security Policy (CSP) rule in reticulum
+
+check on file `add_csp.ex`
+
 <br>
 <br>
 <br>
