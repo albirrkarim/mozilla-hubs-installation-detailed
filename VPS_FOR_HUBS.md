@@ -130,6 +130,16 @@ Later we will run all node js servers like dialog, hubs, hubs admin, spoke on a 
 
 See [install pm2](https://pm2.keymetrics.io/)
 
+
+**Instaling dependency for mediasoup**
+
+Mediasoup is Cutting Edge WebRTC Video Conferencing. it used in dialog server. for RTC audio and video. 
+
+Look at [the mediasoup v3 Installation](https://mediasoup.org/documentation/v3/mediasoup/installation/#all-platforms)
+
+you must install python 3 and make the default command `python` is calling `python3` see [this](https://dev.to/meetsohail/change-the-python3-default-version-in-ubuntu-1ekb)
+
+
 ## 2. Install Firewall and set up
 
 ### 2.1 Install
