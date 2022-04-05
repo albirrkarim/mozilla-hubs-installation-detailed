@@ -11,11 +11,11 @@ Remember! if you got a problem with npm or dependency that you cant to solve for
 
 I have done [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
 
-Now, I try to make custom hubs admin
+<!-- Now, I try to make custom hubs admin
 
 You can send me a message via [discord](https://discord.com/)
 
-albirrkarim#8171
+albirrkarim#8171 -->
 
 Give me a star on this repository or give a donation with this button below for supporting me to always update this.
 
