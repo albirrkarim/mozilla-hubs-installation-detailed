@@ -884,6 +884,12 @@ server {
         # Proxy passing to port 4000
         proxy_pass https://example.com:4000;
 
+
+        # The Important Websocket Bits!
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+
         #Give larger upstream buffers
         fastcgi_buffers 16 16k;
         fastcgi_buffer_size 32k;
