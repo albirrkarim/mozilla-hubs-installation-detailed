@@ -75,7 +75,7 @@ We will go on a long journey, so this is an important requirement
 Table of content
 
 1. [Install Dependencies](#1-install-dependencies)
-2. [Install Firewall and Setting Up](#2-install-firewall-and-setting-up)
+2. [Install Firewall and Setting Up](#2-install-firewall-and-set-up)
 3. [Setting up HTTPS for Your Domain](#3-setting-up-https-for-your-domain)
 4. [Setting up Github Actions](#4-setting-up-github-actions)
 5. [Set Your Public IP and Domain](#5-set-your-public-ip-and-domain)
