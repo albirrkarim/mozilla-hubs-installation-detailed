@@ -155,7 +155,7 @@ Now we must allow some port.
 **I don't know exactly what is this port haha, just allow it**
 
 ```
-ufw allow http,https,ssh,OpenSSH,'Nginx full'
+ufw allow 'http','https','ssh',OpenSSH,'Nginx full'
 ```
 
 **The hubs port**
@@ -387,7 +387,44 @@ jobs:
 
 #### Dialog
 
-Only dialog im not using github actions. because i got some problem setting up github action for this.
+```yml
+name: Node.js CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Stop server
+      run: pm2 stop dialog_server
+      
+    - name: Check version
+      run: |
+        node -v
+        npm -v
+    
+    - name: Install dependency
+      run: npm i
+    
+    - name: Start server
+      run: pm2 start dialog_server
+  
+    - name: Check status
+      run: pm2 status   
+```
 
 ### 4.3 Add self-hosted
 
