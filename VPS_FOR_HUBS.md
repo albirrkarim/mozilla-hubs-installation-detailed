@@ -436,18 +436,18 @@ then follow the tutorial provided by GitHub (see the images above) like download
 
 the tutorial from GitHub action runner is running with `sudo ./run.sh` it will run. but if we close the terminal it will die.
 
-On the runner folder on your server. you can see `svh.sh` alongside with `run.sh`
+On the runner folder on your server. you can see `svc.sh` alongside with `run.sh`
 
 run
 
 ```
-sudo ./svh.sh install
+sudo ./svc.sh install
 ```
 
 then
 
 ```
-sudo ./svh.sh start
+sudo ./svc.sh start
 ```
 
 For your information. GitHub action runner will automatically pull from GitHub to your server in the folder:
