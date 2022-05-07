@@ -54,11 +54,12 @@ Before you must understand the basics first. look at this youtube video [Automat
 - Basic CLI Linux
 - Github Actions
 - Remoting VPS via ssh
+- VPN (if you remoting server on other country)
 - little about protocol TCP and UDP
 
 **Software**
 
-- VPS with ubuntu based. I suggest using the LTS version
+- VPS with ubuntu based. Please use Ubuntu 20.04.
 
 **Other**
 

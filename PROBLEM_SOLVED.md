@@ -1,6 +1,8 @@
 # The problem I faced and I already solved
 
-## If you don't get a problem like me you don't have to follow this
+## Remember! If you don't get a problem like me you don't have to follow this
+
+The origin hubs repo is always updating. Sometimes the error I face doesn't necessarily mean you also face it
 
 
 ## 1. Architecture Kit Failed to load and import
@@ -74,6 +76,11 @@ just remove `process.env.HOST_IP ||` like picture above.
 and leave `"0.0.0.0"`
 
 thanks to [this](https://stackoverflow.com/questions/53955562/node-js-error-listen-eaddrnotavail-52-1122)
+
+
+## 5. My experience installing on alibaba elastic compute service
+
+[see](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/EXPERIENCE.md)
 
 
 <br>
