@@ -59,6 +59,23 @@ sudo systemctl restart nginx
 
 for more detail see [this article](https://www.tecmint.com/limit-file-upload-size-in-nginx/)
 
+
+## 4. Error: listen EADDRNOTAVAIL: address not available
+
+I install this project on server in china. alibaba elastic compute service
+
+then i got that error when trying to run Spoke and hubs admin.
+
+
+![address error](/docs_img/address_error.png)
+
+just remove `process.env.HOST_IP ||` like picture above.
+
+and leave `"0.0.0.0"`
+
+thanks to [this](https://stackoverflow.com/questions/53955562/node-js-error-listen-eaddrnotavail-52-1122)
+
+
 <br>
 <br>
 
