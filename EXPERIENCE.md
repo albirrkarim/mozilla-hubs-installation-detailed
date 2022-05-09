@@ -1,10 +1,12 @@
 ## My experience installing on alibaba elastic compute service
 
-Im from indonesia and some guy in china ask me to install this hubs on their server. via ssh remote
+Im from indonesia and some guy in china ask me to install this hubs on their server. via ssh remote.
+
+The hardware is 8cpu 32g ram 40gb disk
 
 ### - Download or server internet is slow
 
-You can use the VPN, i use nord VPN and select hongkong location. in this vpn not provide connection directly on mainland china.
+You can use the VPN, i use nord VPN and select hongkong location (nearest). in this vpn not provide connection directly on mainland china.
 so i choose hongkong that near from china. then the server internet by magic is fast hahaha.
 
 ### - OS and Python version
@@ -15,8 +17,8 @@ Ubuntu 20 comes with python 3.8 which is supporting the mediasoup v3 in dialog
 
 [requirement for mediasoup](https://mediasoup.org/documentation/v3/mediasoup/installation/)
 
-### - Can't connect to github 
-when i install spoke with `yarn install` it says can't connect blabla...
+### - Github empty response
+When i install spoke with `yarn install` it says can't connect blabla...
 then i run `ping github.com` and got 100% lost packet.
 
 then i restart the server
@@ -25,7 +27,7 @@ then i restart the server
 
 and still not work.
 
-then i do [https://devopscube.com/gnutls-handshake-failed-aws-codecommit/] and [this](https://stackoverflow.com/questions/27087483/how-to-resolve-git-pull-fatal-unable-to-access-https-github-com-empty)
+then i do [gnutls_handshake() failed GIT repository – AWS codecommit](https://devopscube.com/gnutls-handshake-failed-aws-codecommit/) and [How to resolve "git pull,fatal: unable to access 'https://github.com...\': Empty reply from server"](https://stackoverflow.com/questions/27087483/how-to-resolve-git-pull-fatal-unable-to-access-https-github-com-empty)
 
 and still not work
 
@@ -42,11 +44,27 @@ yarn link gltf-webpack-loader
 
 ### - Can't install erlang with asdf
 
-i succeed install elixir with asdf but not erlang
+I succeed install elixir with asdf but not erlang
 
 then i install erlang 23.3 with `.deb` file
 
 
-### - Error that i can't explain hahaha
+### - mix deps.get can't
 
-Sometimes the server is unlogic. stay tune i will update this experience sharing. 
+I succeed install elixir with asdf but not erlang
+
+then i install erlang 23.3 with `.deb` file. sorry i forget the link
+
+### - Unlogic solve that i can't explain hahaha
+
+Sometimes the server is unlogic. 
+
+Problem A + solution A -> fail
+
+Problem A + solution B -> fail
+
+Problem A + solution C -> fail
+
+Couple hour later or doing restart / or change my VPN location
+
+problem A + solution A -> suceess
