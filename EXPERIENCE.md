@@ -23,7 +23,22 @@ then i restart the server
 
 `sudo reboot`
 
-and it work.
+and still not work.
+
+then i do [https://devopscube.com/gnutls-handshake-failed-aws-codecommit/] and [this](https://stackoverflow.com/questions/27087483/how-to-resolve-git-pull-fatal-unable-to-access-https-github-com-empty)
+
+and still not work
+
+then i just `git clone the repo` like `three.js` and `gltf-webpack-loader` then i make it local library (on vps) with `yarn link`
+
+and on `package.json` in spoke dir i remove that `three.js` and `gltf-webpack-loader` 
+
+so i do 
+```
+yarn install
+yarn link three
+yarn link gltf-webpack-loader
+```
 
 ### - Can't install erlang with asdf
 
@@ -34,4 +49,4 @@ then i install erlang 23.3 with `.deb` file
 
 ### - Error that i can't explain hahaha
 
-Sometimes the server is unlogic. stay tune i will update this experience sharing.
+Sometimes the server is unlogic. stay tune i will update this experience sharing. 

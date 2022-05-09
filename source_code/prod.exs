@@ -117,7 +117,7 @@ config :ret, Ret.MediaResolver,
 config :ret, Ret.Speelycaptor, speelycaptor_endpoint: "https://1dhaogh2hd.execute-api.us-west-1.amazonaws.com/public"
 
 config :ret, Ret.Storage,
-  host: "https://#{host}:4000",
+  host: "https://#{host}",
   storage_path: "/home/admin/hubs-actions-runner/reticulum/storage",
   ttl: 60 * 60 * 24
 
