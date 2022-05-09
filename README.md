@@ -19,6 +19,8 @@ albirrkarim#8171 -->
 
 Give me a star on this repository or give a donation with this button below for supporting me to always update this.
 
+I really appreciate every donation
+
 [Paypal](https://paypal.me/AlbirrKarim)
 
 <a href='https://ko-fi.com/Q5Q0BC92X' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
