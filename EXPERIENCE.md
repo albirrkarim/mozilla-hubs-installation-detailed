@@ -69,7 +69,7 @@ Couple hour later or doing restart / or change my VPN location
 
 problem A + solution A -> suceess
 
-I hope you this can help you to installing mozilla hubs.
+I hope this can help you to installing mozilla hubs.
 
 I really appreciate every donation
 
