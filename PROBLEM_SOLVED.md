@@ -2,10 +2,11 @@
 
 ## Remember! If you don't get a problem like me you don't have to follow this
 
-The origin hubs repo is always updating. Sometimes the error I face doesn't necessarily mean you also face it
+The origin hubs repo is always updating and we are running on different server so it comes with different kind of error.
 
+Sometimes the error I face doesn't necessarily mean you also face it.
 
-## 1. Architecture Kit Failed to load and import
+## 1. Architecture Kit Failed to Load and Import
 
 This problem is related to number 1 above. We don't need `CORS_PROXY_SERVER` so set it with an empty string
 
@@ -16,13 +17,13 @@ and make condition like this picture bellow
 ![env spoke](/docs_img/env_spoke_1.png)
 
 
-## 2. Spoke assets thumbnail not showing on production
+## 2. Spoke Assets Thumbnail not Showing on Production
 
 Edit Api.js
 
 ![env spoke](/docs_img/spoke_failed_3.png)
 
-## 3. Spoke console error prefetch-src 
+## 3. Spoke Console Error prefetch-src 
 
 I got error like this
 
@@ -32,7 +33,7 @@ Then add rule `prefetch-src` like this.
 
 ![Spoke console fix](/docs_img/spoke_console_fix.png)
 
-## 3. Upload assets too large on spoke production
+## 3. Upload Assets too Large on Spoke Production
 
 It because nginx
 
@@ -78,9 +79,18 @@ and leave `"0.0.0.0"`
 thanks to [this](https://stackoverflow.com/questions/53955562/node-js-error-listen-eaddrnotavail-52-1122)
 
 
-## 5. My experience installing on alibaba elastic compute service
+## 5. My Experience Installing On Alibaba Elastic Compute Service
 
 [see](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/EXPERIENCE.md)
+
+
+## 6. Dialog Error Keep Restarting on pm2
+
+```
+this._mediasoupRouter._transports.size
+```
+
+![dialog restart](/docs_img/dialog_restart.png)
 
 
 <br>

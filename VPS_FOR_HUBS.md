@@ -22,7 +22,7 @@ You must try [installing Mozilla hubs on local](https://github.com/albirrkarim/m
 
 Why i told you for give try to running hubs project locally first (localhost)?
 
-For me as a programmer with 3 years experience i will make sure the code is work, features is work and the configuration also, in the local.
+For me as a programmer i will make sure the code is work, features is work and the configuration also, in the local.
 
 Because it will be more difficult to debug on the server rather than on local.
 
