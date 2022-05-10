@@ -156,7 +156,7 @@ Now we must allow some port.
 **I don't know exactly what is this port haha, just allow it**
 
 ```
-ufw allow 'http','https','ssh',OpenSSH,'Nginx full'
+ufw allow 'OpenSSH','Nginx full'
 ```
 
 **The hubs port**
