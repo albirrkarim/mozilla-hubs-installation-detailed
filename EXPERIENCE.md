@@ -45,7 +45,7 @@ yarn link gltf-webpack-loader
 
 I succeed install elixir with asdf but not erlang
 
-Then i install erlang 23.3 with `.deb` file. sorry i forget the link that i use
+Then i install erlang 23.3 with `.deb` file. visit this to [download](https://www.erlang-solutions.com/downloads/)
 
 ### - mix deps.get can't get dependecies from github
 
