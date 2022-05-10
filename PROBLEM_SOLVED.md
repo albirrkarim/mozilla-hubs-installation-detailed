@@ -86,10 +86,11 @@ thanks to [this](https://stackoverflow.com/questions/53955562/node-js-error-list
 <br>
 <br>
 
-## IF you have questions feel free to open an issue
+I really appreciate every donation
 
-<br>
-<br>
+[Paypal](https://paypal.me/AlbirrKarim)
+
+<a href='https://ko-fi.com/Q5Q0BC92X' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ## Also read:
 
@@ -99,6 +100,8 @@ thanks to [this](https://stackoverflow.com/questions/53955562/node-js-error-list
 
 [The Problem I Faced and I Already Solved](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_SOLVED.md)
 
-[Basic Information for Modification](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/HOW_TO_MODIFY.md)
+[Tips for Modification](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/HOW_TO_MODIFY.md)
 
 [Overview System With Figma](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/Overview-Mozilla-Hubs-Project?node-id=0%3A1)
+
+[Experience Sharing About Hosting on Other Server](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/EXPERIENCE.md)

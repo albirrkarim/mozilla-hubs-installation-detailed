@@ -11,11 +11,11 @@ Remember! if you got a problem with npm or dependency that you cant to solve for
 
 I have done [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
 
-<!-- Now, I try to make custom hubs admin
+<!-- Now, I try to make custom hubs admin -->
 
 You can send me a message via [discord](https://discord.com/)
 
-albirrkarim#8171 -->
+albirrkarim#8171
 
 Give me a star on this repository or give a donation with this button below for supporting me to always update this.
 
@@ -413,13 +413,13 @@ Spoke
 
 [https://localhost:4000/spoke](https://localhost:4000/spoke)
 
-<br>
-<br>
-
-## IF you have questions feel free to open an issue
 
 <br>
 <br>
+
+I really appreciate every donation
+
+[Paypal](https://paypal.me/AlbirrKarim)
 
 <a href='https://ko-fi.com/Q5Q0BC92X' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
@@ -432,6 +432,8 @@ Spoke
 
 [The Problem I Faced and I Already Solved](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_SOLVED.md)
 
-[Basic Information for Modification](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/HOW_TO_MODIFY.md)
+[Tips for Modification](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/HOW_TO_MODIFY.md)
 
 [Overview System With Figma](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/Overview-Mozilla-Hubs-Project?node-id=0%3A1)
+
+[Experience Sharing About Hosting on Other Server](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/EXPERIENCE.md)
