@@ -6,7 +6,39 @@ The origin hubs repo is always updating and we are running on different server s
 
 Sometimes the error I face doesn't necessarily mean you also face it.
 
-## 1. Architecture Kit Failed to Load and Import
+
+## - 502 server communication error in hubs admin like this [issue](https://github.com/mozilla/hubs/issues/4970#issue-1087523703)
+
+Ok, let's give try to solve this.
+
+The problem is an API call to this route
+
+`/api/ita/admin-info`
+
+and other with slash ita `/ita`
+
+if we check where is the code in the reticulum which handles that
+open the `router.ex` ita API call the `RetWeb.Plugs.ItaProxy` if you in vs code you can command+click / ctrl+click for find the function is called.
+
+```elixir
+
+scope "/api/postgrest" do
+   pipe_through([:secure_headers, :auth_required, :admin_required, :proxy_api])
+   forward("/", RetWeb.Plugs.PostgrestProxy)
+end
+
+```
+
+### What is port 3000?
+
+Thanks to the contributor that give me a clue about the port 3000
+
+its a [PostgREST](https://postgrest.org/en/stable/index.html)
+
+Thanks to dainel, Give me info about [Running PostgREST locally](https://github.com/mozilla/hubs-ops/wiki/Running-PostgREST-locally)
+
+
+## - Architecture Kit Failed to Load and Import
 
 This problem is related to number 1 above. We don't need `CORS_PROXY_SERVER` so set it with an empty string
 
@@ -17,13 +49,13 @@ and make condition like this picture bellow
 ![env spoke](/docs_img/env_spoke_1.png)
 
 
-## 2. Spoke Assets Thumbnail not Showing on Production
+## - Spoke Assets Thumbnail not Showing on Production
 
 Edit Api.js
 
 ![env spoke](/docs_img/spoke_failed_3.png)
 
-## 3. Spoke Console Error prefetch-src 
+## - Spoke Console Error prefetch-src 
 
 I got error like this
 
@@ -33,7 +65,7 @@ Then add rule `prefetch-src` like this.
 
 ![Spoke console fix](/docs_img/spoke_console_fix.png)
 
-## 3. Upload Assets too Large on Spoke Production
+## - Upload Assets too Large on Spoke Production
 
 It because nginx
 
@@ -63,7 +95,7 @@ sudo systemctl restart nginx
 for more detail see [this article](https://www.tecmint.com/limit-file-upload-size-in-nginx/)
 
 
-## 4. Error: listen EADDRNOTAVAIL: address not available
+## - Error: listen EADDRNOTAVAIL: address not available
 
 I install this project on server in china. alibaba elastic compute service
 
@@ -79,12 +111,12 @@ and leave `"0.0.0.0"`
 thanks to [this](https://stackoverflow.com/questions/53955562/node-js-error-listen-eaddrnotavail-52-1122)
 
 
-## 5. My Experience Installing On Alibaba Elastic Compute Service
+## - My Experience Installing On Alibaba Elastic Compute Service
 
 [see](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/EXPERIENCE.md)
 
 
-## 6. Dialog Error Keep Restarting on pm2
+## - Dialog Error Keep Restarting on pm2
 
 ```
 this._mediasoupRouter._transports.size
@@ -93,7 +125,7 @@ this._mediasoupRouter._transports.size
 ![dialog restart](/docs_img/dialog_restart.png)
 
 
-## 7. MediaSoupError: port bind failed due to address not available
+## - MediaSoupError: port bind failed due to address not available
 Change the prod command in `package.json` 
 
 it because `MEDIASOUP_LISTEN_IP`. set value with `0.0.0.0`

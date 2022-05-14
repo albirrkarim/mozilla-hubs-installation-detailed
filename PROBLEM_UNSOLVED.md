@@ -41,31 +41,9 @@ defmodule RetWeb.Plugs.ItaProxy do
 end
 ```
 
-### What is port 3000?
+### What is `localhost:3000`? 
 
-Thanks to the contributor that give me a clue about the port 3000
-
-its a [PostgREST](https://postgrest.org/en/stable/index.html)
-
-[see](https://github.com/mozilla/hubs-ops/blob/master/ansible/roles/postgrest/templates/postgrest.toml.j2)
-
-postREST config
-
-```
-db-uri = "postgres://postgres:postgres@localhost:5432/ret_dev"
-db-schema = "ret0_admin"
-db-anon-role = "postgrest_anonymous"
-server-host = "localhost"
-server-port = 3000
-log-level = "info"
-
-jwt-secret-enabled = true
-jwt-aud = "ret_perms"
-jwt-role-claim-key = ".postgrest_role"
-jwt-secret = "jwk.json"
-```
-
-Thanks to dainel, Give me info about [Running PostgREST locally](https://github.com/mozilla/hubs-ops/wiki/Running-PostgREST-locally)
+I have solved this [see](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_SOLVED.md##what-is-port-3000)
 
 ### What is `localhost:6000`? 
 
