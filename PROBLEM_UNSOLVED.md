@@ -1,6 +1,6 @@
 # The problem I still faced
 
-1. 502 server communication error in hubs admin like this [issue](https://github.com/mozilla/hubs/issues/4970#issue-1087523703)
+## 1. 502 server communication error in hubs admin like this [issue](https://github.com/mozilla/hubs/issues/4970#issue-1087523703)
 
 Ok, let's give try to solve this.
 
@@ -41,7 +41,7 @@ defmodule RetWeb.Plugs.ItaProxy do
 end
 ```
 
-## What is port 3000?
+### What is port 3000?
 
 Thanks to the contributor that give me a clue about the port 3000
 
@@ -67,9 +67,9 @@ jwt-secret = "jwk.json"
 
 Thanks to dainel, Give me info about [Running PostgREST locally](https://github.com/mozilla/hubs-ops/wiki/Running-PostgREST-locally)
 
-## and what is `localhost:6000`? 
+### What is `localhost:6000`? 
 
-I think Mozilla not providing the source code for that.
+Hmmm, what is this?
 
 <br>
 <br>
