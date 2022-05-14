@@ -93,6 +93,15 @@ this._mediasoupRouter._transports.size
 ![dialog restart](/docs_img/dialog_restart.png)
 
 
+## 7. MediaSoupError: port bind failed due to address not available
+Change the prod command in `package.json` 
+
+it because `MEDIASOUP_LISTEN_IP`. set value with `0.0.0.0`
+
+```
+MEDIASOUP_LISTEN_IP=0.0.0.0 MEDIASOUP_ANNOUNCED_IP=123.xxx.xxx.xxx HTTPS_CERT_FULLCHAIN=/etc/letsencrypt/live/example.com/fullchain.pem HTTPS_CERT_PRIVKEY=/etc/letsencrypt/live/example.com/privkey.pem DOMAIN=example.com node index.js
+```
+
 <br>
 <br>
 
