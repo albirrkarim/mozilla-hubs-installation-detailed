@@ -801,7 +801,74 @@ If no error then start with pm2
 pm2 start yarn --name spoke_server -- prod
 ```
 
-#### 6.2.3 Make sure it runs well
+
+#### 6.2.3 Run postgREST server
+
+More about this is in [this](https://github.com/mozilla/hubs-ops/wiki/Running-PostgREST-locally)
+
+On reticulum iex
+paste this
+```
+jwk = Application.get_env(:ret, Ret.PermsToken)[:perms_key] |> JOSE.JWK.from_pem(); JOSE.JWK.to_file("reticulum-jwk.json", jwk)
+```
+
+then it will create `reticulum-jwk.json` in your reticulum directory
+
+Make `reticulum.conf` file and paste 
+
+```
+# reticulum.conf
+db-uri = "postgres://postgres:postgres@localhost:5432/ret_dev"
+db-schema = "ret0_admin"
+db-anon-role = "postgres_anonymous"
+jwt-secret = "@/absolute_path_to_your_file/reticulum-jwk.json"
+jwt-aud = "ret_perms"
+role-claim-key = ".postgrest_role"
+```
+
+Make new services using this command
+
+```
+sudo nano /etc/systemd/system/hubs-postgrest.service
+```
+
+and paste this
+
+```
+[Unit]
+Description=Mozilla Hubs Postgrest Service
+
+[Service]
+ExecStart=/home/your_username/postgrest/postgrest reticulum.conf
+User=your_username
+WorkingDirectory=/home/your_username/postgrest
+
+[Install]
+WantedBy=multi-user.target
+```
+
+then start it with:
+
+**Start**
+
+```
+sudo systemctl start hubs-postgrest
+```
+
+**Stop**
+
+```
+sudo systemctl stop hubs-postgrest
+```
+
+**Status**
+
+```
+sudo systemctl status hubs-postgrest
+```
+
+
+#### 6.2.4 Make sure it runs well
 
 Make sure the process name is same as in [.yml files](#node-js-based)
 
@@ -856,6 +923,7 @@ cd /hubs-actions-runner/reticulum/_work/reticulum/reticulum
 (lsof -ti:4000) && kill -9 $(lsof -ti:4000)
 MIX_ENV=prod mix release --overwrite
 PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
+sudo systemctl start hubs-postgrest
 
 sleep 3
 
