@@ -35,7 +35,7 @@ Thanks to the contributor that give me a clue about the port 3000
 
 its a [PostgREST](https://postgrest.org/en/stable/index.html)
 
-Thanks to dainel, Give me info about [Running PostgREST locally](https://github.com/mozilla/hubs-ops/wiki/Running-PostgREST-locally)
+Thanks to daniel, Give me info about [Running PostgREST locally](https://github.com/mozilla/hubs-ops/wiki/Running-PostgREST-locally)
 
 ![hubs admin panel work](/docs_img/admin_panel_work.png)
 
