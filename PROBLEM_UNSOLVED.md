@@ -49,7 +49,7 @@ its a [PostgREST](https://postgrest.org/en/stable/index.html)
 
 [see](https://github.com/mozilla/hubs-ops/blob/master/ansible/roles/postgrest/templates/postgrest.toml.j2)
 
-postREST config 
+postREST config
 
 ```
 db-uri = "postgres://postgres:postgres@localhost:5432/ret_dev"
@@ -65,12 +65,11 @@ jwt-role-claim-key = ".postgrest_role"
 jwt-secret = "jwk.json"
 ```
 
-I will update this repo if i have already solve this
-
+Thanks to dainel, Give me info about [Running PostgREST locally](https://github.com/mozilla/hubs-ops/wiki/Running-PostgREST-locally)
 
 ## and what is `localhost:6000`? 
 
-I think Mozilla not providing the source code for that. We have to provide our own backend service
+I think Mozilla not providing the source code for that.
 
 <br>
 <br>
