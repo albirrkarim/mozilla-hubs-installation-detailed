@@ -36,12 +36,23 @@ Please don't send me a message (about problems installing hubs on a server) on d
 
 For the entire hubs (reticulum, dialog, hubs, spoke) make it private repo. just to be sure it is safe.
 
-
 # Warning
 
 Sometimes there's a step that I'm not writing down on my tutorial. you know some little hack that we sometimes do but we forget about it.
 
-You can give it a try. and give me messages if there is a missing step/bug that I forget to write it down
+# Got Problem ? 
+
+Before you go far debugging days by days (like me).
+
+You can instantly solve that, please read this:
+
+[Experience Sharing About Hosting on Other Server](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/EXPERIENCE.md)
+
+
+[The Problem I Still Faced](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_UNSOLVED.md)
+
+[The Problem I Faced and I Already Solved](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_SOLVED.md)
+
 
 # Requirement
 
