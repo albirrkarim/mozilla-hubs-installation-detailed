@@ -58,7 +58,7 @@ I assume you already know, if no you must up-skill first
 
 # Overview
 
-![System Overview](/docs_img/System_Overview.jpeg)
+![System Overview](/docs_img/System_Overview.png)
 
 The image above made with [figma](https://www.figma.com/) you can read more description on [documentation](https://hubs.mozilla.com/docs/system-overview.html)
 
