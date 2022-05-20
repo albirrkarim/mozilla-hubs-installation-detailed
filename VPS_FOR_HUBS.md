@@ -976,19 +976,8 @@ server {
 
     server_name example.com;
 
-    location / {
-        # match everything
-        rewrite ^\/(.*)$ /$1 break;
-        # Proxy passing to port 4000
-        proxy_pass https://example.com:4000;
-
-        #Give larger upstream buffers
-        fastcgi_buffers 16 16k;
-        fastcgi_buffer_size 32k;
-        proxy_buffer_size 128k;
-        proxy_buffers 4 256k;
-        proxy_busy_buffers_size 256k;
-    }
+    #hubs must not serve with http, so redirect it to https 
+    return 301 https://$host$request_uri;
 }
 
 
