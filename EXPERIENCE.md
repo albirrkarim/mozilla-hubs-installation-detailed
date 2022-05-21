@@ -1,10 +1,20 @@
 # My experience 
 
-Here I share about installing this to another server (not my server)
+Here I share about installing, and hardware resource used by mozilla hubs.
 
-## 1. Alibaba Cloud Elastic Compute Service
+## 1. My own server
 
-Im from indonesia and some guy in china ask me to install this hubs on their server. via ssh remote.
+I have 16 GB of RAM
+
+Intel(R) Xeon(R) Gold 6252 CPU @ 2.10GHz, 8 cores
+
+and this program takes only 2.5 GB of RAM
+
+if i run build command `npm run build` it will rise to about 4 GB.
+
+## 2. Alibaba Cloud Elastic Compute Service
+
+Im from indonesia and some guy in china ask me to install this hubs on their server (in china mainland). via ssh remote.
 
 The hardware is 8cpu 32g ram 40gb disk
 
