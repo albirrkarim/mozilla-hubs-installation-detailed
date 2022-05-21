@@ -362,13 +362,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name : Stop server
-        run: | 
-          pm2 stop hubs_server
-          pm2 stop hubs_admin_server
 
       - name: Install hubs deps
         run: npm i --force
+
+      - name: Build for Hubs
+        run: npm run build
 
       - name: Install hubs admin deps
         run: |
@@ -378,10 +377,7 @@ jobs:
           ls
       
       - name: Start hubs server
-        run: pm2 start hubs_server
-
-      - name: Start hubs admin server
-        run: pm2 start hubs_admin_server
+        run: npm run build
 ```
 
 #### Spoke
@@ -408,14 +404,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Stop server
-        run: pm2 stop spoke_server
-
       - name: Install deps
         run: yarn install
 
-      - name: Start server
-        run: pm2 start spoke_server
+      - name: Build
+        run: yarn build
 ```
 
 #### Dialog
