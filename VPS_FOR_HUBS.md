@@ -269,7 +269,19 @@ cat /etc/letsencrypt/live/example.com/fullchain.pem
 
 **Automatically renew certificates**
 
-Follow [this](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx)
+open cronjob with sudo. don't forget open cronjob with sudo because certbot renew requiring root access
+
+```
+sudo cronjob -e
+```
+
+Paste this
+```
+# for renewing SSL certificate
+0 12 * * * /usr/bin/certbot renew --quiet
+```
+
+[more info](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx)
 
 ## 4. Setting up Github Actions
 
@@ -612,7 +624,13 @@ MEDIASOUP_LISTEN_IP=0.0.0.0 MEDIASOUP_ANNOUNCED_IP=123.xxx.xxx.xxx HTTPS_CERT_FU
 
 ### 5.3 Hubs
 
-In `package.json` make a new script named `prod`
+Open the `.default.env` and change the 
+
+```
+RETICULUM_SERVER="https://example.com"
+BASE_ASSETS_PATH="https://example.com:8080/"
+```
+<!-- In `package.json` make a new script named `prod`
 
 ```
 webpack-dev-server --mode=production --env.prodVps --https --cert /etc/letsencrypt/live/example.com/cert.pem --key /etc/letsencrypt/live/example.com/privkey.pem
@@ -643,11 +661,19 @@ if (argv.mode === "production") {
     });
   }
 }
-```
+``` -->
 
 ### 5.4 Hubs admin
 
-on `package.json` add new command named `prod`
+
+Open the `.default.env` and change the 
+
+```
+RETICULUM_SERVER="https://example.com"
+BASE_ASSETS_PATH="https://example.com:8080/"
+```
+
+<!-- on `package.json` add new command named `prod`
 
 ```bash
 webpack-dev-server --mode=production --env.prod=true --https --cert /etc/letsencrypt/live/example.com/cert.pem --key /etc/letsencrypt/live/example.com/privkey.pem
@@ -670,30 +696,28 @@ if (env.prod) {
     HOST_IP: your_domain,
   });
 }
-```
+``` -->
 
 ### 5.5 Spoke
 
-on `package.json` add new command named `prod`
+<!-- on `package.json` add new command named `prod`
 
 ```
 cross-env NODE_ENV=production HOST_IP=example.com BASE_ASSETS_PATH=https://example.com:9090/ webpack-dev-server --mode production --https --cert /etc/letsencrypt/live/example.com/cert.pem --key /etc/letsencrypt/live/example.com/privkey.pem
-```
+``` -->
 
-Edit the `.env.prod`
+Edit this value the `.env.prod`
 
 ```
-HUBS_SERVER="example.com:4000"
+HUBS_SERVER="example.com"
 RETICULUM_SERVER="example.com"
 FARSPARK_SERVER="farspark.reticulum.io"
 CORS_PROXY=""
 NON_CORS_PROXY_DOMAINS="example.com:4000,reticulum.io"
 ROUTER_BASE_PATH="/spoke"
-GITHUB_ORG="mozilla"
-GITHUB_REPO="spoke"
-GITHUB_PUBLIC_TOKEN="ghp_SAFEPB2zzes9TEpAOSx2McNjJLQ1GXLBES2FsfWU"
 IS_MOZ="false"
 CORS_PROXY_SERVER=""
+BASE_ASSETS_PATH="https://example.com:9090/"
 ```
 
 ## 6. Run all
@@ -770,12 +794,12 @@ The `PROCESS_NAME` params can be changed to `all` to affect all process
 
 #### 6.2.2 Run node js server
 
-**Hubs, Hubs admin, Dialog**
+**Dialog**
 
-Move to `hubs` repo files location
+Move to `dialog` repo files location
 
 ```
-cd /hubs-actions-runner/hubs/_work/hubs/hubs
+cd /hubs-actions-runner/hubs/_work/dialog/dialog
 ```
 
 and try to run first with
@@ -789,26 +813,18 @@ if its ok (no error), then using pm2
 with
 
 ```
-pm2 start npm --name hubs_server -- run prod
+pm2 start npm --name dialog_server -- run prod
 ```
 
-do that also to the dialog, hubs admin
+**Hubs, Hubs admin, Spoke**
 
-**Spoke**
-
-Move to spoke action runner directory
-
-Try to start the server
+For webpack based, you can compile the production asset with this command:
 
 ```
-yarn prod
+npm run build
 ```
 
-If no error then start with pm2
-
-```
-pm2 start yarn --name spoke_server -- prod
-```
+then it will resulting static asset like .html, .js, .css file in `dist/` folder. later we will use the `dist/` directory for the root of the each port in nginx config.
 
 
 #### 6.2.3 Run postgREST server
@@ -883,9 +899,6 @@ Make sure the process name is same as in [.yml files](#node-js-based)
 
 ```
 dialog_server
-spoke_server
-hubs_server
-hubs_admin_server
 ```
 
 run 
@@ -893,9 +906,6 @@ run
 ```
 pm2 status
 ```
-
-![status](/docs_img/pm2_status.png)
-
 
 ### 6.3 Auto start your all server on startup
 
@@ -948,7 +958,7 @@ Then make the .sh file is executable
 chmod +x start_reticulum_server.sh
 ```
 
-Open the crontab with this command
+Open the crontab with this command. dont use sudo 
 
 ```
 crontab -e
@@ -979,6 +989,48 @@ sudo nano /etc/nginx/sites-available/default
 And replace the content with this code
 
 ```
+server {
+        root /home/admin/hubs-actions-runner/hubs/_work/hubs/hubs/dist;
+
+        listen [::]:8080 ssl ipv6only=on;
+        listen 8080 ssl;
+
+        add_header Access-Control-Allow-Origin https://example.com;
+
+        ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; # managed by Certbot
+        ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; # managed by Certbot
+        include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+        root /home/admin/hubs-actions-runner/spoke/_work/spoke/spoke/dist;
+
+        listen [::]:9090 ssl ipv6only=on;
+        listen 9090 ssl;
+
+        add_header Access-Control-Allow-Origin https://example.com;
+
+        ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; # managed by Certbot
+        ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; # managed by Certbot
+        include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+        root /home/admin/hubs-actions-runner/hubs/_work/hubs/hubs//dist;
+
+        listen [::]:8989 ssl ipv6only=on;
+        listen 8989 ssl;
+
+        add_header Access-Control-Allow-Origin https://example.com;
+
+        ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; # managed by Certbot
+        ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; # managed by Certbot
+        include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
