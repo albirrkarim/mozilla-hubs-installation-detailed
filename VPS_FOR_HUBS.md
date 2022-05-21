@@ -1010,7 +1010,7 @@ server {
 }
 
 server {
-        root /home/admin/hubs-actions-runner/hubs/_work/hubs/hubs//dist;
+        root /home/admin/hubs-actions-runner/hubs/_work/hubs/hubs/admin/dist;
 
         listen [::]:8989 ssl ipv6only=on;
         listen 8989 ssl;
