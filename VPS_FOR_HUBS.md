@@ -232,9 +232,9 @@ cd /etc/letsencrypt/live/example.com
 
 In here you will see the `cert.pem` `chain.pem` `fullchain.pem` `privkey.pem`
 
-**Backup the certificates**
+<!-- **Backup the certificates** -->
 
-We will need that file to give SSL certificate to the [monitoring resource](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/RESOURCE_MONITORING.md)
+<!-- We will need that file to give SSL certificate to the [monitoring resource](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/RESOURCE_MONITORING.md)
 
 Goto `/etc/letsencrypt/live` we will zip the folder `example.com` and move it to the `/`
 
@@ -249,14 +249,23 @@ Then download it with `scp` command.
 sudo scp username@your_ip:/temp.zip /Downloads
 ```
 
-It will download from the server and save to the Downloads folder. `/Downloads` is the destination where you save the file.
+It will download from the server and save to the Downloads folder. `/Downloads` is the destination where you save the file. -->
 
 **Make it accessible**
 
-[Change the permision](https://www.google.com/search?q=give+user+folder+permissions+linux) for `live` folder so it can be accessed from hubs projects.
+```
+sudo chmod 755 /etc/letsencrypt/live/ -R
+sudo chmod 755 /etc/letsencrypt/archive/ -R
 
-Inside `/etc/letsencrypt/live/` i remove the `example.com` folder and make a new
-`example.com` folder which contains all cert files that we have a backup before. because I don't know why my files are empty.
+sudo chown $(whoami) /etc/letsencrypt/live/ -R
+sudo chown $(whoami) /etc/letsencrypt/archive/ -R
+```
+
+then try to access it
+
+```
+cat /etc/letsencrypt/live/example.com/fullchain.pem
+```
 
 **Automatically renew certificates**
 
