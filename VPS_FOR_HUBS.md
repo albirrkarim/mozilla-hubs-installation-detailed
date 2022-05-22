@@ -362,6 +362,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Stop server
+        run: pm2 stop hubs_admin_server
+
       - name: Install hubs deps
         run: npm i --force
 
@@ -370,12 +373,13 @@ jobs:
 
       - name: Install hubs admin deps
         run: |
-          pm2 stop hubs_admin_server
           cd admin/
           pwd
           npm i --force
           ls
-          pm2 start hubs_admin_server
+
+      - name: Start server
+        run: pm2 start hubs_admin_server
 ```
 
 #### Spoke
