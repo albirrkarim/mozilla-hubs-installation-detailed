@@ -370,13 +370,12 @@ jobs:
 
       - name: Install hubs admin deps
         run: |
+          pm2 stop hubs_admin_server
           cd admin/
           pwd
           npm i --force
           ls
-      
-      - name: Start hubs server
-        run: npm run build
+          pm2 start hubs_admin_server
 ```
 
 #### Spoke
@@ -657,15 +656,7 @@ if (argv.mode === "production") {
 
 ### 5.4 Hubs admin
 
-
-Open the `.default.env` and change the 
-
-```
-RETICULUM_SERVER="https://example.com"
-BASE_ASSETS_PATH="https://example.com:8080/"
-```
-
-<!-- on `package.json` add new command named `prod`
+on `package.json` add new command named `prod`
 
 ```bash
 webpack-dev-server --mode=production --env.prod=true --https --cert /etc/letsencrypt/live/example.com/cert.pem --key /etc/letsencrypt/live/example.com/privkey.pem
@@ -688,7 +679,7 @@ if (env.prod) {
     HOST_IP: your_domain,
   });
 }
-``` -->
+```
 
 ### 5.5 Spoke
 
@@ -808,7 +799,29 @@ with
 pm2 start npm --name dialog_server -- run prod
 ```
 
-**Hubs, Hubs admin, Spoke**
+**Hubs Admin**
+
+Hubs admin need web socket. run with `webpack-dev-server` so the server is live (not just static asset).
+
+test it first with
+
+```
+npm run prod
+```
+
+make sure it work
+
+then
+
+```
+pm2 start npm --name hubs_admin_server -- run prod
+```
+
+#### 6.2.3 Serve with nginx for static assets
+
+For better memory usage we dont need serve this static asset with `webpack-dev-server` 
+
+**Hubs, Spoke**
 
 For webpack based, you can compile the production asset with this command:
 
@@ -819,7 +832,7 @@ npm run build
 then it will resulting static asset like .html, .js, .css file in `dist/` folder. later we will use the `dist/` directory for the root of the each port in nginx config.
 
 
-#### 6.2.3 Run postgREST server
+#### 6.2.4 Run postgREST server
 
 More about this is in [this](https://github.com/mozilla/hubs-ops/wiki/Running-PostgREST-locally)
 
@@ -885,13 +898,9 @@ sudo systemctl status hubs-postgrest
 ```
 
 
-#### 6.2.4 Make sure it runs well
+#### 6.2.5 Make sure it runs well
 
 Make sure the process name is same as in [.yml files](#node-js-based)
-
-```
-dialog_server
-```
 
 run 
 
@@ -921,7 +930,7 @@ For the reticulum, we need to make a bash script for automatic start
 
 Thanks to [this](https://stackoverflow.com/questions/12973777/how-to-run-a-shell-script-at-startup)
 
-On root dir, make .sh file named `start_reticulum_server.sh`
+On `/home/admin/` dir, make .sh file named `start_reticulum_server.sh`
 
 ```bash
 #!/bin/bash
@@ -930,7 +939,7 @@ echo "STARTING RETICULUM SERVER"
 export PATH=$PATH:/home/admin/.asdf/shims
 echo $PATH
 
-cd /hubs-actions-runner/reticulum/_work/reticulum/reticulum
+cd /home/admin/hubs-actions-runner/reticulum/_work/reticulum/reticulum
 (lsof -ti:4000) && kill -9 $(lsof -ti:4000)
 MIX_ENV=prod mix release --overwrite
 PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
@@ -1000,20 +1009,6 @@ server {
 
         listen [::]:9090 ssl ipv6only=on;
         listen 9090 ssl;
-
-        add_header Access-Control-Allow-Origin https://example.com;
-
-        ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; # managed by Certbot
-        ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; # managed by Certbot
-        include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
-        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-}
-
-server {
-        root /home/admin/hubs-actions-runner/hubs/_work/hubs/hubs/admin/dist;
-
-        listen [::]:8989 ssl ipv6only=on;
-        listen 8989 ssl;
 
         add_header Access-Control-Allow-Origin https://example.com;
 
