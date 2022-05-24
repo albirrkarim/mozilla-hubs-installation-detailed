@@ -80,7 +80,7 @@ Problem A + solution A -> suceess
 <br>
 <br>
 
-I hope this can help you to installing mozilla hubs. You have other experience, please send me pull request. you can help more people. you make people happy and universe will make you happy too.
+I hope this can help you to installing mozilla hubs. You have other experience, please send me pull request. you can help more people.
 
 <br>
 <br>
