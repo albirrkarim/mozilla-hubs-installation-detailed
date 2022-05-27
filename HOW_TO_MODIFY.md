@@ -105,7 +105,7 @@ Write it on the discussion. maybe i can help you.
 <br>
 <br>
 
-I really appreciate every donation
+
 
 [Paypal](https://paypal.me/AlbirrKarim)
 

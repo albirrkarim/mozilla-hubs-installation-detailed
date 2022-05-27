@@ -19,7 +19,7 @@ albirrkarim#8171
 
 Give me a star on this repository or give a donation with this button below for supporting me to always update this.
 
-I really appreciate every donation
+
 
 [Paypal](https://paypal.me/AlbirrKarim)
 
@@ -391,13 +391,67 @@ yarn start
 
 ## 4.4 Run hubs and hubs admin
 
-each with command
+Each with command
 
 ```bash
 npm run local
 ```
 
-Urrraaa, Now you can access
+## 4.5 Run postgREST server
+
+More about this is in [this](https://github.com/mozilla/hubs-ops/wiki/Running-PostgREST-locally)
+
+Download postREST
+
+```
+sudo apt install libpq-dev
+wget https://github.com/PostgREST/postgrest/releases/download/v9.0.0/postgrest-v9.0.0-linux-static-x64.tar.xz
+tar -xf postgrest-v9.0.0-linux-static-x64.tar.xz
+```
+
+On reticulum iex
+
+paste this
+```
+jwk = Application.get_env(:ret, Ret.PermsToken)[:perms_key] |> JOSE.JWK.from_pem(); JOSE.JWK.to_file("reticulum-jwk.json", jwk)
+```
+
+then it will create `reticulum-jwk.json` in your reticulum directory
+
+Make `reticulum.conf` file 
+
+```
+nano reticulum.conf
+```
+and paste 
+
+```
+# reticulum.conf
+db-uri = "postgres://postgres:postgres@localhost:5432/ret_dev"
+db-schema = "ret0_admin"
+db-anon-role = "postgres_anonymous"
+jwt-secret = "@/absolute_path_to_your_file/reticulum-jwk.json"
+jwt-aud = "ret_perms"
+role-claim-key = ".postgrest_role"
+```
+
+then the folder looks like this (contain two files)
+
+```
+/
+   postgrest
+   reticulum.conf
+```
+
+then run  postREST with
+
+```
+postgrest reticulum.conf
+```
+<br>
+<br>
+
+Urraaaa, Now you can access
 
 with lock symbol (SSL secure)
 
@@ -416,8 +470,6 @@ Spoke
 
 <br>
 <br>
-
-I really appreciate every donation
 
 [Paypal](https://paypal.me/AlbirrKarim)
 

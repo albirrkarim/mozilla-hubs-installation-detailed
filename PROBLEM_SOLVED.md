@@ -138,7 +138,7 @@ MEDIASOUP_LISTEN_IP=0.0.0.0 MEDIASOUP_ANNOUNCED_IP=123.xxx.xxx.xxx HTTPS_CERT_FU
 <br>
 <br>
 
-I really appreciate every donation
+
 
 [Paypal](https://paypal.me/AlbirrKarim)
 

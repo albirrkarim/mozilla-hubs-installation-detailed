@@ -52,7 +52,7 @@ Hmmm, what is this?
 <br>
 <br>
 
-I really appreciate every donation
+
 
 [Paypal](https://paypal.me/AlbirrKarim)
 

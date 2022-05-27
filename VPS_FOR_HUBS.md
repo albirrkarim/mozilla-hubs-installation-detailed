@@ -838,9 +838,16 @@ then it will resulting static asset like .html, .js, .css file in `dist/` folder
 
 #### 6.2.4 Run postgREST server
 
-More about this is in [this](https://github.com/mozilla/hubs-ops/wiki/Running-PostgREST-locally)
+Download postREST
 
-On reticulum iex
+```
+sudo apt install libpq-dev
+wget https://github.com/PostgREST/postgrest/releases/download/v9.0.0/postgrest-v9.0.0-linux-static-x64.tar.xz
+tar -xf postgrest-v9.0.0-linux-static-x64.tar.xz
+```
+
+On reticulum iex 
+
 paste this
 ```
 jwk = Application.get_env(:ret, Ret.PermsToken)[:perms_key] |> JOSE.JWK.from_pem(); JOSE.JWK.to_file("reticulum-jwk.json", jwk)
@@ -848,7 +855,12 @@ jwk = Application.get_env(:ret, Ret.PermsToken)[:perms_key] |> JOSE.JWK.from_pem
 
 then it will create `reticulum-jwk.json` in your reticulum directory
 
-Make `reticulum.conf` file and paste 
+Make `reticulum.conf` file 
+
+```
+nano reticulum.conf
+```
+and paste 
 
 ```
 # reticulum.conf
@@ -900,6 +912,8 @@ sudo systemctl stop hubs-postgrest
 ```
 sudo systemctl status hubs-postgrest
 ```
+
+More about this is in [this](https://github.com/mozilla/hubs-ops/wiki/Running-PostgREST-locally)
 
 
 #### 6.2.5 Make sure it runs well
@@ -1073,8 +1087,6 @@ sudo systemctl restart nginx
 
 <br>
 <br>
-
-I really appreciate every donation
 
 [Paypal](https://paypal.me/AlbirrKarim)
 
