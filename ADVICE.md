@@ -1,12 +1,14 @@
+# Advice
+
+In here i give you advices based on my experience.
+
 # Avoid Dependency Crash
 
 like this [issue](https://github.com/mozilla/hubs/issues/5472) and this [issue](https://github.com/mozilla/hubs/issues/5471)
 
 Hubs build with lot of dependencies. And it keep update.
 
-I using github action runner that run `npm install` when i commit to `master` branch
-
-so if the dependencies is updating it version (using this symbol `^`) it sometimes resulting crash
+I using github action runner that run `npm install` when i commit to `master` branch. Problem like this is dangerous on production phase it will make the entire app is crash.
 
 ### First Lets Find Posibility Changes That Makes Crash:
 
@@ -56,3 +58,14 @@ use the LTS version instead.
 - Using yarn install instead of npm install
 
 Sometime it work.
+
+### So How if We Need Update?
+
+If you see an update in hubs like adding feature or something. you can clone it first and check it first. make sure it work. then compare the code manually. please correct me if im doing wrong way.
+
+<br>
+<br>
+
+[Paypal](https://paypal.me/AlbirrKarim)
+
+<a href='https://ko-fi.com/Q5Q0BC92X' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
