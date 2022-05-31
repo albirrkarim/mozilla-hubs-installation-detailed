@@ -1,5 +1,30 @@
 # Introduction
 
+This repo contains technical knowledge about mozilla hubs. I have project using this. You have too right ? 
+
+So let's help each other.
+
+If you have advice or experience sharing about:
+- Best practice
+- Server hosting
+- Server resource report, like if user is 1000 then RAM is rise about ...
+- Tips
+
+Please send me pull request or send me a message.
+
+You can send me a message via [discord](https://discord.com/)
+
+albirrkarim#8171
+
+Give me a star on this repository or give a donation with this button below for supporting me to always update this.
+
+[Paypal](https://paypal.me/AlbirrKarim)
+
+<a href='https://ko-fi.com/Q5Q0BC92X' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+
+
+# Installing Mozilla Hubs Locally
+
 My journey installing Mozilla hubs, I'm new to a project like this. so I'm confused. After 4 days of figuring out how this program work finally I can run Mozilla hubs on my MacBook air m1.
 I want to share with you how to do it.
 
@@ -10,20 +35,6 @@ This is about running Mozilla hubs locally. this is a detailed version, step by 
 Remember! if you got a problem with npm or dependency that you cant to solve for 1 hour. Just restart your PC. Trust me.
 
 I have done [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
-
-<!-- Now, I try to make custom hubs admin -->
-
-You can send me a message via [discord](https://discord.com/)
-
-albirrkarim#8171
-
-Give me a star on this repository or give a donation with this button below for supporting me to always update this.
-
-
-
-[Paypal](https://paypal.me/AlbirrKarim)
-
-<a href='https://ko-fi.com/Q5Q0BC92X' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 <br>
 <br>
@@ -61,6 +72,8 @@ I assume you already know, if no you must up-skill first
 ![System Overview](/docs_img/System_Overview.png)
 
 The image above made with [figma](https://www.figma.com/) you can read more description on [documentation](https://hubs.mozilla.com/docs/system-overview.html)
+
+For large program like this its better to have architecture.
 
 I try to make software overview, architecture, and tables on the database. you can see my [figma project](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/Overview-Mozilla-Hubs-Project?node-id=0%3A1)
 
