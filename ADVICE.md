@@ -35,7 +35,7 @@ use the LTS version instead.
 
 4. Cache (rare)
 
-5. Environtment library change (rare)
+5. Environment library change (rare)
 
 
 ### Solution: 
