@@ -130,9 +130,9 @@ You can install those with follow [this tutorial](https://www.pluralsight.com/gu
 
 Be careful about the version of elixir and erlang.
 
-**Ansible**
+<!-- **Ansible**
 
-You can use `pip` to install. take a look at this [tutorial](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#from-pip)
+You can use `pip` to install. take a look at this [tutorial](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#from-pip) -->
 
 ### 1.1.3 run this command
 
