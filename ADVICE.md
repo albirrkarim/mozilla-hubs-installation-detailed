@@ -39,13 +39,13 @@ use the LTS version instead.
 
 
 ### Solution: 
-- Lock the version of package by commit hash
+#### - Lock the version of package by commit hash
 
 ```
  "aframe": "github:mozillareality/aframe.git#033ec6571ff6ec2c9162e26ff4e23ee2e65afc12",
 ```
 
-- Lock the version. Remove the `^` symbol
+#### - Lock the version. Remove the `^` symbol
 ```
 "core-js": "3.6.5",
 "dashjs": "3.1.0",
@@ -55,11 +55,11 @@ use the LTS version instead.
 "draft-js": "0.10.5",
 ```
 
-- Using yarn install instead of npm install
+#### - Using yarn install instead of npm install
 
 Sometime it work.
 
-### So How if We Need Update?
+### How if We Need Update?
 
 If you see an update in hubs like adding feature or something. you can clone it first and check it first. make sure it work. then compare the code manually. please correct me if im doing wrong way.
 
