@@ -51,6 +51,16 @@ yarn link three
 yarn link gltf-webpack-loader
 ```
 
+<!-- ### - Yarn install error network connection.
+
+info There appears to be trouble with your network connection. Retrying...
+
+Increase the timeout
+
+```
+yarn config set network-timeout 6000000 -g
+``` -->
+
 ### - Can't install erlang with asdf
 
 I succeed install elixir with asdf but not erlang

@@ -67,9 +67,10 @@ Before you must understand the basics first. look at this youtube video [Automat
 - VPN (if you remoting server on other country)
 - little about protocol TCP and UDP
 
-**Software**
+**Server**
 
-- VPS with ubuntu based. Please use Ubuntu 20.04.
+- VPS with ubuntu based. Please use Ubuntu 20.04 LTS.
+- at least 4GB of RAM and 50 GB Storage.
 
 **Other**
 
