@@ -75,7 +75,7 @@ The image above made with [figma](https://www.figma.com/) you can read more desc
 
 I also try to make software overview, architecture, and tables on the database. you can see my [figma project](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/Overview-Mozilla-Hubs-Project?node-id=0%3A1)
 
-**Summary**
+### Summary
 
 Reticulum is the main host. it sync position, rotation, state of object. Comunicates with client browser through http request and websocket.
 
