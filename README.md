@@ -7,7 +7,7 @@ So let's help each other.
 If you have advice or experience sharing about:
 - Best practice
 - Server hosting
-- Server resource report, like if user is 1000 then RAM is rise about ...
+- Server resource usages
 - Tips
 
 Please send me pull request or send me a message.
@@ -73,9 +73,19 @@ I assume you already know, if no you must up-skill first
 
 The image above made with [figma](https://www.figma.com/) you can read more description on [documentation](https://hubs.mozilla.com/docs/system-overview.html)
 
-For large program like this its better to have architecture.
+I also try to make software overview, architecture, and tables on the database. you can see my [figma project](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/Overview-Mozilla-Hubs-Project?node-id=0%3A1)
 
-I try to make software overview, architecture, and tables on the database. you can see my [figma project](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/Overview-Mozilla-Hubs-Project?node-id=0%3A1)
+**Summary**
+
+Reticulum is the main host. it sync position, rotation, state of object. Comunicates with client browser through http request and websocket.
+
+Dialog sync video and audio user. comunicates with clients browser through websocket.
+
+Hubs, Spoke serve static assets then reticulum takes it and forward to client browser.
+
+postREST is a server that help hubs Admin to doing basic task like CRUD (create read update delete)
+
+Hubs Admin use websocket to comunicates with postgREST for authentication (login). for CRUD purpose hubs admin send http request (GET, POST, etc) to reticulum then reticulum doing proxy pass to postgREST.
 
 <br/>
 <br/>
