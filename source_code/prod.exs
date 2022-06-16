@@ -101,7 +101,30 @@ config :ret, Ret.PageOriginWarmer,
   spoke_page_origin: "https://#{host}:9090",
   insecure_ssl: true
 
-config :ret, Ret.HttpUtils, insecure_ssl: true
+# config :ret, Ret.HttpUtils, insecure_ssl: true
+
+config :ret, Ret.Scheduler,
+  jobs: [
+    # Send stats to StatsD every 5 seconds
+    {{:extended, "*/5 * * * *"}, {Ret.StatsJob, :send_statsd_gauges, []}},
+
+    # Flush stats to db every 5 minutes
+    {{:cron, "*/5 * * * *"}, {Ret.StatsJob, :save_node_stats, []}},
+
+    # Keep database warm when connected users
+    {{:cron, "*/3 * * * *"}, {Ret.DbWarmerJob, :warm_db_if_has_ccu, []}},
+
+    # Rotate TURN secrets if enabled
+    {{:cron, "*/5 * * * *"}, {Ret.Coturn, :rotate_secrets, []}},
+
+    # Various maintenence routines
+    {{:cron, "0 10 * * *"}, {Ret.Storage, :vacuum, []}},
+    {{:cron, "3 10 * * *"}, {Ret.Storage, :demote_inactive_owned_files, []}},
+    {{:cron, "4 10 * * *"}, {Ret.LoginToken, :expire_stale, []}},
+    {{:cron, "5 10 * * *"}, {Ret.Hub, :vacuum_entry_codes, []}},
+    {{:cron, "6 10 * * *"}, {Ret.Hub, :vacuum_hosts, []}},
+    {{:cron, "7 10 * * *"}, {Ret.CachedFile, :vacuum, []}}
+  ]
 
 config :ret, Ret.MediaResolver,
   giphy_api_key: nil,
