@@ -8,19 +8,19 @@ I have 16 GB of RAM
 
 Intel(R) Xeon(R) Gold 6252 CPU @ 2.10GHz, 8 cores
 
-and this program takes only 2.5 GB of RAM
+and this program takes only 3 GB of RAM
 
 if i run build command `npm run build` it will rise to about 4 GB.
 
 ## 2. Alibaba Cloud Elastic Compute Service
 
-Im from indonesia and some guy in china ask me to install this hubs on their server (in china mainland). via ssh remote.
+Im from indonesia and someone in china ask me to install this hubs on their server (in china mainland). via ssh remote.
 
 The hardware is 8cpu 32g ram 40gb disk
 
 ### - Download or Server Internet is Slow
 
-You can use the VPN, i use nord VPN and select hongkong location (nearest). in this vpn not provide connection directly on mainland china. So i choose hongkong that near from china. then the server internet by magic is fast hahaha.
+You can use the VPN, i use nord VPN and select hongkong location (nearest). in this vpn not provide connection directly on mainland china. So i choose hongkong that near from china. then the server internet by magic is fast.
 
 ### - OS and Python version
 
@@ -51,16 +51,6 @@ yarn link three
 yarn link gltf-webpack-loader
 ```
 
-<!-- ### - Yarn install error network connection.
-
-info There appears to be trouble with your network connection. Retrying...
-
-Increase the timeout
-
-```
-yarn config set network-timeout 6000000 -g
-``` -->
-
 ### - Can't install erlang with asdf
 
 I succeed install elixir with asdf but not erlang
@@ -80,12 +70,18 @@ Problem A + solution A -> fail
 
 Problem A + solution B -> fail
 
-Problem A + solution C -> fail
-
 Couple hour later or doing restart / or change my VPN location
 
 Problem A + solution A -> suceess
 
+
+### But all error above maybe can be solve by chatting with customer service
+
+Here the answer:
+
+Hello, check that your server is a machine in Shenzhen, the github you are visiting is an overseas site, and the mainland server accesses overseas sites through international links and operator routing nodes, which will be subject to international link congestion, and operators Outbound routing restrictions are prone to network link congestion, unstable access, and excessive access delay.
+
+Check that your server is using the EIP, try changing the EIP and try again. 
 
 <br>
 <br>
