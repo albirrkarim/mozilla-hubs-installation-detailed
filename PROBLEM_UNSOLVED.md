@@ -49,10 +49,19 @@ I have solved this [see](https://github.com/albirrkarim/mozilla-hubs-installatio
 
 Hmmm, what is this?
 
-<br>
-<br>
+
+## 2. File / Assets Not Fully Deleted (Only deleted in database record, Not in Actual Storage Directory) 
+
+From this [issue](https://github.com/mozilla/hubs/issues/5508)
+
+The file that user delete is not fully deleted. It only deletes the record from the database. and not deleted completely in storage directory.
+
+Expected behavior
+I want if the user press delete the record from the database and the Actual file in the storage folder is completely deleted.
 
 
+<br>
+<br>
 
 [Paypal](https://paypal.me/AlbirrKarim)
 

@@ -8,7 +8,7 @@ I have 16 GB of RAM
 
 Intel(R) Xeon(R) Gold 6252 CPU @ 2.10GHz, 8 cores
 
-and this program takes only 3 GB of RAM
+and this program takes only 3 GB of RAM. and about 50 GB for the storage.
 
 if i run build command `npm run build` it will rise to about 4 GB.
 
