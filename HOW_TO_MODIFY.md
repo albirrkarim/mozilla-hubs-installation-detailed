@@ -125,6 +125,26 @@ def handle_in("auth_request", %{"email" => email, "origin" => origin}, socket) d
   end
 ```
 
+## Trick to Create First User as an Admin
+
+When you run hubs on vps. you using this command
+
+```
+PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
+```
+
+With that command bellow you can't access the log and the iex (interactive elixir)
+
+But for the first time we need verification token right? like in [this section](https://github.com/mozilla/reticulum#5-logging-in) and [creating admin account with that first logged in account](https://github.com/mozilla/reticulum#6-creating-an-admin-user)
+
+We can see and open iex with this command
+
+```
+MIX_ENV=prod iex -S mix phx.server
+```
+
+with that command you can see the verif token and creating admin account
+
 <br>
 <br>
 <br>
