@@ -88,10 +88,42 @@ for example in vscode you can find the `video-volume-label`. its a class name
 
 You can see the aframe element (the output) and the javascript file which controlling that.
 
-
-## add Content Security Policy (CSP) rule in reticulum
+## Add Content Security Policy (CSP) rule in reticulum
 
 check on file `add_csp.ex`
+
+## Bypass Email Verification for Login
+
+Find `lib/ret_web/channels/auth_channel.ex`
+
+Find this function and replace it with this function below:
+
+```
+def handle_in("auth_request", %{"email" => email, "origin" => origin}, socket) do
+    if !Map.get(socket.assigns, :used) do
+      socket = socket |> assign(:used, true)
+
+      account = email |> Account.account_for_email()
+      account_disabled = account && account.state == :disabled
+
+      if !account_disabled && (can?(nil, create_account(nil)) || !!account) do
+        # Create token + send email
+        %LoginToken{identifier_hash: identifier_hash, token: token, payload_key: payload_key} = LoginToken.new_login_token_for_email(email)
+
+        encrypted_payload = %{"email" => email} |> Poison.encode!() |> Crypto.encrypt(payload_key) |> :base64.encode()
+
+        # Just by pass login
+        decrypted_payload = encrypted_payload |> :base64.decode() |> Ret.Crypto.decrypt(payload_key) |> Poison.decode!()
+        broadcast_credentials_and_payload(identifier_hash, decrypted_payload, socket)
+        LoginToken.expire(token)
+      end
+
+      {:noreply, socket}
+    else
+      {:reply, {:error, "Already sent"}, socket}
+    end
+  end
+```
 
 <br>
 <br>
@@ -100,12 +132,10 @@ check on file `add_csp.ex`
 
 ## What you want to know ?
 
-Write it on the discussion. maybe i can help you.
+Write it on the issue. maybe i can help you.
 
 <br>
 <br>
-
-
 
 [Paypal](https://paypal.me/AlbirrKarim)
 
