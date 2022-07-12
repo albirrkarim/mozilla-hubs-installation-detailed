@@ -1,8 +1,8 @@
 # Introduction
 
-This repo contains technical knowledge about mozilla hubs. I have project using this. You have too right ? 
-
-So let's help each other.
+This repo contains technical knowledge about mozilla hubs.
+ 
+Let's help each other.
 
 If you have advice or experience sharing about:
 - Best practice

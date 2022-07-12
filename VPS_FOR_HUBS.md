@@ -1,6 +1,6 @@
 # Introduction
 
-This article is about hosting the Mozilla hubs into VPS / self-hosted server. 
+This article is about hosting the Mozilla hubs into VPS / self-hosted server.
 
 Hubs provide easy deploy on AWS. its just work. But I don't want to buy some server on AWS. because i have my own server. so how to do that?
 
@@ -26,7 +26,7 @@ For me as a programmer i will make sure the code is work, features is work and t
 
 Because it will be more difficult to debug on the server rather than on local.
 
-And you will understand how this project is going on. 
+And you will understand how this project is going on.
 
 **You can't instantly just clone and host hubs on the server.**
 
@@ -40,7 +40,7 @@ For the entire hubs (reticulum, dialog, hubs, spoke) make it private repo. just 
 
 Sometimes there's a step that I'm not writing down on my tutorial. you know some little hack that we sometimes do but we forget about it.
 
-# Got Problem ? 
+# Got Problem ?
 
 Before you go far debugging days by days (like me).
 
@@ -51,7 +51,6 @@ You can instantly solve that, please read this:
 [The Problem I Still Faced](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_UNSOLVED.md)
 
 [The Problem I Faced and I Already Solved](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_SOLVED.md)
-
 
 # Requirement
 
@@ -142,15 +141,13 @@ Later we will run all node js servers like dialog, hubs, hubs admin, spoke on a 
 
 See [install pm2](https://pm2.keymetrics.io/)
 
-
 **Instaling dependency for mediasoup**
 
-Mediasoup is Cutting Edge WebRTC Video Conferencing. it used in dialog server. for RTC audio and video. 
+Mediasoup is Cutting Edge WebRTC Video Conferencing. it used in dialog server. for RTC audio and video.
 
 Look at [the mediasoup v3 Installation](https://mediasoup.org/documentation/v3/mediasoup/installation/#all-platforms)
 
 you must install python 3 and make the default command `python` is calling `python3` see [this](https://dev.to/meetsohail/change-the-python3-default-version-in-ubuntu-1ekb)
-
 
 ## 2. Install Firewall and set up
 
@@ -232,25 +229,6 @@ cd /etc/letsencrypt/live/example.com
 
 In here you will see the `cert.pem` `chain.pem` `fullchain.pem` `privkey.pem`
 
-<!-- **Backup the certificates** -->
-
-<!-- We will need that file to give SSL certificate to the [monitoring resource](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/RESOURCE_MONITORING.md)
-
-Goto `/etc/letsencrypt/live` we will zip the folder `example.com` and move it to the `/`
-
-```
-zip -r temp.zip example.com
-cd ../../../
-```
-
-Then download it with `scp` command.
-
-```
-sudo scp username@your_ip:/temp.zip /Downloads
-```
-
-It will download from the server and save to the Downloads folder. `/Downloads` is the destination where you save the file. -->
-
 **Make it accessible**
 
 ```
@@ -261,10 +239,18 @@ sudo chown $(whoami) /etc/letsencrypt/live/ -R
 sudo chown $(whoami) /etc/letsencrypt/archive/ -R
 ```
 
-then try to access it
+then try to access it (THIS IS IMPORTANT)
 
 ```
 cat /etc/letsencrypt/live/example.com/fullchain.pem
+```
+
+**Check Your Certificate Expiration**
+
+letsencrypt give 90 days for certificate lifetime. so you must renew it every 3 month
+
+```
+certbot certificates
 ```
 
 **Automatically renew certificates**
@@ -293,12 +279,11 @@ sudo crontab -e
 ```
 
 Paste this
+
 ```
 # for renewing SSL certificate
 0 12 * * * /home/admin/renew_cert.sh
 ```
-
-[more info](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx)
 
 ## 4. Setting up Github Actions
 
@@ -333,7 +318,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
- 
+
       - name: Install dependencies
         run: mix deps.get
 
@@ -438,13 +423,12 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
-
     runs-on: self-hosted
 
     strategy:
@@ -452,24 +436,24 @@ jobs:
         node-version: [16.x]
 
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Stop server
-      run: pm2 stop dialog_server
-      
-    - name: Check version
-      run: |
-        node -v
-        npm -v
-    
-    - name: Install dependency
-      run: npm i
-    
-    - name: Start server
-      run: pm2 start dialog_server
-  
-    - name: Check status
-      run: pm2 status   
+      - uses: actions/checkout@v2
+
+      - name: Stop server
+        run: pm2 stop dialog_server
+
+      - name: Check version
+        run: |
+          node -v
+          npm -v
+
+      - name: Install dependency
+        run: npm i
+
+      - name: Start server
+        run: pm2 start dialog_server
+
+      - name: Check status
+        run: pm2 status
 ```
 
 ### 4.3 Add self-hosted
@@ -478,12 +462,11 @@ Make sure you watch [this](https://www.youtube.com/watch?v=X3F3El_yvFg) first
 
 Above you can see `runs-on: self-hosted` it means the command below it, will run on your server.
 
-
 #### Folder for the action runner
 
 I suggest you to preparing a clean folder structure on your VPS
 
-Before you add the actions runner. Make a new empty folder like this. just run 
+Before you add the actions runner. Make a new empty folder like this. just run
 
 ```
 mkdir folder_name
@@ -502,7 +485,7 @@ home
 ```
 
 Okay, take a look at this picture below
- 
+
 ![Setting](/docs_img/action_runner.png)
 
 There you can follow the tutorial provided by GitHub
@@ -515,7 +498,7 @@ for example reticulum
 
 `cd /hubs-actions-runner/reticulum`
 
-then follow the tutorial provided by GitHub (see the images above) like download the tar file -> config -> run 
+then follow the tutorial provided by GitHub (see the images above) like download the tar file -> config -> run
 
 the tutorial from GitHub action runner is running with `sudo ./run.sh` it will run. but if we close the terminal it will die.
 
@@ -545,12 +528,9 @@ For your information. GitHub action runner will automatically pull from GitHub t
 
 etc
 
-
 ### 4.4 Setting path yarn, mix, elixir
 
 [see](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/SETTING_PATH_GITHUB_RUNNER.md)
-
-
 
 ## 5. Set Your Public IP and Domain
 
@@ -637,12 +617,13 @@ MEDIASOUP_LISTEN_IP=0.0.0.0 MEDIASOUP_ANNOUNCED_IP=123.xxx.xxx.xxx HTTPS_CERT_FU
 
 ### 5.3 Hubs
 
-Open the `.default.env` and change the 
+Open the `.default.env` and change the
 
 ```
 RETICULUM_SERVER="https://example.com"
 BASE_ASSETS_PATH="https://example.com:8080/"
 ```
+
 <!-- In `package.json` make a new script named `prod`
 
 ```
@@ -656,7 +637,7 @@ if (argv.mode === "production") {
   if (env.prodVps) {
     // Production on VPS
     const your_domain = "example.com";
-    
+
     // We dont use the reticulum port 4000 because later we will proxy pass from port 443 to 4000
 
     Object.assign(process.env, {
@@ -841,7 +822,7 @@ pm2 start npm --name hubs_admin_server -- run prod
 
 #### 6.2.3 Serve with nginx for static assets
 
-For better memory usage we dont need serve this static asset with `webpack-dev-server` 
+For better memory usage we dont need serve this static asset with `webpack-dev-server`
 
 **Hubs, Spoke**
 
@@ -853,7 +834,6 @@ npm run build
 
 then it will resulting static asset like .html, .js, .css file in `dist/` folder. later we will use the `dist/` directory for the root of the each port in nginx config.
 
-
 #### 6.2.4 Run postgREST server
 
 Download postREST
@@ -864,21 +844,23 @@ wget https://github.com/PostgREST/postgrest/releases/download/v9.0.0/postgrest-v
 tar -xf postgrest-v9.0.0-linux-static-x64.tar.xz
 ```
 
-On reticulum iex 
+On reticulum iex
 
 paste this
+
 ```
 jwk = Application.get_env(:ret, Ret.PermsToken)[:perms_key] |> JOSE.JWK.from_pem(); JOSE.JWK.to_file("reticulum-jwk.json", jwk)
 ```
 
 then it will create `reticulum-jwk.json` in your reticulum directory
 
-Make `reticulum.conf` file 
+Make `reticulum.conf` file
 
 ```
 nano reticulum.conf
 ```
-and paste 
+
+and paste
 
 ```
 # reticulum.conf
@@ -933,12 +915,11 @@ sudo systemctl status hubs-postgrest
 
 More about this is in [this](https://github.com/mozilla/hubs-ops/wiki/Running-PostgREST-locally)
 
-
 #### 6.2.5 Make sure it runs well
 
 Make sure the process name is same as in [.yml files](#node-js-based)
 
-run 
+run
 
 ```
 pm2 status
@@ -956,7 +937,7 @@ pm2 startup
 
 ![status](/docs_img/pm2_startup.png)
 
-then run 
+then run
 
 ```
 pm2 save
@@ -988,14 +969,13 @@ sleep 3
 
 Info: the export path is for crontab knows the `mix` command location
 
-
-Then make the .sh file is executable 
+Then make the .sh file is executable
 
 ```
 chmod +x start_reticulum_server.sh
 ```
 
-Open the crontab with this command. dont use sudo 
+Open the crontab with this command. dont use sudo
 
 ```
 crontab -e
@@ -1060,7 +1040,7 @@ server {
 
     server_name example.com;
 
-    #hubs must not serve with http, so redirect it to https 
+    #hubs must not serve with http, so redirect it to https
     return 301 https://$host$request_uri;
 }
 
@@ -1109,8 +1089,6 @@ sudo systemctl restart nginx
 [Paypal](https://paypal.me/AlbirrKarim)
 
 <a href='https://ko-fi.com/Q5Q0BC92X' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-
-
 
 ## Also read:
 
