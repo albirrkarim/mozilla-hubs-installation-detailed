@@ -278,7 +278,7 @@ sudo cronjob -e
 Paste this
 ```
 # for renewing SSL certificate
-0 12 * * * /usr/bin/certbot renew --quiet
+0 12 * * * yes '2' | sudo /usr/bin/certbot certbot --nginx certonly -d example.com
 ```
 
 [more info](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx)
