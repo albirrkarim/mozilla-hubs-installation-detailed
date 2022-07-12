@@ -269,16 +269,33 @@ cat /etc/letsencrypt/live/example.com/fullchain.pem
 
 **Automatically renew certificates**
 
+Make file `/home/admin/renew_cert.sh` and paste this.
+
+```
+#!/bin/sh
+
+yes '2' | sudo certbot --nginx certonly -d example.com
+sudo chown admin /etc/letsencrypt/live/example.com/privkey.pem
+sudo chown admin /etc/letsencrypt/live/example.com/cert.pem
+
+(lsof -ti:4000) && kill -9 $(lsof -ti:4000)
+cd /home/admin/hubs-actions-runner/reticulum/_work/reticulum/reticulum
+PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
+pm2 restart all
+pm2 reset all
+pm2 flush
+```
+
 open cronjob with sudo. don't forget open cronjob with sudo because certbot renew requiring root access
 
 ```
-sudo cronjob -e
+sudo crontab -e
 ```
 
 Paste this
 ```
 # for renewing SSL certificate
-0 12 * * * yes '2' | sudo /usr/bin/certbot certbot --nginx certonly -d example.com
+0 12 * * * /home/admin/renew_cert.sh
 ```
 
 [more info](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx)
