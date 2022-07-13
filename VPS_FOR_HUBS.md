@@ -268,8 +268,6 @@ sudo chown admin /etc/letsencrypt/live/example.com/cert.pem
 cd /home/admin/hubs-actions-runner/reticulum/_work/reticulum/reticulum
 PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
 pm2 restart all
-pm2 reset all
-pm2 flush
 ```
 
 open cronjob with sudo. don't forget open cronjob with sudo because certbot renew requiring root access
