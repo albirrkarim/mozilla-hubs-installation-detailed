@@ -105,7 +105,7 @@ Login with SSH. if the ssh is taking long or forever to connect, try using VPN. 
 ssh username@your_IP
 ```
 
-**Update all to the latest update**
+### Update All
 
 ```
 sudo su
@@ -113,15 +113,15 @@ apt-get update
 apt-get upgrade
 ```
 
-**We using Nginx for server**
+### Nginx
 
 [Install Nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04)
 
-**Install database**
+### Postgres database
 
 [Install Postgres on Linux ubuntu](https://phoenixnap.com/kb/how-to-install-postgresql-on-ubuntu)
 
-**Elixir and Erlang (Elixir 1.12.3 and erlang version 23.3)**
+### Elixir and Erlang (Elixir 1.12.3 and erlang version 23.3)**
 
 You can be installing those with `asdf` please follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
 
@@ -135,13 +135,13 @@ asdf current
 
 If you got a problem when installing erlang you must install their dependencies.
 
-**Install Process Management**
+### Process Management
 
 Later we will run all node js servers like dialog, hubs, hubs admin, spoke on a different port. so we need process management for running that in the background.
 
 See [install pm2](https://pm2.keymetrics.io/)
 
-**Instaling dependency for mediasoup**
+### Mediasoup Dependency
 
 Mediasoup is Cutting Edge WebRTC Video Conferencing. it used in dialog server. for RTC audio and video.
 
