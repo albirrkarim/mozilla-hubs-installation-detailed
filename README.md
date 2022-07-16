@@ -109,7 +109,7 @@ cd reticulum
 
 ### 1.1.2 Install requirement
 
-**Postgres Database**
+#### Postgres Database
 
 Install on [linux ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart)
 
@@ -133,8 +133,7 @@ and alter it
 ALTER USER postgres WITH SUPERUSER
 ```
 
-
-**Elixir and Erlang (Elixir 1.12 and erlang version 23)**
+#### Elixir and Erlang (Elixir 1.12 and erlang version 23)
 
 You can install those with follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
 
