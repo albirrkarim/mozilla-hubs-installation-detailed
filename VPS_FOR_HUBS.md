@@ -1089,6 +1089,8 @@ If everything is work next step is memory efficiency (RAM).
 Less memory means less money you will spend.
 The repo about efficiency i make it private. maybe later i will open patreon page.
 
+Hubs which i install in my server is using 2.3 GB of RAM
+
 <br>
 <br>
 
