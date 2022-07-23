@@ -615,49 +615,24 @@ MEDIASOUP_LISTEN_IP=0.0.0.0 MEDIASOUP_ANNOUNCED_IP=123.xxx.xxx.xxx HTTPS_CERT_FU
 
 ### 5.3 Hubs
 
-Open the `.default.env` and change the
+Open the `.default.env` and change / add the config
 
 ```
 RETICULUM_SERVER="https://example.com"
 BASE_ASSETS_PATH="https://example.com:8080/"
 ```
 
-<!-- In `package.json` make a new script named `prod`
-
-```
-webpack-dev-server --mode=production --env.prodVps --https --cert /etc/letsencrypt/live/example.com/cert.pem --key /etc/letsencrypt/live/example.com/privkey.pem
-```
-
-In `webpack.config.js` add this
-
-```js
-if (argv.mode === "production") {
-  if (env.prodVps) {
-    // Production on VPS
-    const your_domain = "example.com";
-
-    // We dont use the reticulum port 4000 because later we will proxy pass from port 443 to 4000
-
-    Object.assign(process.env, {
-      HOST_IP: your_domain,
-      SHORTLINK_DOMAIN: `${your_domain}`,
-      HOST: your_domain,
-      RETICULUM_SOCKET_SERVER: your_domain,
-      CORS_PROXY_SERVER: `${your_domain}`,
-      NON_CORS_PROXY_DOMAINS: `${your_domain},dev.reticulum.io`,
-      BASE_ASSETS_PATH: `https://${your_domain}:8080/`,
-      RETICULUM_SERVER: your_domain,
-      POSTGREST_SERVER: "",
-      ITA_SERVER: "",
-      UPLOADS_HOST: `https://${your_domain}`,
-    });
-  }
-}
-``` -->
-
 ### 5.4 Hubs admin
 
-on `package.json` add new command named `prod`
+Open the `.default.env` and change / add the config
+
+```
+# PostgREST server configured to allow administrative access to the db.
+POSTGREST_SERVER="https://example.com/api/postgrest"
+BASE_ASSETS_PATH="https://example.com:8989/"
+```
+
+<!-- on `package.json` add new command named `prod`
 
 ```bash
 webpack-dev-server --mode=production --env.prod=true --https --cert /etc/letsencrypt/live/example.com/cert.pem --key /etc/letsencrypt/live/example.com/privkey.pem
@@ -680,7 +655,7 @@ if (env.prod) {
     HOST_IP: your_domain,
   });
 }
-```
+``` -->
 
 ### 5.5 Spoke
 
@@ -800,7 +775,7 @@ with
 pm2 start npm --name dialog_server -- run prod
 ```
 
-**Hubs Admin**
+<!-- **Hubs Admin**
 
 Hubs admin need web socket. run with `webpack-dev-server` so the server is live (not just static asset).
 
@@ -816,13 +791,13 @@ then
 
 ```
 pm2 start npm --name hubs_admin_server -- run prod
-```
+``` -->
 
 #### 6.2.3 Serve with nginx for static assets
 
-For better memory usage we dont need serve this static asset with `webpack-dev-server`
+For better memory usage we don't need serve this static asset with `webpack-dev-server`
 
-**Hubs, Spoke**
+**Hubs, Hubs Admin, Spoke**
 
 For webpack based, you can compile the production asset with this command:
 
@@ -831,6 +806,20 @@ npm run build
 ```
 
 then it will resulting static asset like .html, .js, .css file in `dist/` folder. later we will use the `dist/` directory for the root of the each port in nginx config.
+
+additional modification for hubs admin.
+
+modify the reticulum.
+find `lib/ret_web/router.ex` file
+
+comment the `pipe_through`
+
+```
+scope "/api/postgrest" do
+  #pipe_through([:secure_headers, :auth_required, :admin_required, :proxy_api])
+  forward("/", RetWeb.Plugs.PostgrestProxy)
+end
+```
 
 #### 6.2.4 Run postgREST server
 
@@ -990,10 +979,9 @@ from the command above it means on reboot crontab will run command `start_reticu
 
 ## 7. Setting up NGINX
 
-We must pass everything to port 4000
+We must pass everything to port 4000. So setting up `proxy_pass` on Nginx
 
-So setting up
-`proxy_pass` on Nginx
+And also open port for static file for hubs, hubs admin, spoke.
 
 Open the Nginx config file with
 
@@ -1004,6 +992,20 @@ sudo nano /etc/nginx/sites-available/default
 And replace the content with this code
 
 ```
+server {
+        root /home/admin/hubs-actions-runner/hubs/_work/hubs/hubs/admin/dist;
+
+        listen [::]:8989 ssl ipv6only=on;
+        listen 8989 ssl;
+
+        add_header Access-Control-Allow-Origin https://example.com;
+
+        ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; # managed by Certbot
+        ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; # managed by Certbot
+        include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
 server {
         root /home/admin/hubs-actions-runner/hubs/_work/hubs/hubs/dist;
 
@@ -1080,6 +1082,12 @@ Restart NGINX
 ```bash
 sudo systemctl restart nginx
 ```
+
+# Next step
+
+If everything is work next step is memory efficiency (RAM).
+Less memory means less money you will spend.
+The repo about efficiency i make it private. maybe later i will open patreon page.
 
 <br>
 <br>
