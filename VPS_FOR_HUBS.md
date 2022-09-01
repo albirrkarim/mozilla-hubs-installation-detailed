@@ -161,8 +161,6 @@ Please look at this [tutorial](https://www.digitalocean.com/community/tutorials/
 
 Now we must allow some port.
 
-**I don't know exactly what is this port haha, just allow it**
-
 ```
 ufw allow 'OpenSSH','Nginx full'
 ```
@@ -1099,6 +1097,10 @@ Hubs which i install in my server is using 1.2 GB of RAM.
 <a href='https://ko-fi.com/Q5Q0BC92X' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ## Also read:
+
+[List Hubs Custom Features](https://github.com/albirrkarim/mozilla-hubs-custom-features)
+
+[Hubs Memory Efficiency & Usage Simulation (Private Repo)](https://github.com/albirrkarim/mozilla-hubs-optimization)
 
 [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
 

@@ -52,7 +52,7 @@ Then i install erlang 23.3 with `.deb` file. visit this to [download](https://ww
 What i do is delete `.git` folder on `hubs-actions-runner/reticulum/_work/reticulum/reticulum`
 then run `mix deps.get` again
 
-### - Unlogic solve that i can't explain hahaha
+### - Unlogic solve that i can't explain
 
 Sometimes the server is unlogic. 
 
@@ -87,6 +87,10 @@ I hope this can help you to installing mozilla hubs. You have other experience, 
 
 
 ## Also read:
+
+[List Hubs Custom Features](https://github.com/albirrkarim/mozilla-hubs-custom-features)
+
+[Hubs Memory Efficiency & Usage Simulation (Private Repo)](https://github.com/albirrkarim/mozilla-hubs-optimization)
 
 [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
 
