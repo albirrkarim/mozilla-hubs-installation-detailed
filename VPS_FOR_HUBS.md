@@ -795,6 +795,8 @@ pm2 start npm --name hubs_admin_server -- run prod
 
 For better memory usage we don't need serve this static asset with `webpack-dev-server`
 
+We don't run this. We must compile it. this is just static file.
+
 **Hubs, Hubs Admin, Spoke**
 
 For webpack based, you can compile the production asset with this command:
@@ -819,7 +821,7 @@ scope "/api/postgrest" do
 end
 ```
 
-#### 6.2.4 Run postgREST server
+### 6.3 Run postgREST server
 
 Download postREST
 
@@ -910,7 +912,7 @@ run
 pm2 status
 ```
 
-### 6.3 Auto start your all server on startup
+### 6.4 Auto start your all server on startup
 
 Basically, all processes will be killed if your server is rebooted.
 
