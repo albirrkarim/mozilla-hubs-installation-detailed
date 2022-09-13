@@ -6,7 +6,6 @@ The origin hubs repo is always updating and we are running on different server s
 
 Sometimes the error I face doesn't necessarily mean you also face it.
 
-
 ## - 502 server communication error in hubs admin like this [issue](https://github.com/mozilla/hubs/issues/4970#issue-1087523703)
 
 Ok, let's give try to solve this.
@@ -49,14 +48,13 @@ and make condition like this picture bellow
 
 ![env spoke](/docs_img/env_spoke_1.png)
 
-
 ## - Spoke Assets Thumbnail not Showing on Production
 
 Edit Api.js
 
 ![env spoke](/docs_img/spoke_failed_3.png)
 
-## - Spoke Console Error prefetch-src 
+## - Spoke Console Error prefetch-src
 
 I got error like this
 
@@ -80,11 +78,11 @@ add this `client_max_body_size` to the http section
 
 ```
 http {
-    
+
     # other line...
 
     client_max_body_size 100M;
-}  
+}
 ```
 
 Then restart nginx
@@ -95,13 +93,11 @@ sudo systemctl restart nginx
 
 for more detail see [this article](https://www.tecmint.com/limit-file-upload-size-in-nginx/)
 
-
 ## - Error: listen EADDRNOTAVAIL: address not available
 
 I install this project on server in china. alibaba elastic compute service
 
 then i got that error when trying to run Spoke and hubs admin.
-
 
 ![address error](/docs_img/address_error.png)
 
@@ -111,11 +107,9 @@ and leave `"0.0.0.0"`
 
 thanks to [this](https://stackoverflow.com/questions/53955562/node-js-error-listen-eaddrnotavail-52-1122)
 
-
 ## - My Experience Installing On Alibaba Elastic Compute Service
 
 [see](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/EXPERIENCE.md)
-
 
 ## - Dialog Error Keep Restarting on pm2
 
@@ -125,9 +119,9 @@ this._mediasoupRouter._transports.size
 
 ![dialog restart](/docs_img/dialog_restart.png)
 
-
 ## - MediaSoupError: port bind failed due to address not available
-Change the prod command in `package.json` 
+
+Change the prod command in `package.json`
 
 it because `MEDIASOUP_LISTEN_IP`. set value with `0.0.0.0`
 
@@ -135,10 +129,65 @@ it because `MEDIASOUP_LISTEN_IP`. set value with `0.0.0.0`
 MEDIASOUP_LISTEN_IP=0.0.0.0 MEDIASOUP_ANNOUNCED_IP=123.xxx.xxx.xxx HTTPS_CERT_FULLCHAIN=/etc/letsencrypt/live/example.com/fullchain.pem HTTPS_CERT_PRIVKEY=/etc/letsencrypt/live/example.com/privkey.pem DOMAIN=example.com node index.js
 ```
 
+## - 500 /api/v1/media when load image (reticulum)
+
+#### An error occured during media resolution
+
+I modify reticulum on `lib/ret_web/controllers/api/v1/media_controller.ex`
+
+become this code
+
+```elixir
+# This is an error response that we have cached ourselves
+  defp render_resolved_media_or_error(conn, {_status, :error}) do
+    # DON'T THROW ERROR
+    url = conn.params["media"]["url"]
+    content_type = MIME.from_path(url)
+    resolved_media = URI.parse(url) |> Ret.MediaResolver.resolved(%{expected_content_type: content_type})
+
+    render_resolved_media(conn, resolved_media)
+    # send_resp(conn, 500, "An error occured during media resolution")
+  end
+```
+
+#### forbidden
+
+I modify reticulum on `/lib/ret/media_resolver.ex` 
+
+Become
+```elixir
+def resolve(%MediaResolverQuery{} = query, root_host) do
+    # If we fall through all the known hosts above, we must validate the resolved ip for this host
+    # to ensure that it is allowed.
+    resolved_ip = HttpUtils.resolve_ip(query.url.host)
+    case resolved_ip do
+      nil ->
+        :error
+
+      resolved_ip ->
+        if HttpUtils.internal_ip?(resolved_ip) do
+          resolvedMedia = resolve_with_content_type(query)
+          {:commit, resolvedMedia}
+
+          # :forbidden
+        else
+          resolve_with_ytdl(query, root_host, query |> ytdl_format(root_host))
+        end
+    end
+end
+```
+
+And add this code bellow it
+
+```elixir
+def resolve_with_content_type(%MediaResolverQuery{url: %URI{} = uri}) do
+    content_type = MIME.from_path(uri.path)
+    uri |> resolved(%{expected_content_type: content_type})
+end
+```
+
 <br>
 <br>
-
-
 
 <a href='https://paypal.me/AlbirrKarim' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://user-images.githubusercontent.com/29292018/186840848-65e25ff9-47e2-424b-bfa0-4ca5d027b346.png' border='0' alt='Donate via paypal' /></a>
 
