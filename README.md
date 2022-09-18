@@ -473,7 +473,7 @@ postgrest reticulum.conf
 <br>
 <br>
 
-Urraaaa, Now you can access
+Now you can access
 
 with lock symbol (SSL secure)
 
