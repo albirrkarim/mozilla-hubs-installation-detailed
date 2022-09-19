@@ -801,7 +801,7 @@ npm run build
 
 then it will resulting static asset like .html, .js, .css file in `dist/` folder. later we will use the `dist/` directory for the root of the each port in nginx config.
 
-additional modification for hubs admin.
+#### additional modification for hubs admin.
 
 modify the reticulum.
 find `lib/ret_web/router.ex` file
