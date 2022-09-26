@@ -175,7 +175,7 @@ default_janus_csp_rule =
       else: ""
 ```
 
-4. Find on google how to install coturn, and manage it
+<!-- 4. Find on google how to install coturn, and manage it
 
 [install coturn on ubuntu](https://ourcodeworld.com/articles/read/1175/how-to-create-and-configure-your-own-stun-turn-server-with-coturn-in-ubuntu-18-04)
 
@@ -183,7 +183,7 @@ default_janus_csp_rule =
 
 ```
 psql-userdb="host=localhost dbname=ret_dev user=postgres password=postgres options='-c search_path=coturn' connect_timeout=30"
-```
+``` -->
 
 ## 1.2 Dialog
 
