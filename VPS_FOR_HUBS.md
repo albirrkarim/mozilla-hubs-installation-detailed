@@ -137,7 +137,7 @@ If you got a problem when installing erlang you must install their dependencies.
 
 ### Process Management
 
-Later we will run all node js servers like dialog, hubs, hubs admin, spoke on a different port. so we need process management for running that in the background.
+Later we will run  node js servers like `dialog`. so we need process management for running that in the background.
 
 See [install pm2](https://pm2.keymetrics.io/)
 
@@ -806,14 +806,16 @@ then it will resulting static asset like .html, .js, .css file in `dist/` folder
 modify the reticulum.
 find `lib/ret_web/router.ex` file
 
-comment the `pipe_through`
+edit the `pipe_through` like this
 
 ```
 scope "/api/postgrest" do
-  #pipe_through([:secure_headers, :auth_required, :admin_required, :proxy_api])
+  pipe_through([:secure_headers])
   forward("/", RetWeb.Plugs.PostgrestProxy)
 end
 ```
+
+i know this is make less secure when we remove `:auth_required, :admin_required, :proxy_api` later i will update the best approach
 
 ### 6.3 Run postgREST server
 
