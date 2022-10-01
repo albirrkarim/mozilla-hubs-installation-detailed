@@ -1096,7 +1096,7 @@ Hubs which i install in my server is using 1.2 GB of RAM.
 
 ## Also read:
 
-[List Hubs Custom Features](https://github.com/albirrkarim/mozilla-hubs-custom-features)
+
 
 [Hubs Memory Efficiency & Usage Simulation (Private Repo)](https://github.com/albirrkarim/mozilla-hubs-optimization)
 

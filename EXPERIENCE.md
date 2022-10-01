@@ -88,7 +88,7 @@ I hope this can help you to installing mozilla hubs. You have other experience, 
 
 ## Also read:
 
-[List Hubs Custom Features](https://github.com/albirrkarim/mozilla-hubs-custom-features)
+
 
 [Hubs Memory Efficiency & Usage Simulation (Private Repo)](https://github.com/albirrkarim/mozilla-hubs-optimization)
 

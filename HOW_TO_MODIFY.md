@@ -163,7 +163,7 @@ Write it on the issue. maybe i can help you.
 
 ## Also read:
 
-[List Hubs Custom Features](https://github.com/albirrkarim/mozilla-hubs-custom-features)
+
 
 [Hubs Memory Efficiency & Usage Simulation (Private Repo)](https://github.com/albirrkarim/mozilla-hubs-optimization)
 
