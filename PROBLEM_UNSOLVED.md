@@ -41,24 +41,51 @@ defmodule RetWeb.Plugs.ItaProxy do
 end
 ```
 
-### What is `localhost:3000`? 
+### What is `localhost:3000`?
 
 I have solved this [see](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_SOLVED.md##what-is-port-3000)
 
-### What is `localhost:6000`? 
+### What is `localhost:6000`?
 
 Hmmm, what is this?
 
-
-## 2. File / Assets Not Fully Deleted (Only deleted in database record, Not in Actual Storage Directory) 
+## 2. File / Assets Not Fully Deleted (Only deleted in database record, Not in Actual Storage Directory)
 
 From this [issue](https://github.com/mozilla/hubs/issues/5508)
 
 The file that user delete is not fully deleted. It only deletes the record from the database. and not deleted completely in storage directory.
 
-Expected behavior
+Expected behavior:
 I want if the user press delete the record from the database and the Actual file in the storage folder is completely deleted.
 
+So, You will pay expensive price to capitalists AWS amazon. More storage means more price.
+
+I have solve this issue by editing reticulum.
+
+On `/reticulum/lib/ret/storage.ex` i add aditional function
+
+```elixir
+  def remove_underlying_assets_owned_file(id) do
+    try do
+      path = owned_file_path()
+      {:ok, uuid} = Ecto.UUID.cast(id)
+      [_file_path, meta_file_path, blob_file_path] = paths_for_uuid(uuid, path)
+      File.rm!(blob_file_path)
+      File.rm!(meta_file_path)
+      clean_empty_dirs("#{module_config(:storage_path)}/#{path}")
+      clean_empty_dirs("#{module_config(:storage_path)}/#{expiring_file_path()}")
+    rescue
+      _ ->
+        {:error, "Failed to remove underlying assets for cached file."}
+    end
+  end
+```
+
+And use that function like this
+
+![delete storage](docs_img/delete_storage.png)
+
+BTW you can doing `console.log` like in javascript by using `IO.inspect(YOU_VARIABLE_HERE)` in elixir, for getting the file id.
 
 <br>
 <br>
@@ -68,8 +95,6 @@ I want if the user press delete the record from the database and the Actual file
 <a href='https://ko-fi.com/Q5Q0BC92X' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ## Also read:
-
-
 
 [Hubs Memory Efficiency & Usage Simulation (Private Repo)](https://github.com/albirrkarim/mozilla-hubs-optimization)
 
