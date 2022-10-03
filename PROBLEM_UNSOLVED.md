@@ -85,7 +85,7 @@ And use that function like this
 
 ![delete storage](docs_img/delete_storage.png)
 
-BTW you can doing `console.log` like in javascript by using `IO.inspect(YOU_VARIABLE_HERE)` in elixir, for getting the file id.
+BTW you can doing `console.log` like in javascript by using `IO.inspect(VARIABLE_HERE)` in elixir, for getting the file id.
 
 <br>
 <br>
