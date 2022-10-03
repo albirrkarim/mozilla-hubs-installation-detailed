@@ -1,14 +1,16 @@
 # Introduction
 
-This article is about hosting the Mozilla hubs into VPS / self-hosted server.
+This article is about hosting the Mozilla hubs into VPS / self-hosted servers.
 
-Hubs provide easy deploy on AWS. its just work. But I don't want to buy some server on AWS. because i have my own server. so how to do that?
+Hubs provide easy deployment on AWS. it just works. But I don't want to buy some servers on AWS because I have my own server.
+
+Also as I know in hubs-cloud you can't control the entire code. I want to make many modifications (sign method, routing, etc).
 
 I spend 4 days trying to install hubs on VPS.
 
-Basically im not a dev ops person. im react js and laravel little bit fullstack.
+Basically, I'm not a dev ops person. I'm react js and laravel a little bit full-stack.
 
-Star this repo for supporting me. and if you are interested in web 3D like this you can follow my [github account](https://github.com/albirrkarim).
+Please star this repo for supporting me. and if you are interested in web 3D like this you can follow my [github account](https://github.com/albirrkarim).
 
 I try to make software overview, architecture, and tables on the database. you can see my [figma project](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/Overview-Mozilla-Hubs-Project?node-id=0%3A1)
 
