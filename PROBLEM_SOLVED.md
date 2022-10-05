@@ -186,6 +186,35 @@ def resolve_with_content_type(%MediaResolverQuery{url: %URI{} = uri}) do
 end
 ```
 
+
+## - Postgrest Services not running or can't be restart
+
+Im using apple silicone chip m1.
+
+When running reticulum locally got this error.
+```
+[error] Postgrex.Protocol (#PID<0.651.0>) failed to connect: ** (DBConnection.ConnectionError) tcp connect (localhost:5432): connection refused - :econnrefused
+```
+
+i install postgres with brew, so we need to list all the brew services.
+
+```
+brew services list
+```
+
+then [see](https://stackoverflow.com/a/41804478)
+
+For Apple Silicone Macs use `rm /opt/homebrew/var/postgres/postmaster.pid` as the brew folder is by default in a `/opt/homebrew` instead of `/usr/local`
+
+
+then restart the postgres services with 
+
+```
+brew services restart postgresql@14
+```
+
+
+
 <br>
 <br>
 
