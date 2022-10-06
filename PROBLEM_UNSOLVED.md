@@ -58,7 +58,7 @@ The file that user delete is not fully deleted. It only deletes the record from 
 Expected behavior:
 I want if the user press delete the record from the database and the Actual file in the storage folder is completely deleted.
 
-So, You will pay expensive price to capitalists AWS amazon. More storage means more price.
+So, You will pay expensive price to AWS amazon. More storage means more price.
 
 I have solve this issue by editing reticulum.
 
