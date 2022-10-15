@@ -1083,11 +1083,13 @@ sudo systemctl restart nginx
 
 # Next step
 
-If everything is work next step is memory efficiency (RAM).
-Less memory means less money you will spend.
-The repo about efficiency i make it private. maybe later i will open patreon page.
+If everything is work next step is memory efficiency (RAM), simulate, prediction, best practice.
 
-Hubs which i install in my server is using 1.2 GB of RAM.
+Less memory means less money you will spend.
+
+The repo about it i make it private. [mozilla-hubs-optimization](https://github.com/albirrkarim/mozilla-hubs-optimization)
+
+Hubs which i install in my server is using just 800MB of RAM. include all my modification including laravel as a helper services.
 
 <br>
 <br>
