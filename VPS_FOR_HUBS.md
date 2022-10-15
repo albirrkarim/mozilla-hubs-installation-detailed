@@ -959,11 +959,10 @@ Then make the .sh file is executable
 ```
 chmod +x start_reticulum_server.sh
 ```
-
-Open the crontab with this command. dont use sudo
+Open the crontab with this command. (Attention! use sudo or not depends on your needs)
 
 ```
-crontab -e
+sudo crontab -e
 ```
 
 and paste this command on the bottom then quit and save
@@ -1089,7 +1088,7 @@ Less memory means less money you will spend.
 
 The repo about it i make it private. [mozilla-hubs-optimization](https://github.com/albirrkarim/mozilla-hubs-optimization)
 
-Hubs which i install in my server is using just 800MB of RAM. include all my modification including laravel as a helper services.
+Hubs which i install in my server just using 800MB of RAM. include all my modification including laravel as a helper services.
 
 <br>
 <br>
