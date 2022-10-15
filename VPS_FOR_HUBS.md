@@ -1088,7 +1088,7 @@ Less memory means less money you will spend.
 
 The repo about it i make it private. [mozilla-hubs-optimization](https://github.com/albirrkarim/mozilla-hubs-optimization)
 
-Hubs which i install in my server just using 800MB of RAM. include all my modification including laravel as a helper services.
+Hubs which i install in my server just using 800MB of RAM. include all my modification including laravel as a helper services. My server hardware is just 2 core CPU, 2GB RAM and 40 GB storage still capable for running hubs.
 
 <br>
 <br>
