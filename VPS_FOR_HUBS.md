@@ -260,9 +260,9 @@ Make file `/home/admin/renew_cert.sh` and paste this.
 ```
 #!/bin/sh
 
-yes '2' | sudo certbot --nginx certonly -d example.com
-sudo chown admin /etc/letsencrypt/live/example.com/privkey.pem
-sudo chown admin /etc/letsencrypt/live/example.com/cert.pem
+yes '2' | sudo certbot certonly --cert-name example.com -d example.com -d www.example.com --nginx
+sudo chown $(whoami) /etc/letsencrypt/live/example.com/privkey.pem
+sudo chown $(whoami) /etc/letsencrypt/live/example.com/cert.pem
 
 (lsof -ti:4000) && kill -9 $(lsof -ti:4000)
 cd /home/admin/hubs-actions-runner/reticulum/_work/reticulum/reticulum
@@ -273,14 +273,15 @@ pm2 restart all
 open cronjob with sudo. don't forget open cronjob with sudo because certbot renew requiring root access
 
 ```
-sudo crontab -e
+sudo crontab -e 
 ```
+
+So, I will renew every 2 month, [see](https://cronexpressiontogo.com/every-2-months)
 
 Paste this
-
 ```
 # for renewing SSL certificate
-0 12 * * * /home/admin/renew_cert.sh
+0 0 1 */2 * /home/admin/renew_cert.sh
 ```
 
 ## 4. Setting up Github Actions
