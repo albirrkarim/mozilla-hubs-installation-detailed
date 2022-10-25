@@ -1,7 +1,7 @@
 ## Install Resources Monitoring for VPS
 
 We are using [webmin](https://www.webmin.com/deb.html). this for monitoring server resources like CPU, RAM, and memory.
-We dont know the resource usage hubs yet, so we must monitoring it.
+We don't know the resource usage hubs yet, so we must monitoring it.
 
 Maybe on installation of webmin you got some error like me:
 
