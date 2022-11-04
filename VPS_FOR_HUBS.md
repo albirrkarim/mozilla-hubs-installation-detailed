@@ -139,7 +139,7 @@ If you got a problem when installing erlang you must install their dependencies.
 
 ### Process Management
 
-Later we will run  node js servers like `dialog`. so we need process management for running that in the background.
+Later we will run node js servers like `dialog`. so we need process management for running that in the background.
 
 See [install pm2](https://pm2.keymetrics.io/)
 
@@ -164,7 +164,11 @@ Please look at this [tutorial](https://www.digitalocean.com/community/tutorials/
 Now we must allow some port.
 
 ```
-ufw allow 'OpenSSH','Nginx full'
+ufw allow OpenSSH
+```
+
+```
+ufw allow 'Nginx full'
 ```
 
 **The hubs port**
@@ -173,14 +177,14 @@ ufw allow 'OpenSSH','Nginx full'
 
 **Allow for TCP and UDP protocol**
 
-For now, I don't really understand about ports let's just allow it
+For now, Im not sure which port that require only tcp and only udp. so just allow all for tcp and udp.
 
 ```
-ufw allow proto tcp from any to any port 4443,8080,9090,8989
+ufw allow proto tcp from any to any port 4000,4443,8080,9090,8989
 ```
 
 ```
-ufw allow proto udp from any to any port 4443,8080,9090,8989
+ufw allow proto udp from any to any port 4000,4443,8080,9090,8989
 ```
 
 **The Dialog port**
@@ -273,12 +277,13 @@ pm2 restart all
 open cronjob with sudo. don't forget open cronjob with sudo because certbot renew requiring root access
 
 ```
-sudo crontab -e 
+sudo crontab -e
 ```
 
 So, I will renew every 2 month, [see](https://cronexpressiontogo.com/every-2-months)
 
 Paste this
+
 ```
 # for renewing SSL certificate
 0 0 1 */2 * /home/admin/renew_cert.sh
@@ -960,6 +965,7 @@ Then make the .sh file is executable
 ```
 chmod +x start_reticulum_server.sh
 ```
+
 Open the crontab with this command. (Attention! use sudo or not depends on your needs)
 
 ```
