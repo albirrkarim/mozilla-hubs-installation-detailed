@@ -58,20 +58,20 @@ You can instantly solve that, please read this:
 
 **Knowledge**
 
-Before you must understand the basics first. look at this youtube video [Automatic Deployment With Github Actions](https://www.youtube.com/watch?v=X3F3El_yvFg)
+Before you must understand the basics first.
 
 ![Up skill](/docs_img/excercise.gif)
 
 - Basic CLI Linux
-- Github Actions
+- Github Actions, look at this youtube video [Automatic Deployment With Github Actions](https://www.youtube.com/watch?v=X3F3El_yvFg)
 - Remoting VPS via ssh
 - VPN (if you remoting server on other country)
-- little about protocol TCP and UDP
+- Little about protocol [TCP and UDP](https://www.youtube.com/watch?v=uwoD5YsGACg)
 
 **Server**
 
 - VPS with ubuntu based. Please use Ubuntu 20.04 LTS.
-- at least 4GB of RAM and 50 GB Storage.
+- For the minimum RAM [see](https://github.com/albirrkarim/how-to-maintenance-server#compiling-web-assets-dist).
 
 **Other**
 
@@ -718,36 +718,13 @@ Or with [single command](https://stackoverflow.com/a/55115797)
 If we run the node js project we use terminal. if we close that terminal the node js server will die. so we need to run that server in the background. with `pm2` we can manage the process like start, stop, restart, watch server logs.
 
 Useful pm2 command:
-
-**Start a process on background**
-
-```
-pm2 start EXECUTABLE --name PROCESS_NAME -- SOME_PARAMS
-```
-
-**Watching server logs**
-
-```
-pm2 logs
-```
-
-**See all process**
-
-```
-pm2 status
-```
-
-**Stoping process**
-
-```
-pm2 stop PROCESS_NAME
-```
-
-**Restart process**
-
-```
-pm2 restart PROCESS_NAME
-```
+|Function| Syntax |
+|--|--|
+| Start a process on background | ```pm2 start EXECUTABLE --name PROCESS_NAME -- SOME_PARAMS``` |
+| Watching server logs | ```pm2 logs``` |
+| See all process | ```pm2 status``` |
+| Stoping process | ```pm2 stop PROCESS_NAME``` |
+| Restart process | ```pm2 restart PROCESS_NAME``` |
 
 The `PROCESS_NAME` params can be changed to `all` to affect all process
 
@@ -818,12 +795,15 @@ edit the `pipe_through` like this
 
 ```
 scope "/api/postgrest" do
-  pipe_through([:secure_headers])
+  if(Mix.env() == :prod) do
+    pipe_through([:secure_headers])
+  end
+
   forward("/", RetWeb.Plugs.PostgrestProxy)
 end
 ```
 
-i know this is make less secure when we remove `:auth_required, :admin_required, :proxy_api` later i will update the best approach
+i know this is make less secure when we remove `:auth_required, :admin_required, :proxy_api` later i will update the best approach.
 
 ### 6.3 Run postgREST server
 
@@ -1095,7 +1075,7 @@ Less memory means less money you will spend.
 
 The repo about it i make it private. [mozilla-hubs-optimization](https://github.com/albirrkarim/mozilla-hubs-optimization)
 
-Hubs which i install in my server just using 800MB of RAM. include all my modification including laravel as a helper services. My server hardware is just 2 core CPU, 2GB RAM and 40 GB storage still capable for running hubs.
+Hubs which i install in my server just using 800MB of RAM. include all my modification including laravel as a helper services. My server hardware is just 2 core CPU, 2GB RAM still capable for running hubs.
 
 <br>
 <br>
