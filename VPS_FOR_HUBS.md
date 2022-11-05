@@ -866,23 +866,11 @@ WantedBy=multi-user.target
 
 then start it with:
 
-**Start**
-
-```
-sudo systemctl start hubs-postgrest
-```
-
-**Stop**
-
-```
-sudo systemctl stop hubs-postgrest
-```
-
-**Status**
-
-```
-sudo systemctl status hubs-postgrest
-```
+|Function| Syntax |
+|--|--|
+| Start | ```sudo systemctl start hubs-postgrest``` |
+| Stop | ```sudo systemctl stop hubs-postgrest``` |
+| Status | ```sudo systemctl status hubs-postgrest``` |
 
 More about this is in [this](https://github.com/mozilla/hubs-ops/wiki/Running-PostgREST-locally)
 
@@ -905,8 +893,6 @@ thanks to [this](https://stackoverflow.com/questions/45412600/pm2-process-disapp
 ```
 pm2 startup
 ```
-
-![status](/docs_img/pm2_startup.png)
 
 then run
 
@@ -1075,7 +1061,7 @@ Less memory means less money you will spend.
 
 The repo about it i make it private. [mozilla-hubs-optimization](https://github.com/albirrkarim/mozilla-hubs-optimization)
 
-Hubs which i install in my server just using 800MB of RAM. include all my modification including laravel as a helper services. My server hardware is just 2 core CPU, 2GB RAM still capable for running hubs.
+Hubs which i install in my server just using 800MB of RAM. include all my modification including laravel as a helper services. My server hardware is just 2GB RAM, still capable for running hubs.
 
 <br>
 <br>
