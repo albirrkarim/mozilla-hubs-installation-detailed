@@ -161,6 +161,13 @@ Please look at this [tutorial](https://www.digitalocean.com/community/tutorials/
 
 ### 2.2 Add Rules
 
+**The hubs port**
+
+![Up skill](/docs_img/port.png)
+
+<details>
+  <summary>Show Rules</summary>
+
 Now we must allow some port.
 
 ```
@@ -170,10 +177,6 @@ ufw allow OpenSSH
 ```
 ufw allow 'Nginx full'
 ```
-
-**The hubs port**
-
-![Up skill](/docs_img/port.png)
 
 **Allow for TCP and UDP protocol**
 
@@ -208,6 +211,8 @@ or delete with
 ```
 ufw delete <number>
 ```
+
+</details>
 
 ## 3. Setting up HTTPS for Your Domain
 
@@ -303,6 +308,9 @@ it will create `.github/workflow/elixir.yml`
 
 change the content `elixir.yml` with
 
+<details>
+  <summary>Show yml code</summary>
+
 ```yml
 name: Elixir CI
 
@@ -335,6 +343,10 @@ jobs:
           PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
 ```
 
+</details>
+
+<br>
+
 ### 4.2 Node js based
 
 One workflow (.yml) is for one repo
@@ -349,18 +361,21 @@ It will create a default .yml file. Then replace the content with this:
 
 Setting up yml file like this
 
+<details>
+  <summary>Show yml code</summary>
+  
 ```yml
 name: Node.js CI
 
 on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+push:
+branches: [master]
+pull_request:
+branches: [master]
 
 jobs:
-  build:
-    runs-on: self-hosted
+build:
+runs-on: self-hosted
 
     strategy:
       matrix:
@@ -381,11 +396,20 @@ jobs:
           pwd
           npm i --force
           npm run build
-```
+
+````
+
+</details>
+
+<br>
 
 #### Spoke
 
 Setting up yml file like this
+
+<details>
+  <summary>Show yml code</summary>
+
 
 ```yml
 name: Node.js CI
@@ -412,9 +436,16 @@ jobs:
 
       - name: Build
         run: yarn build
-```
+````
+
+</details>
+
+<br>
 
 #### Dialog
+
+<details>
+  <summary>Show yml code</summary>
 
 ```yml
 name: Node.js CI
@@ -453,6 +484,10 @@ jobs:
       - name: Check status
         run: pm2 status
 ```
+
+</details>
+
+<br>
 
 ### 4.3 Add self-hosted
 
@@ -720,11 +755,11 @@ If we run the node js project we use terminal. if we close that terminal the nod
 Useful pm2 command:
 |Function| Syntax |
 |--|--|
-| Start a process on background | ```pm2 start EXECUTABLE --name PROCESS_NAME -- SOME_PARAMS``` |
-| Watching server logs | ```pm2 logs``` |
-| See all process | ```pm2 status``` |
-| Stoping process | ```pm2 stop PROCESS_NAME``` |
-| Restart process | ```pm2 restart PROCESS_NAME``` |
+| Start a process on background | `pm2 start EXECUTABLE --name PROCESS_NAME -- SOME_PARAMS` |
+| Watching server logs | `pm2 logs` |
+| See all process | `pm2 status` |
+| Stoping process | `pm2 stop PROCESS_NAME` |
+| Restart process | `pm2 restart PROCESS_NAME` |
 
 The `PROCESS_NAME` params can be changed to `all` to affect all process
 
@@ -866,11 +901,11 @@ WantedBy=multi-user.target
 
 then start it with:
 
-|Function| Syntax |
-|--|--|
-| Start | ```sudo systemctl start hubs-postgrest``` |
-| Stop | ```sudo systemctl stop hubs-postgrest``` |
-| Status | ```sudo systemctl status hubs-postgrest``` |
+| Function | Syntax                                 |
+| -------- | -------------------------------------- |
+| Start    | `sudo systemctl start hubs-postgrest`  |
+| Stop     | `sudo systemctl stop hubs-postgrest`   |
+| Status   | `sudo systemctl status hubs-postgrest` |
 
 More about this is in [this](https://github.com/mozilla/hubs-ops/wiki/Running-PostgREST-locally)
 
@@ -961,6 +996,9 @@ sudo nano /etc/nginx/sites-available/default
 
 And replace the content with this code
 
+<details>
+  <summary>Show Code</summary>
+
 ```
 server {
         root /home/admin/hubs-actions-runner/hubs/_work/hubs/hubs/admin/dist;
@@ -1046,6 +1084,10 @@ server {
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 }
 ```
+
+</details>
+
+<br>
 
 Restart NGINX
 
