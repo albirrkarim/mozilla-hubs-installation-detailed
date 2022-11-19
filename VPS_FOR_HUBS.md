@@ -1,6 +1,6 @@
 # Introduction
 
-This article is about hosting the Mozilla hubs into VPS / self-hosted servers.
+This article is about hosting the Mozilla hubs into VPS / self-hosted servers. See [the difference between this tutorial and the hubs-cloud](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/DIFFERENCE.md) first.
 
 Hubs provide easy deployment on AWS. it just works. But I don't want to buy some servers on AWS because I have my own server.
 

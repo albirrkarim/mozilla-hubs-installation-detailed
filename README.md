@@ -1,6 +1,6 @@
 # Introduction
 
-This repo contains technical knowledge about mozilla hubs.
+The end purpose of this repo is to install fully self-hosted hubs. See [the difference between this repo and the hubs-cloud](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/DIFFERENCE.md) first.
  
 Let's help each other.
 
