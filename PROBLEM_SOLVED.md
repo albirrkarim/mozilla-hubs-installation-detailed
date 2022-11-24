@@ -56,12 +56,15 @@ and make condition like this picture bellow
 
 ## - Spoke Assets Thumbnail not Showing on Production
 
+<details>
 Edit Api.js
 
 ![env spoke](/docs_img/spoke_failed_3.png)
+</details>
 
 ## - Spoke Console Error prefetch-src
 
+<details>
 I got error like this
 
 ![Spoke console error](/docs_img/spoke_console_error.png)
@@ -70,8 +73,11 @@ Then add rule `prefetch-src` like this.
 
 ![Spoke console fix](/docs_img/spoke_console_fix.png)
 
+</details>
+
 ## - Upload Assets too Large on Spoke Production
 
+<details>
 It because nginx
 
 Open up the nginx configuration file
@@ -99,8 +105,11 @@ sudo systemctl restart nginx
 
 for more detail see [this article](https://www.tecmint.com/limit-file-upload-size-in-nginx/)
 
+</details>
+
 ## - Error: listen EADDRNOTAVAIL: address not available
 
+<details>
 I install this project on server in china. alibaba elastic compute service
 
 then i got that error when trying to run Spoke and hubs admin.
@@ -113,19 +122,26 @@ and leave `"0.0.0.0"`
 
 thanks to [this](https://stackoverflow.com/questions/53955562/node-js-error-listen-eaddrnotavail-52-1122)
 
+</details>
+
 ## - My Experience Installing On Alibaba Elastic Compute Service
 
 [see](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/EXPERIENCE.md)
 
 ## - Dialog Error Keep Restarting on pm2
 
+<details>
 ```
 this._mediasoupRouter._transports.size
 ```
 
 ![dialog restart](/docs_img/dialog_restart.png)
 
+</details>
+
 ## - MediaSoupError: port bind failed due to address not available
+
+<details>
 
 Change the prod command in `package.json`
 
@@ -135,9 +151,13 @@ it because `MEDIASOUP_LISTEN_IP`. set value with `0.0.0.0`
 MEDIASOUP_LISTEN_IP=0.0.0.0 MEDIASOUP_ANNOUNCED_IP=123.xxx.xxx.xxx HTTPS_CERT_FULLCHAIN=/etc/letsencrypt/live/example.com/fullchain.pem HTTPS_CERT_PRIVKEY=/etc/letsencrypt/live/example.com/privkey.pem DOMAIN=example.com node index.js
 ```
 
+</details>
+
 ## - 500 /api/v1/media when load image (reticulum)
 
 #### An error occured during media resolution
+
+<details>
 
 I modify reticulum on `lib/ret_web/controllers/api/v1/media_controller.ex`
 
@@ -156,7 +176,11 @@ become this code
   end
 ```
 
-#### forbidden
+</details>
+
+#### Forbidden
+
+<details>
 
 I modify reticulum on `/lib/ret/media_resolver.ex`
 
@@ -193,8 +217,11 @@ def resolve_with_content_type(%MediaResolverQuery{url: %URI{} = uri}) do
 end
 ```
 
+</details>
+
 ## - Postgrest Services not running or can't be restart
 
+<details>
 Im using apple silicone chip m1.
 
 When running reticulum locally got this error.
@@ -218,6 +245,8 @@ then restart the postgres services with
 ```
 brew services restart postgresql@14
 ```
+
+</details>
 
 <br>
 <br>
