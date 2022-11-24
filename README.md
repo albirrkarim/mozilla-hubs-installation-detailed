@@ -1,10 +1,11 @@
 # Introduction
 
 The end purpose of this repo is to install fully self-hosted hubs. See [the difference between this repo and the hubs-cloud](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/DIFFERENCE.md) first.
- 
+
 Let's help each other.
 
 If you have advice or experience sharing about:
+
 - Best practice
 - Server hosting
 - Server resource usages
@@ -22,7 +23,6 @@ Give me a star on this repository or give a donation with this button below for 
 
 <a href='https://ko-fi.com/Q5Q0BC92X' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-
 # Installing Mozilla Hubs Locally
 
 My journey installing Mozilla hubs, I'm new to a project like this. so I'm confused. After 4 days of figuring out how this program work finally I can run Mozilla hubs on my MacBook air m1.
@@ -39,7 +39,7 @@ I have done [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla
 <br>
 <br>
 
-## Disclaimer - this tutorial maybe isn't a best practice
+## Disclaimer - this tutorial maybe isn't a best practice, do with your own risk.
 
 <br>
 <br>
@@ -127,7 +127,7 @@ user: `postgres`
 
 password : `postgres`
 
-and alter it 
+and alter it
 
 ```
 ALTER USER postgres WITH SUPERUSER
@@ -230,14 +230,13 @@ yarn install
 
 ### 1.3.2 Set the base routes
 
-I hope you know the basic `react-router-dom` with the default URL in  slash `/` on `localhost:9090`
+I hope you know the basic `react-router-dom` with the default URL in slash `/` on `localhost:9090`
 
 But in the end, we will access the spoke on `localhost:4000/spoke`
 
 So we must set the base URL to `/spoke`
 
 Add the `ROUTER_BASE_PATH=/spoke` params to the `start` command on `package.json`
-
 
 ![Mozilla Spoke](/docs_img/spoke_change.png)
 
@@ -382,7 +381,7 @@ iex -S mix phx.server
 
 ## 4.2 Run dialog
 
-Edit the `start` command on the package.json with 
+Edit the `start` command on the package.json with
 
 ```
 MEDIASOUP_LISTEN_IP=127.0.0.1 MEDIASOUP_ANNOUNCED_IP=127.0.0.1 DEBUG=${DEBUG:='*mediasoup* *INFO* *WARN* *ERROR*'} INTERACTIVE=${INTERACTIVE:='true'} node index.js
@@ -393,6 +392,7 @@ For giving params `MEDIASOUP_LISTEN_IP` and `MEDIASOUP_ANNOUNCED_IP`
 ![Running preparation](/docs_img/run_dialog.png)
 
 Start dialog server with command:
+
 ```
 npm run start
 ```
@@ -434,18 +434,20 @@ tar -xf postgrest-v9.0.0-linux-static-x64.tar.xz
 On reticulum iex
 
 paste this
+
 ```
 jwk = Application.get_env(:ret, Ret.PermsToken)[:perms_key] |> JOSE.JWK.from_pem(); JOSE.JWK.to_file("reticulum-jwk.json", jwk)
 ```
 
 then it will create `reticulum-jwk.json` in your reticulum directory
 
-Make `reticulum.conf` file 
+Make `reticulum.conf` file
 
 ```
 nano reticulum.conf
 ```
-and paste 
+
+and paste
 
 ```
 # reticulum.conf
@@ -465,30 +467,21 @@ then the folder looks like this (contain two files)
    reticulum.conf
 ```
 
-then run  postREST with
+then run postREST with
 
 ```
 postgrest reticulum.conf
 ```
+
 <br>
-<br>
 
-Now you can access
+Now you can access, with lock symbol (SSL secure)
 
-with lock symbol (SSL secure)
-
-Hubs
-
-[https://localhost:4000](https://localhost:4000)
-
-Hubs admin
-
-[https://localhost:4000/admin](https://localhost:4000/admin)
-
-Spoke
-
-[https://localhost:4000/spoke](https://localhost:4000/spoke)
-
+| Server     | URL                                                          |
+| ---------- | ------------------------------------------------------------ |
+| Hubs       | [https://localhost:4000](https://localhost:4000)             |
+| Hubs admin | [https://localhost:4000/admin](https://localhost:4000/admin) |
+| Spoke      | [https://localhost:4000/spoke](https://localhost:4000/spoke) |
 
 <br>
 <br>
@@ -496,7 +489,6 @@ Spoke
 <a href='https://paypal.me/AlbirrKarim' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://user-images.githubusercontent.com/29292018/186840848-65e25ff9-47e2-424b-bfa0-4ca5d027b346.png' border='0' alt='Donate via paypal' /></a>
 
 <a href='https://ko-fi.com/Q5Q0BC92X' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-
 
 ## Also read:
 

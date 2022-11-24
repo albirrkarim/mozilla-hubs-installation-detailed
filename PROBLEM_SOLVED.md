@@ -8,6 +8,8 @@ Sometimes the error I face doesn't necessarily mean you also face it.
 
 ## - 502 server communication error in hubs admin like this [issue](https://github.com/mozilla/hubs/issues/4970#issue-1087523703)
 
+<details>
+
 Ok, let's give try to solve this.
 
 The problem is an API call to this route
@@ -38,8 +40,11 @@ Thanks to daniel, Give me info about [Running PostgREST locally](https://github.
 
 ![hubs admin panel work](/docs_img/admin_panel_work.png)
 
+</details>
+
 ## - Architecture Kit Failed to Load and Import
 
+<details>
 This problem is related to number 1 above. We don't need `CORS_PROXY_SERVER` so set it with an empty string
 
 ![env spoke](/docs_img/env_spoke.png)
@@ -47,6 +52,7 @@ This problem is related to number 1 above. We don't need `CORS_PROXY_SERVER` so 
 and make condition like this picture bellow
 
 ![env spoke](/docs_img/env_spoke_1.png)
+</details>
 
 ## - Spoke Assets Thumbnail not Showing on Production
 
@@ -152,9 +158,10 @@ become this code
 
 #### forbidden
 
-I modify reticulum on `/lib/ret/media_resolver.ex` 
+I modify reticulum on `/lib/ret/media_resolver.ex`
 
 Become
+
 ```elixir
 def resolve(%MediaResolverQuery{} = query, root_host) do
     # If we fall through all the known hosts above, we must validate the resolved ip for this host
@@ -186,12 +193,12 @@ def resolve_with_content_type(%MediaResolverQuery{url: %URI{} = uri}) do
 end
 ```
 
-
 ## - Postgrest Services not running or can't be restart
 
 Im using apple silicone chip m1.
 
 When running reticulum locally got this error.
+
 ```
 [error] Postgrex.Protocol (#PID<0.651.0>) failed to connect: ** (DBConnection.ConnectionError) tcp connect (localhost:5432): connection refused - :econnrefused
 ```
@@ -206,14 +213,11 @@ then [see](https://stackoverflow.com/a/41804478)
 
 For Apple Silicone Macs use `rm /opt/homebrew/var/postgres/postmaster.pid` as the brew folder is by default in a `/opt/homebrew` instead of `/usr/local`
 
-
-then restart the postgres services with 
+then restart the postgres services with
 
 ```
 brew services restart postgresql@14
 ```
-
-
 
 <br>
 <br>

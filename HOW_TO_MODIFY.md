@@ -4,17 +4,20 @@ After [installing Mozilla hubs on local](https://github.com/albirrkarim/mozilla-
 
 ## Where is the database schema?
 
-[see this first](https://www.youtube.com/watch?v=X9AggnaEXrM)
+[See this first](https://www.youtube.com/watch?v=X9AggnaEXrM)
 
 ## How to make hubs scene with blender
 
-[make scene](https://www.youtube.com/watch?v=ldHwbnMMKVY)
+[Make scene](https://www.youtube.com/watch?v=ldHwbnMMKVY)
 
 ## Reduce logs info for webpack server based
 
 Many logs message on hubs, hubs admin, spoke terminal sometimes makes us more confused. We can reduce it by adding this on `devServer` object on `webpack.config.js`
 
-```
+<details>
+  <summary>Show Code</summary>
+
+```js
 devServer: {
   // This is for reducing logs output on terminal
   quiet: false,
@@ -34,14 +37,18 @@ devServer: {
 }
 ```
 
-## How to login & create admin account?
-
-[see](https://github.com/mozilla/reticulum#5-logging-in)
+</details>
 
 <br>
+
+## How to login & create admin account?
+
+[See official tutorial](https://github.com/mozilla/reticulum#5-logging-in)
 <br>
 
 ## How to modify UI (web2D)?
+
+<details>
 
 ### 1. Take a look on the overview or make your own
 
@@ -69,11 +76,12 @@ Try to press all your layout button. and do some frequent actions.
 
 If the memory is growing up maybe there's a problem with your code.
 
-<br>
+</details>
 <br>
 
 ## How to modify UI (Web 3D / Aframe Component)?
 
+<details>
 ![Component 3D](/docs_img/component_3d.png)
 
 Like the position etc. its on the `hub.html` file
@@ -88,11 +96,17 @@ for example in vscode you can find the `video-volume-label`. its a class name
 
 You can see the aframe element (the output) and the javascript file which controlling that.
 
+</details>
+
+<br>
+
 ## Add Content Security Policy (CSP) rule in reticulum
 
 check on file `add_csp.ex`
 
 ## Bypass Email Verification for Login
+
+<details>
 
 Find `lib/ret_web/channels/auth_channel.ex`
 
@@ -125,7 +139,13 @@ def handle_in("auth_request", %{"email" => email, "origin" => origin}, socket) d
   end
 ```
 
-## Trick to Create First User as an Admin
+</details>
+
+<br>
+
+## Trick to Create First User as an Admin on Production Server
+
+<details>
 
 When you run hubs on vps. you using this command
 
@@ -144,6 +164,8 @@ MIX_ENV=prod iex -S mix phx.server
 ```
 
 with that command you can see the verif token and creating admin account
+
+</details>
 
 <br>
 <br>
