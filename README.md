@@ -34,7 +34,15 @@ This is about running Mozilla hubs locally. this is a detailed version, step by 
 
 Remember! if you got a problem with npm or dependency that you can't to solve for 1 hour. Just restart your PC. Trust me.
 
-I have done [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
+Also, I have done [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
+
+<br>
+<br>
+
+## This method still work, last time i checked 3 Feb 2023
+
+<br>
+<br>
 
 <br>
 <br>
@@ -43,6 +51,8 @@ I have done [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla
 
 <br>
 <br>
+
+
 
 # Requirement:
 
@@ -551,6 +561,8 @@ server {
       ssl_certificate_key /absolute_path/hubs/admin/certs/key.pem;
 }
 ```
+
+Don't forget to restart nginx
 
 then access the hubs admin via reticulum `https://localhost:4000/admin`
 

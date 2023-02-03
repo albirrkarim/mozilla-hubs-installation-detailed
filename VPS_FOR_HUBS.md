@@ -821,7 +821,7 @@ npm run build
 
 then it will resulting static asset like .html, .js, .css file in `dist/` folder. later we will use the `dist/` directory for the root of the each port in nginx config.
 
-#### additional modification for hubs admin.
+#### Additional modification for hubs admin. [See this first](https://github.com/albirrkarim/mozilla-hubs-installation-detailed#46-run-hubs-admin)
 
 modify the reticulum.
 find `lib/ret_web/router.ex` file
@@ -1099,11 +1099,11 @@ sudo systemctl restart nginx
 
 If everything is work next step is memory efficiency (RAM), simulate, prediction, best practice.
 
-Less memory means less money you will spend.
+<!-- Less memory means less money you will spend.
 
 The repo about it i make it private. [mozilla-hubs-optimization](https://github.com/albirrkarim/mozilla-hubs-optimization)
 
-Hubs which i install in my server just using 800MB of RAM. include all my modification including laravel as a helper services. My server hardware is just 2GB RAM, still capable for running hubs.
+Hubs which i install in my server just using 800MB of RAM. include all my modification including laravel as a helper services. My server hardware is just 2GB RAM, still capable for running hubs. -->
 
 <br>
 <br>
