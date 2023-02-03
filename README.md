@@ -411,7 +411,7 @@ with command
 yarn start
 ```
 
-## 4.4 Run hubs and hubs admin
+## 4.4 Run hubs
 
 Each with command
 
@@ -472,6 +472,87 @@ then run postREST with
 ```
 postgrest reticulum.conf
 ```
+
+## 4.6 Run Hubs Admin
+
+This is tricky.
+
+Goto reticulum folder then find `router.ex`, then find `/api/postgrest` and modify to this code bellow.
+
+```elixir
+scope "/api/postgrest" do
+   # pipe_through [:secure_headers, :auth_required, :admin_required, :proxy_api]
+   if(Mix.env() == :prod) do
+   pipe_through([:secure_headers])
+   end
+
+   forward "/", RetWeb.Plugs.PostgrestProxy
+end
+```
+
+The first way is we can use. `npm run local` but if we use this as a live webpack server.
+
+IF, This tab doesn't work. (pending scenes,etc)
+
+![](./docs_img/build_admin.png)
+
+The solution is we need to run it as a static file using nginx.
+
+make new file `.prod.env`
+
+```
+# To override these variables, create a .env file containing the overrides.
+CONFIGURABLE_SERVICES="janus-gateway,reticulum,hubs,spoke"
+
+ITA_SERVER="https://localhost:3333"
+RETICULUM_SERVER="localhost:4000"
+
+# PostgREST server configured to allow administrative access to the db.
+POSTGREST_SERVER="https://localhost:4000/api/postgrest"
+BASE_ASSETS_PATH="https://localhost:8989/"
+```
+
+then modify the `webpack.config.js`
+
+find the code that talk about `.env`
+
+the modify like this:
+
+```js
+if (argv.mode === "production") {
+  dotenv.config({ path: ".prod.env" });
+} else {
+  dotenv.config({ path: ".env" });
+  dotenv.config({ path: ".defaults.env" });
+}
+```
+
+build it first `npm run build` then you can see there's a `dist` folder inside the `hubs/admin`
+
+I use mac book, in the macbook just install `nginx` then
+
+find the nginx config file
+
+`sudo nginx -t`
+
+OK, let's assume you have knowledge about nginx before.
+
+```nginx
+server {
+      listen 8989 ssl;
+      server_name localhost;
+
+      location / {
+         root   /absolute_path/hubs/admin/dist;
+         index  admin.html index.htm;
+      }
+
+      ssl_certificate /absolute_path/hubs/admin/certs/cert.pem;
+      ssl_certificate_key /absolute_path/hubs/admin/certs/key.pem;
+}
+```
+
+then access the hubs admin via reticulum `https://localhost:4000/admin`
 
 <br>
 
