@@ -92,7 +92,7 @@ Hubs Admin use websocket to comunicates with postgREST for authentication (login
 
 # Attention!
 
-There is major step [Cloning and Preparation](#1-cloning-and-preparation) -> [Setting up HOST](#2-setting-up-host) -> [Setting up HTTPS (SSL)](#3-setting-up-https-ssl) -> [Running](#4-runing)
+There is major step [Cloning and Preparation](#1-cloning-and-preparation) -> [Setting up HOST](#2-setting-up-host) -> [Setting up HTTPS (SSL)](#3-setting-up-https-ssl) -> [Running](#4-running)
 
 # 1. Cloning and preparation
 
