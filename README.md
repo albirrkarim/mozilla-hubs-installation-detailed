@@ -195,6 +195,19 @@ default_janus_csp_rule =
 psql-userdb="host=localhost dbname=ret_dev user=postgres password=postgres options='-c search_path=coturn' connect_timeout=30"
 ``` -->
 
+### 1.1.5 Run Reticulum against a local Nearspark instance
+
+1. To update the content security policy (CSP) list in the dev.exs file, simply add `https://localhost:5000` to the end of the list.
+
+```elixir
+asset_hosts =
+  "https://localhost:4000 https://localhost:8080 " <>
+    "https://#{host}:4000 https://#{host}:8080 https://#{host}:3000 https://#{host}:8989 https://#{host}:9090 https://#{cors_proxy_host}:4000 " <>
+    "https://assets-prod.reticulum.io https://asset-bundles-dev.reticulum.io https://asset-bundles-prod.reticulum.io " <>
+    "https://localhost:5000"
+```
+
+
 ## 1.2 Dialog
 
 Using mediasoup RTC will handle audio and video real-time communication. like camera stream, share screen.
@@ -274,6 +287,18 @@ from the [hubs repo](#14-hubs) you can move to `hubs/admin` then run
 
 ```
 npm install
+```
+
+## 1.6 Nearspark (thumbnails server)
+
+The original NearSpark repository (https://github.com/MozillaReality/nearspark) is not compatible with Node.js version 16 (node-gyp problem) and has a bug related to base64 URL decode. To address these issues, Use a fork of the repository and added support for the "certs/" directory for HTTPS settings. You can find fork at https://github.com/XuHaoJun/nearspark
+
+Clone and install dependencies
+
+```
+git clone https://github.com/XuHaoJun/nearspark.git
+cd nearspark
+npm ci
 ```
 
 # 2. Setting up HOST
@@ -358,7 +383,7 @@ So change the `start` command
 With this
 
 ```
-cross-env NODE_ENV=development ROUTER_BASE_PATH=/spoke BASE_ASSETS_PATH=https://localhost:9090/ webpack-dev-server --mode development --https --cert certs/cert.pem --key certs/key.pem
+cross-env NODE_ENV=development ROUTER_BASE_PATH=/spoke BASE_ASSETS_PATH=https://localhost:9090/ THUMBNAIL_SERVER=localhost:5000 webpack-dev-server --mode development --https --cert certs/cert.pem --key certs/key.pem
 ```
 
 Short description:
@@ -374,6 +399,10 @@ rename `cert.pem` to `fullchain.pem`
 rename `key.pem` to `privkey.pem`
 
 ![ssl hubs dialog](/docs_img/ssl_dialog_1.png)
+
+## 3.7 Setting https for nearspark
+
+Paste [that](#now-we-have-keypem-and-certpem-file) file into `nearspark/certs`
 
 # 4. Running
 
@@ -582,6 +611,14 @@ Now you can access, with lock symbol (SSL secure)
 <a href='https://paypal.me/AlbirrKarim' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://user-images.githubusercontent.com/29292018/186840848-65e25ff9-47e2-424b-bfa0-4ca5d027b346.png' border='0' alt='Donate via paypal' /></a>
 
 <a href='https://ko-fi.com/Q5Q0BC92X' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+
+## 4.7 Run Nearspark
+
+with command
+
+```bash
+node app.js
+```
 
 ## Also read:
 
