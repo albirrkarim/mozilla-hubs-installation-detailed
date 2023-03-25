@@ -57,9 +57,46 @@ and make condition like this picture bellow
 ## - Spoke Assets Thumbnail not Showing on Production
 
 <details>
-Edit Api.js
+First way:
+
+Edit Api.js to bypass thumbnail resize service.
 
 ![env spoke](/docs_img/spoke_failed_3.png)
+
+Second way:
+
+In reticulum `config/dev.exs` append `https://nearspark-dev.reticulum.io` to `asset_hosts` if you won't self-host nearspark, that for csp rules setting.
+
+```elixir
+
+asset_hosts =
+  "https://localhost:4000 https://localhost:8080 " <>
+    "https://#{host}:4000 https://#{host}:8080 https://#{host}:3000 https://#{host}:8989 https://#{host}:9090 https://#{cors_proxy_host}:4000 " <>
+    "https://assets-prod.reticulum.io https://asset-bundles-dev.reticulum.io https://asset-bundles-prod.reticulum.io https://hubs.local:5000 " <>
+    "https://nearspark-dev.reticulum.io"
+```
+
+or you can directly edit `lib/ret_web/plugs/add_csp.ex`.
+
+Self-hosted Nearspark(thumbnail server):
+
+Nearspark [resizes preview images to 200x200 thumbnails](https://github.com/mozilla/Spoke/blob/9fe7af7e0b4eab5908d1ada17c06aab223c978ce/src/api/Api.js#L430) for some media source like Sketchfab.
+
+The original NearSpark repository (https://github.com/MozillaReality/nearspark) is not compatible with Node.js version 16 (node-gyp problem) and has a bug related to base64 URL decode. To address these issues, Use a fork of the repository and added support for the `certs/` directory for HTTPS settings. You can find fork at https://github.com/XuHaoJun/nearspark
+
+Clone, copy `certs/`, install dependencies, and start.
+
+```shell
+
+git clone https://github.com/XuHaoJun/nearspark.git
+cp hubs/certs nearspark
+cd nearspark
+npm ci
+node app.js
+```
+
+set environment variable `THUMBNAIL_SERVER="localhost:5000"` in Spoke.
+
 </details>
 
 ## - Spoke Console Error prefetch-src
@@ -104,6 +141,33 @@ sudo systemctl restart nginx
 ```
 
 for more detail see [this article](https://www.tecmint.com/limit-file-upload-size-in-nginx/)
+
+</details>
+
+## - Spoke Sketchfab tab is empty
+
+<details>
+
+To obtain a Sketchfab API key, go to (https://sketchfab.com/settings/password). Once you have obtained the API key,
+you can set it in the `config/dev.exs` file of Reticulum as shown in the following:
+
+```elixir
+
+config :ret, Ret.MediaResolver,
+  giphy_api_key: nil,
+  deviantart_client_id: nil,
+  deviantart_client_secret: nil,
+  imgur_mashape_api_key: nil,
+  imgur_client_id: nil,
+  youtube_api_key: nil,
+  sketchfab_api_key: "YOUR_API_KEY_HERE",
+  ytdl_host: nil,
+  photomnemonic_endpoint: "https://uvnsm9nzhe.execute-api.us-west-1.amazonaws.com/public"
+```
+
+If thumbnails not work, go to [Spoke Assets Thumbnail not Showing on Production](#spoke-assets-thumbnail-not-showing-on-production) section.
+
+Sketchfab tab should work.
 
 </details>
 
