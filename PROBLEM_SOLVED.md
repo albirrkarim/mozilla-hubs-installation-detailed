@@ -8,6 +8,8 @@ Sometimes the error I face doesn't necessarily mean you also face it.
 
 ## - Hubs Admin: API Call To /api/postgrest
 
+Before we solve this postgrest issue read [why this become issue](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_UNSOLVED.md#1-502-server-communication-error-in-hubs-admin-like-this-issue)
+
 <details>
 
 ```elixir
@@ -28,6 +30,17 @@ its a [PostgREST](https://postgrest.org/en/stable/index.html)
 Thanks to daniel, Give me info about [Running PostgREST locally](https://github.com/mozilla/hubs-ops/wiki/Running-PostgREST-locally)
 
 ![hubs admin panel work](/docs_img/admin_panel_work.png)
+
+If you want to see the implementation of postgrest on this hubs see:
+
+[Run postgrest with hubs on local](https://github.com/albirrkarim/mozilla-hubs-installation-detailed#45-run-postgrest-server)
+
+[Run hubs admin as a static file so it can access postgress on local](https://github.com/albirrkarim/mozilla-hubs-installation-detailed#46-run-hubs-admin)
+
+Then...
+
+[Run postgrest on server](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md#63-run-postgrest-server)
+
 
 </details>
 

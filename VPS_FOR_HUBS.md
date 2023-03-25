@@ -866,7 +866,7 @@ Make `reticulum.conf` file
 nano reticulum.conf
 ```
 
-and paste
+and paste **REMEMBER: the @ on jwt-secret path is important**
 
 ```
 # reticulum.conf
