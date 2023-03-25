@@ -49,6 +49,20 @@ I have solved this [see](https://github.com/albirrkarim/mozilla-hubs-installatio
 
 Hmmm, what is this?
 
+### What API call to `/admin-info`, `/configs/reticulum/ps`, `/schemas`
+
+its called by `ita.js` 
+
+until now i don't know. what is [ita](https://github.com/mozilla/hubs/issues/4970#issuecomment-1114858522)
+
+in my vps the app setting on hubs admin is work. so i don't need ita.
+
+![Hubs admin work](./docs_img/hubs_admin_work.png)
+
+<br>
+<br>
+<br>
+
 ## 2. File / Assets Not Fully Deleted (Only deleted in database record, Not in Actual Storage Directory)
 
 From this [issue](https://github.com/mozilla/hubs/issues/5508)

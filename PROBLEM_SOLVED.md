@@ -6,20 +6,9 @@ The origin hubs repo is always updating and we are running on different server s
 
 Sometimes the error I face doesn't necessarily mean you also face it.
 
-## - 502 server communication error in hubs admin like this [issue](https://github.com/mozilla/hubs/issues/4970#issue-1087523703)
+## - Hubs Admin: API Call To /api/postgrest
 
 <details>
-
-Ok, let's give try to solve this.
-
-The problem is an API call to this route
-
-`/api/ita/admin-info`
-
-and other with slash ita `/ita`
-
-if we check where is the code in the reticulum which handles that
-open the `router.ex` ita API call the `RetWeb.Plugs.ItaProxy` if you in vs code you can command+click / ctrl+click for find the function is called.
 
 ```elixir
 
