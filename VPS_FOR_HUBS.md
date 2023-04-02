@@ -83,6 +83,12 @@ We will go on a long journey, so this is an important requirement
 
 <br>
 
+# System Overview Production Server
+
+So what we gonna make?
+
+![System Overview](/docs_img/System_Overview_Production.png)
+
 # Installing
 
 Table of content
