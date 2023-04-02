@@ -112,7 +112,7 @@ BTW you can doing `console.log` like in javascript by using `IO.inspect(VARIABLE
 
 [How to Maintenance Server (Backup, etc)](https://github.com/albirrkarim/how-to-maintenance-server)
 
-[Hubs Memory Efficiency & Usage Simulation (Private Repo)](https://github.com/albirrkarim/mozilla-hubs-optimization)
+
 
 [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
 

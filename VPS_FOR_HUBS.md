@@ -1122,8 +1122,6 @@ Hubs which i install in my server just using 800MB of RAM. include all my modifi
 
 [How to Maintenance Server (Backup, etc)](https://github.com/albirrkarim/how-to-maintenance-server)
 
-[Hubs Memory Efficiency & Usage Simulation (Private Repo)](https://github.com/albirrkarim/mozilla-hubs-optimization)
-
 [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
 
 [The Problem I Still Faced](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_UNSOLVED.md)
