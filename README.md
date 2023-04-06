@@ -373,7 +373,7 @@ sudo nano /etc/hosts
 with command
 
 ```bash
-yarn start
+yarn run-local-reticulum
 ```
 
 ## 4.4 Run hubs
