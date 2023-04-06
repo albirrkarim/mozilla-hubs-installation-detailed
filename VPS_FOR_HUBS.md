@@ -129,7 +129,7 @@ apt-get upgrade
 
 [Install Postgres on Linux ubuntu](https://phoenixnap.com/kb/how-to-install-postgresql-on-ubuntu)
 
-### Elixir and Erlang (Elixir 1.12.3 and erlang version 23.3)
+### Elixir and Erlang (Elixir 1.14 and erlang version 23.3)
 
 You can be installing those with `asdf` please follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
 

@@ -39,7 +39,7 @@ Also, I have done [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/m
 <br>
 <br>
 
-## This method still work, last time i checked 3 Feb 2023
+## This method still work, last time i checked 6 April 2023
 
 <br>
 <br>
@@ -51,8 +51,6 @@ Also, I have done [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/m
 
 <br>
 <br>
-
-
 
 # Requirement:
 
@@ -143,7 +141,7 @@ and alter it
 ALTER USER postgres WITH SUPERUSER
 ```
 
-#### Elixir and Erlang (Elixir 1.12.3 and erlang version 23.3)
+#### Elixir and Erlang (Elixir 1.14 and erlang version 23.3)
 
 You can install those with follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
 
@@ -238,21 +236,11 @@ cd Spoke
 yarn install
 ```
 
-### 1.3.2 Set the base routes
+### 1.3.2 Set the Host (optional)
 
-I hope you know the basic `react-router-dom` with the default URL in slash `/` on `localhost:9090`
+on the `package.json` look at the `run-local-reticulum` script change the host. `hub.local` or `localhost`.
 
-But in the end, we will access the spoke on `localhost:4000/spoke`
-
-So we must set the base URL to `/spoke`
-
-Add the `ROUTER_BASE_PATH=/spoke` params to the `start` command on `package.json`
-
-![Mozilla Spoke](/docs_img/spoke_change.png)
-
-```
-cross-env NODE_ENV=development ROUTER_BASE_PATH=/spoke BASE_ASSETS_PATH=https://localhost:9090/ webpack-dev-server --mode development --https --cert certs/cert.pem --key certs/key.pem
-```
+in this tutorial i use `localhost`;
 
 ## 1.4 Hubs
 
@@ -324,46 +312,13 @@ On the `config/dev.exs` We must be setting the path for the certificate and key 
 
 Paste [that](#now-we-have-keypem-and-certpem-file) file into `hubs/certs`
 
-We run hubs with `npm run local` right?
-so add additional params on `package.json`
-
-`--https --cert certs/cert.pem --key certs/key.pem`
-
-Like this picture
-
-![ssl hubs](/docs_img/ssl_hubs.png)
-
 ## 3.4 Setting HTTPS for hubs admin
 
 Paste [that](#now-we-have-keypem-and-certpem-file) file into `hubs/admin/certs`
 
-We run hubs with `npm run local` right?
-so add additional params on `package.json`
-
-`--https --cert certs/cert.pem --key certs/key.pem`
-
-Like this picture
-
-![ssl hubs admin](/docs_img/ssl_hubs_admin.png)
-
 ## 3.5 Setting HTTPS for spoke
 
 Paste [that](#now-we-have-keypem-and-certpem-file) file into `spoke/certs`
-
-We run spoke with `yarn start` right?
-So change the `start` command
-
-![ssl hubs admin](/docs_img/ssl_spoke.png)
-
-With this
-
-```
-cross-env NODE_ENV=development ROUTER_BASE_PATH=/spoke BASE_ASSETS_PATH=https://localhost:9090/ webpack-dev-server --mode development --https --cert certs/cert.pem --key certs/key.pem
-```
-
-Short description:
-
-BASE_ASSETS_PATH = basicaly we run the spoke on localhost:9090
 
 ## 3.6 Setting https for dialog
 
@@ -586,8 +541,6 @@ Now you can access, with lock symbol (SSL secure)
 ## Also read:
 
 [How to Maintenance Server (Backup, etc)](https://github.com/albirrkarim/how-to-maintenance-server)
-
-
 
 [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
 
