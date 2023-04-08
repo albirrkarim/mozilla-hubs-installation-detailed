@@ -6,7 +6,7 @@ use Mix.Config
 # Change this
 host = "example.com"
 db_name = "ret_production"
-storage_outside_github_workflow = "/home/admin/hubs-actions-runner/reticulum/storage"
+storage_outside_github_workflow = "/home/admin/hubs_projects/storage/reticulum/storage"
 
 # Dont change this
 cors_proxy_host = "hubs-proxy.local"

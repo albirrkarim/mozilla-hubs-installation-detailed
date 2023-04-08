@@ -49,7 +49,7 @@ Then i install erlang 23.3 with `.deb` file. visit this to [download](https://ww
 
 ### - mix deps.get can't get dependecies from github
 
-What i do is delete `.git` folder on `hubs-actions-runner/reticulum/_work/reticulum/reticulum`
+What i do is delete `.git` folder on `hubs_projects/reticulum/_work/reticulum/reticulum`
 then run `mix deps.get` again
 
 ### - Unlogic solve that i can't explain

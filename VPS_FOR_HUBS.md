@@ -280,7 +280,7 @@ sudo chown $(whoami) /etc/letsencrypt/live/example.com/privkey.pem
 sudo chown $(whoami) /etc/letsencrypt/live/example.com/cert.pem
 
 (lsof -ti:4000) && kill -9 $(lsof -ti:4000)
-cd /home/admin/hubs-actions-runner/reticulum/_work/reticulum/reticulum
+cd /home/admin/hubs_projects/reticulum/_work/reticulum/reticulum
 PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
 pm2 restart all
 ```
@@ -516,7 +516,7 @@ Remember! this is an empty folder, not your "cloned repo"
 ```
 home
     your_username
-        hubs-actions-runner     <- wrap up with some folder
+        hubs_projects     <- wrap up with some folder
             hubs                <- where you put gihub action runner
             reticulum           <- where you put gihub action runner
             dialog              <- where you put gihub action runner
@@ -535,7 +535,7 @@ the get in on each folder
 
 for example reticulum
 
-`cd /hubs-actions-runner/reticulum`
+`cd /hubs_projects/reticulum`
 
 then follow the tutorial provided by GitHub (see the images above) like download the tar file -> config -> run
 
@@ -558,11 +558,11 @@ sudo ./svc.sh start
 For your information. GitHub action runner will automatically pull from GitHub to your server in the folder:
 
 ```
-/hubs-actions-runner/hubs/_work/hubs/hubs/IN_HERE
+/hubs_projects/hubs/_work/hubs/hubs/IN_HERE
 ```
 
 ```
-/hubs-actions-runner/reticulum/_work/reticulum/reticulum/IN_HERE
+/hubs_projects/reticulum/_work/reticulum/reticulum/IN_HERE
 ```
 
 etc
@@ -624,19 +624,19 @@ the port is 4443
 ```
 config :ret, Ret.Storage,
   host: "https://#{host}:4000",
-  storage_path: "/home/admin/hubs-actions-runner/reticulum/storage",
+  storage_path: "/home/admin/hubs_projects/reticulum/storage",
   ttl: 60 * 60 * 24
 ```
 
 By default, the configuration for storage is `storage/`. it means like this
 
 ```
-/home/your_username/hubs-actions-runner/reticulum/_work/reticulum/reticulum/storage
+/home/your_username/hubs_projects/reticulum/_work/reticulum/reticulum/storage
 ```
 
 If we set the storage path to the inside repo action runner like above it will auto remove by git repository synchronization.
 
-so we need make new folder on `/home/admin/hubs-actions-runner/reticulum`
+so we need make new folder on `/home/admin/hubs_projects/reticulum`
 
 ```
 mkdir -p storage/dev
@@ -776,7 +776,7 @@ The `PROCESS_NAME` params can be changed to `all` to affect all process
 Move to `dialog` repo files location
 
 ```
-cd /hubs-actions-runner/hubs/_work/dialog/dialog
+cd /hubs_projects/hubs/_work/dialog/dialog
 ```
 
 and try to run first with
@@ -954,7 +954,7 @@ echo "STARTING RETICULUM SERVER"
 export PATH=$PATH:/home/admin/.asdf/shims
 echo $PATH
 
-cd /home/admin/hubs-actions-runner/reticulum/_work/reticulum/reticulum
+cd /home/admin/hubs_projects/reticulum/_work/reticulum/reticulum
 (lsof -ti:4000) && kill -9 $(lsof -ti:4000)
 MIX_ENV=prod mix release --overwrite
 PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
@@ -1007,7 +1007,7 @@ And replace the content with this code
 
 ```
 server {
-        root /home/admin/hubs-actions-runner/hubs/_work/hubs/hubs/admin/dist;
+        root /home/admin/hubs_projects/hubs/_work/hubs/hubs/admin/dist;
 
         listen [::]:8989 ssl ipv6only=on;
         listen 8989 ssl;
@@ -1021,7 +1021,7 @@ server {
 }
 
 server {
-        root /home/admin/hubs-actions-runner/hubs/_work/hubs/hubs/dist;
+        root /home/admin/hubs_projects/hubs/_work/hubs/hubs/dist;
 
         listen [::]:8080 ssl ipv6only=on;
         listen 8080 ssl;
@@ -1035,7 +1035,7 @@ server {
 }
 
 server {
-        root /home/admin/hubs-actions-runner/spoke/_work/spoke/spoke/dist;
+        root /home/admin/hubs_projects/spoke/_work/spoke/spoke/dist;
 
         listen [::]:9090 ssl ipv6only=on;
         listen 9090 ssl;
