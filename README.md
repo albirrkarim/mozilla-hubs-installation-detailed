@@ -39,15 +39,15 @@ Also, I have done [Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/m
 <br>
 <br>
 
+## Disclaimer -  Do with your own risk.
+
+<br>
+<br>
+
+<br>
+<br>
+
 ## This method still work, last time i checked 6 April 2023
-
-<br>
-<br>
-
-<br>
-<br>
-
-## Disclaimer - this tutorial maybe isn't a best practice, do with your own risk.
 
 <br>
 <br>
