@@ -18,11 +18,10 @@ I try to make software overview, architecture, and tables on the database. you c
 
 <a href='https://ko-fi.com/Q5Q0BC92X' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-
 <br>
 <br>
 
-## Disclaimer -  Do with your own risk.
+## Disclaimer - Do with your own risk.
 
 <br>
 <br>
@@ -86,9 +85,9 @@ Before you must understand the basics first.
 
 We will go on a long journey, so this is an important requirement
 
-- Enough sleep
-- Fruit juice, a few coffees
-- Calm music
+- Enough sleep, you can't think clearly when you're sleepy
+- Drink, keep hydrated
+- Happy music, increase mood
 
 <br>
 
@@ -143,7 +142,6 @@ And later when you login to your VPS always switch to `admin`
 ```
 su admin
 ```
-
 
 ### Nginx
 
@@ -428,7 +426,6 @@ runs-on: self-hosted
           npm run build
 
 ````
-
 </details>
 
 <br>
@@ -683,7 +680,6 @@ config :ret, Ret.Mailer,
   retries: 1,
   debug_mode: true
 ```
-  
 
 ### 5.2 Dialog
 
@@ -1081,6 +1077,7 @@ server {
     return 301 https://$host$request_uri;
 }
 ```
+
 </details>
 
 <!-- server {
