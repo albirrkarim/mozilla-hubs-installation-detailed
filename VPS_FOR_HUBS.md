@@ -1056,12 +1056,8 @@ server {
         include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
         ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 }
-```
-</details>
 
-
-
-<!-- server {
+server {
     listen 80 default_server;
     listen [::]:80 default_server;
 
@@ -1069,8 +1065,9 @@ server {
 
     #hubs must not serve with http, so redirect it to https
     return 301 https://$host$request_uri;
-} -->
-
+}
+```
+</details>
 
 <!-- server {
     server_name example.com;
@@ -1123,16 +1120,21 @@ iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 4000
 ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | xargs -IIP iptables -t nat -A OUTPUT -d IP -p tcp --dport 443 -j REDIRECT --to-port 4000
 ```
 
-3. Redirect incoming TCP traffic on port 80 (commonly used for HTTP) to port 4001:
+Make iptables config available when server restart
+
+1. you should use the `netfilter-persistent` and `iptables-persistent` packages to make your iptables rules persistent across reboots
 
 ```
-iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 4001
+sudo apt-get update
+sudo apt-get install netfilter-persistent iptables-persistent
 ```
 
-4. Redirect outgoing TCP traffic to local IP addresses on port 80 to port 4001:
+2. During the installation, you will be prompted to save the current iptables rules. If you have already set up your desired rules, choose 'Yes' to save them. If not, choose 'No' and proceed with setting up your rules.
+
+3. After you have configured your iptables rules, you can save them with the following command:
 
 ```
-ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | xargs -IIP iptables -t nat -A OUTPUT -d IP -p tcp --dport 80 -j REDIRECT --to-port 4001
+sudo netfilter-persistent save
 ```
 
 # Next step
