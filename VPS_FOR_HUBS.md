@@ -96,7 +96,7 @@ We will go on a long journey, so this is an important requirement
 
 So what we gonna make?
 
-![System Overview](/docs_img/Production_Overview_Sample_1_Basic.png)
+![System Overview](/docs_img/Production_Overview_Sample_1_Basic_new.png)
 
 # Installing
 
