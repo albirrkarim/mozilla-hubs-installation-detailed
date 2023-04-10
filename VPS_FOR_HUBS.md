@@ -1056,8 +1056,12 @@ server {
         include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
         ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 }
+```
+</details>
 
-server {
+
+
+<!-- server {
     listen 80 default_server;
     listen [::]:80 default_server;
 
@@ -1065,10 +1069,10 @@ server {
 
     #hubs must not serve with http, so redirect it to https
     return 301 https://$host$request_uri;
-}
+} -->
 
 
-server {
+<!-- server {
     server_name example.com;
 
      location / {
@@ -1097,10 +1101,7 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
-}
-```
-
-</details>
+} -->
 
 <br>
 
@@ -1108,6 +1109,30 @@ Restart NGINX
 
 ```bash
 sudo systemctl restart nginx
+```
+
+**Important**
+
+1. Redirect incoming TCP traffic on port 443 (commonly used for HTTPS) to port 4000:
+```
+iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 4000
+```
+
+2. Redirect outgoing TCP traffic to local IP addresses on port 443 to port 4000:
+```
+ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | xargs -IIP iptables -t nat -A OUTPUT -d IP -p tcp --dport 443 -j REDIRECT --to-port 4000
+```
+
+3. Redirect incoming TCP traffic on port 80 (commonly used for HTTP) to port 4001:
+
+```
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 4001
+```
+
+4. Redirect outgoing TCP traffic to local IP addresses on port 80 to port 4001:
+
+```
+ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | xargs -IIP iptables -t nat -A OUTPUT -d IP -p tcp --dport 80 -j REDIRECT --to-port 4001
 ```
 
 # Next step
