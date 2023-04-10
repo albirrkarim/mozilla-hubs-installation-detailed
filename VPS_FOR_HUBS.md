@@ -114,12 +114,12 @@ Optional
 
 - [Resources Monitoring for VPS (optional)](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/RESOURCE_MONITORING.md)
 
-## 1. Install Dependencies
+## 1. Install Dependencies and Make User
 
 Login with SSH. if the ssh is taking long or forever to connect, try using VPN. it will work.
 
 ```
-ssh username@your_IP
+ssh root@your_IP
 ```
 
 ### Update All
@@ -129,6 +129,21 @@ sudo su
 apt-get update
 apt-get upgrade
 ```
+
+### Make user called "admin"
+
+When using github action runner we can't use the `root` user. so we create new user called admin.
+
+```
+sudo adduser admin
+```
+
+And later when you login to your VPS always switch to `admin`
+
+```
+su admin
+```
+
 
 ### Nginx
 
@@ -530,6 +545,7 @@ home
             reticulum           <- where you put gihub action runner
             dialog              <- where you put gihub action runner
             spoke               <- where you put gihub action runner
+            storage/reticulum   <- where you point the storage path for reticulum
 ```
 
 Okay, take a look at this picture below
@@ -630,7 +646,7 @@ the port is 4443
 
 **- Storage**
 
-```
+```elixir
 config :ret, Ret.Storage,
   host: "https://#{host}:4000",
   storage_path: "/home/admin/hubs_projects/reticulum/storage",
@@ -645,13 +661,29 @@ By default, the configuration for storage is `storage/`. it means like this
 
 If we set the storage path to the inside repo action runner like above it will auto remove by git repository synchronization.
 
-so we need make new folder on `/home/admin/hubs_projects/reticulum`
+so we need make new folder on `/home/admin/hubs_projects/storage/reticulum`
 
-```
+```bash
 mkdir -p storage/dev
 ```
 
 To show the current path in the terminal you can use `pwd` command
+
+**- SMTP**
+
+```elixir
+config :ret, Ret.Mailer,
+  adapter: Bamboo.SMTPAdapter,
+  server: "smtpdm-ap-southeast-1.aliyun.com",
+  port: 465,
+  username: "your_email@xxx.com",
+  password: "your_password123",
+  tls: :if_available,
+  ssl: true,
+  retries: 1,
+  debug_mode: true
+```
+  
 
 ### 5.2 Dialog
 
@@ -745,19 +777,19 @@ PORT=4000 MIX_ENV=prod elixir --erl "-detached" -S mix phx.server
 
 For checking the reticulum is running use this command to list the process which runs on port 4000
 
-```
+```bash
 lsof -n -i4TCP:4000
 ```
 
 To stop the process you can kill with PID
 
-```
+```bash
 kill -9 PID
 ```
 
 Or with [single command](https://stackoverflow.com/a/55115797)
 
-```
+```bash
 (lsof -ti:4000) && kill -9 $(lsof -ti:4000)
 ```
 
@@ -784,13 +816,13 @@ The `PROCESS_NAME` params can be changed to `all` to affect all process
 
 Move to `dialog` repo files location
 
-```
+```bash
 cd /hubs_projects/hubs/_work/dialog/dialog
 ```
 
 and try to run first with
 
-```
+```bash
 npm run prod
 ```
 
@@ -798,27 +830,9 @@ if its ok (no error), then using pm2
 
 with
 
-```
+```bash
 pm2 start npm --name dialog_server -- run prod
 ```
-
-<!-- **Hubs Admin**
-
-Hubs admin need web socket. run with `webpack-dev-server` so the server is live (not just static asset).
-
-test it first with
-
-```
-npm run prod
-```
-
-make sure it work
-
-then
-
-```
-pm2 start npm --name hubs_admin_server -- run prod
-``` -->
 
 #### 6.2.3 Serve with nginx for static assets
 
@@ -830,7 +844,7 @@ We don't run this. We must compile it. this is just static file.
 
 For webpack based, you can compile the production asset with this command:
 
-```
+```bash
 npm run build
 ```
 
@@ -843,7 +857,7 @@ find `lib/ret_web/router.ex` file
 
 edit the `pipe_through` like this
 
-```
+```elixir
 scope "/api/postgrest" do
   if(Mix.env() == :prod) do
     pipe_through([:secure_headers])
@@ -883,9 +897,9 @@ nano reticulum.conf
 
 and paste **REMEMBER: the @ on jwt-secret path is important**
 
-```
+```conf
 # reticulum.conf
-db-uri = "postgres://postgres:postgres@localhost:5432/ret_dev"
+db-uri = "postgres://postgres:postgres@localhost:5432/ret_production"
 db-schema = "ret0_admin"
 db-anon-role = "postgres_anonymous"
 jwt-secret = "@/absolute_path_to_your_file/reticulum-jwk.json"
@@ -895,13 +909,13 @@ role-claim-key = ".postgrest_role"
 
 Make new services using this command
 
-```
+```bash
 sudo nano /etc/systemd/system/hubs-postgrest.service
 ```
 
 and paste this
 
-```
+```conf
 [Unit]
 Description=Mozilla Hubs Postgrest Service
 
@@ -930,7 +944,7 @@ Make sure the process name is same as in [.yml files](#node-js-based)
 
 run
 
-```
+```bash
 pm2 status
 ```
 
@@ -940,13 +954,13 @@ Basically, all processes will be killed if your server is rebooted.
 
 thanks to [this](https://stackoverflow.com/questions/45412600/pm2-process-disappears-after-reboot), with pm2 run:
 
-```
+```bash
 pm2 startup
 ```
 
 then run
 
-```
+```bash
 pm2 save
 ```
 
@@ -978,19 +992,19 @@ Info: the export path is for crontab knows the `mix` command location
 
 Then make the .sh file is executable
 
-```
+```bash
 chmod +x start_reticulum_server.sh
 ```
 
 Open the crontab with this command. (Attention! use sudo or not depends on your needs)
 
-```
+```bash
 sudo crontab -e
 ```
 
 and paste this command on the bottom then quit and save
 
-```
+```conf
 # For starting reticulum server
 @reboot /home/admin/start_reticulum_server.sh >> /home/admin/start_reticulum.log 2>&1
 ```
@@ -1005,7 +1019,7 @@ And also open port for static file for hubs, hubs admin, spoke.
 
 Open the Nginx config file with
 
-```
+```bash
 sudo nano /etc/nginx/sites-available/default
 ```
 
@@ -1014,7 +1028,7 @@ And replace the content with this code
 <details>
   <summary>Show Code</summary>
 
-```
+```conf
 server {
         root /home/admin/hubs_projects/hubs/_work/hubs/hubs/admin/dist;
 
@@ -1111,12 +1125,14 @@ sudo systemctl restart nginx
 **Important**
 
 1. Redirect incoming TCP traffic on port 443 (commonly used for HTTPS) to port 4000:
-```
+
+```bash
 iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 4000
 ```
 
 2. Redirect outgoing TCP traffic to local IP addresses on port 443 to port 4000:
-```
+
+```bash
 ip -4 addr | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | xargs -IIP iptables -t nat -A OUTPUT -d IP -p tcp --dport 443 -j REDIRECT --to-port 4000
 ```
 
@@ -1124,7 +1140,7 @@ Make iptables config available when server restart
 
 1. you should use the `netfilter-persistent` and `iptables-persistent` packages to make your iptables rules persistent across reboots
 
-```
+```bash
 sudo apt-get update
 sudo apt-get install netfilter-persistent iptables-persistent
 ```
@@ -1133,7 +1149,7 @@ sudo apt-get install netfilter-persistent iptables-persistent
 
 3. After you have configured your iptables rules, you can save them with the following command:
 
-```
+```bash
 sudo netfilter-persistent save
 ```
 
