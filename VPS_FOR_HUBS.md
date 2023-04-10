@@ -191,7 +191,7 @@ Please look at this [tutorial](https://www.digitalocean.com/community/tutorials/
 
 **The hubs port**
 
-<!-- ![Up skill](/docs_img/port.png) -->
+![Port Illustration](/docs_img/port.png)
 
 <details>
   <summary>Show Rules</summary>
