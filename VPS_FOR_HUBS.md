@@ -1068,6 +1068,37 @@ server {
 }
 
 server {
+    server_name example.com;
+
+     location / {
+        #match everything
+        rewrite ^\/(.*)$ /$1 break;
+        # Proxy passing to port 4000
+        proxy_pass https://example.com:4000;
+
+
+        # The Important Websocket Bits!
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+
+        #Give larger upstream buffers
+        fastcgi_buffers 16 16k;
+        fastcgi_buffer_size 32k;
+        proxy_buffer_size 128k;
+        proxy_buffers 4 256k;
+        proxy_busy_buffers_size 256k;
+    }
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
     listen 80 default_server;
     listen [::]:80 default_server;
 
@@ -1119,7 +1150,7 @@ Restart NGINX
 sudo systemctl restart nginx
 ```
 
-**Important**
+<!-- **Important**
 
 1. Redirect incoming TCP traffic on port 443 (commonly used for HTTPS) to port 4000:
 
@@ -1148,7 +1179,7 @@ sudo apt-get install netfilter-persistent iptables-persistent
 
 ```bash
 sudo netfilter-persistent save
-```
+``` -->
 
 # Next step
 
