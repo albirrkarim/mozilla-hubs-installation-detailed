@@ -97,6 +97,10 @@ So what we gonna make?
 
 ![System Overview](/docs_img/Production_Overview_Sample_1_Basic_new.png)
 
+For more customization architecture i draw in my [figma project](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/Overview-Mozilla-Hubs-Project).
+
+There's a problem with this architecture when you using cloud server, i try to explain it on [CLOUD.md](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/CLOUD.md)
+
 # Installing
 
 Table of content
@@ -151,11 +155,11 @@ su admin
 
 [Install Postgres on Linux ubuntu](https://phoenixnap.com/kb/how-to-install-postgresql-on-ubuntu)
 
-### Elixir and Erlang (Elixir 1.14 and erlang version 23.3)
+### Elixir and Erlang (Elixir 1.14.4 and erlang version 23.3)
 
 You can be installing those with `asdf` please follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
 
-Be careful about the version of elixir and erlang, you must exact the same version with this tutorial.
+**Be careful** about the version of elixir and erlang, you must exact the same version with this tutorial.
 
 you can check the current elixir and erlang with
 
@@ -1000,7 +1004,7 @@ sudo crontab -e
 
 and paste this command on the bottom then quit and save
 
-```conf
+```
 # For starting reticulum server
 @reboot /home/admin/start_reticulum_server.sh >> /home/admin/start_reticulum.log 2>&1
 ```
@@ -1024,7 +1028,7 @@ And replace the content with this code
 <details>
   <summary>Show Code</summary>
 
-```conf
+```nginx
 server {
         root /home/admin/hubs_projects/hubs/_work/hubs/hubs/admin/dist;
 

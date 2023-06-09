@@ -148,7 +148,7 @@ and alter it
 ALTER USER postgres WITH SUPERUSER
 ```
 
-#### Elixir and Erlang (Elixir 1.14 and erlang version 23.3)
+#### Elixir and Erlang (Elixir 1.14.4 and erlang version 23.3)
 
 You can install those with follow [this tutorial](https://www.pluralsight.com/guides/installing-elixir-erlang-with-asdf)
 
