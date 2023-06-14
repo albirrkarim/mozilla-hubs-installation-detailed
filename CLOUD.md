@@ -51,4 +51,4 @@ using IP tables.
 
 But when i try to using IP tables theres other problem again with the SSL.
 
-Then i stop to solve this issue for a moment because it will takes long time and now i still working on my thesis for my master degrees.
+Then i stop to solve this issue for a moment because it will takes long time and now i still busy
