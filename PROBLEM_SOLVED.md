@@ -317,22 +317,20 @@ brew services restart postgresql@14
 <br>
 <br>
 
-<a href='https://paypal.me/AlbirrKarim' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://user-images.githubusercontent.com/29292018/186840848-65e25ff9-47e2-424b-bfa0-4ca5d027b346.png' border='0' alt='Donate via paypal' /></a>
-
 <a href='https://ko-fi.com/Q5Q0BC92X' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ## Also read:
 
-[How to Maintenance Server (Backup, etc)](https://github.com/albirrkarim/how-to-maintenance-server)
+[How to Maintenance Server (Backup, etc)](MAINTENANCE.md)
 
-[Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
+[Hosting Mozilla Hubs on VPS](VPS_FOR_HUBS.md)
 
-[The Problem I Still Faced](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_UNSOLVED.md)
+[The Problem I Still Faced](PROBLEM_UNSOLVED.md)
 
-[The Problem I Faced and I Already Solved](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_SOLVED.md)
+[The Problem I Faced and I Already Solved](PROBLEM_SOLVED.md)
 
-[Tips for Modification](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/HOW_TO_MODIFY.md)
+[Tips for Modification](HOW_TO_MODIFY.md)
 
 [Overview System With Figma](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/Overview-Mozilla-Hubs-Project?node-id=0%3A1)
 
-[Experience Sharing About Hosting on Other Server](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/EXPERIENCE.md)
+[Experience Sharing About Hosting on Other Server](EXPERIENCE.md)

@@ -72,18 +72,16 @@ sudo ./svc.sh start
 
 ## Also read:
 
-[How to Maintenance Server (Backup, etc)](https://github.com/albirrkarim/how-to-maintenance-server)
+[How to Maintenance Server (Backup, etc)](MAINTENANCE.md)
 
+[Hosting Mozilla Hubs on VPS](VPS_FOR_HUBS.md)
 
+[The Problem I Still Faced](PROBLEM_UNSOLVED.md)
 
-[Hosting Mozilla Hubs on VPS](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/VPS_FOR_HUBS.md)
+[The Problem I Faced and I Already Solved](PROBLEM_SOLVED.md)
 
-[The Problem I Still Faced](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_UNSOLVED.md)
-
-[The Problem I Faced and I Already Solved](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/PROBLEM_SOLVED.md)
-
-[Tips for Modification](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/HOW_TO_MODIFY.md)
+[Tips for Modification](HOW_TO_MODIFY.md)
 
 [Overview System With Figma](https://www.figma.com/file/h92Je1ac9AtgrR5OHVv9DZ/Overview-Mozilla-Hubs-Project?node-id=0%3A1)
 
-[Experience Sharing About Hosting on Other Server](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/EXPERIENCE.md)
+[Experience Sharing About Hosting on Other Server](EXPERIENCE.md)
