@@ -4,6 +4,12 @@
 
 The end purpose of this repo is to install fully self-hosted hubs. See [the difference between this repo and the hubs-cloud](https://github.com/albirrkarim/mozilla-hubs-installation-detailed/blob/main/DIFFERENCE.md) first.
 
+## News
+
+- 16 oct 2023. Now mozilla hubs launching [Mozilla Hubs Community Edition](https://hubs.mozilla.com/labs/welcoming-community-edition/), its the way you can install self-hosted hubs, its official method. but i havn't trying yet. Take my repo as development reference and supportive techinal thing. Please Follow the official one.
+
+- feb 2022 - oct 2023. maybe this repo is the only way you can install self-hosted hubs.
+
 Let's help each other.
 
 If you have advice or experience sharing about:
