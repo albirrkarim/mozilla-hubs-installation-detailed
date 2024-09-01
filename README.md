@@ -6,7 +6,7 @@ The end purpose of this repo is to install fully self-hosted hubs. See [the diff
 
 ## News
 
-- 1 September, The [Hubs Foundation](https://hubsfoundation.org) Is Continuing The Development Of Hubs.
+- 1 Sept 2024, The [Hubs Foundation](https://hubsfoundation.org) Is Continuing The Development Of Hubs.
 
 - 15 Feb 2024, **Mozilla Hubs is End**, On February 13, 2024, Mozilla announced an organization-wide restructuring impacting a number of products housed within the Mozilla Corporation. Unfortunately, Hubs is one of the products impacted and it will be shut down later this year. Mozilla will not continue active development or maintenance of Hubs codebases and other community resources. [Read more](https://hubs.mozilla.com/labs/sunset)
 
