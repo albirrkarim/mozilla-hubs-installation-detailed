@@ -6,6 +6,8 @@ The end purpose of this repo is to install fully self-hosted hubs. See [the diff
 
 ## News
 
+- 1 September, The [Hubs Foundation](https://hubsfoundation.org) Is Continuing The Development Of Hubs.
+
 - 15 Feb 2024, **Mozilla Hubs is End**, On February 13, 2024, Mozilla announced an organization-wide restructuring impacting a number of products housed within the Mozilla Corporation. Unfortunately, Hubs is one of the products impacted and it will be shut down later this year. Mozilla will not continue active development or maintenance of Hubs codebases and other community resources. [Read more](https://hubs.mozilla.com/labs/sunset)
 
 - 16 oct 2023. Now mozilla hubs launching [Mozilla Hubs Community Edition](https://hubs.mozilla.com/labs/welcoming-community-edition/), its the way you can install self-hosted hubs, its official method. but i havn't trying yet. Take my repo as development reference and supportive techinal thing. Please Follow the official one.
